@@ -71,10 +71,12 @@ export default function ProjectSection() {
 
   return (
     <section
-      id="project"
+      id="projects"
       aria-label="Project Section"
       className="py-24 relative border-t border-zinc-900"
     >
+      {/* Anchor alias for backwards compatibility */}
+      <div id="project" className="absolute -top-24 pointer-events-none" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-14">

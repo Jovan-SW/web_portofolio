@@ -14,7 +14,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 6rem;
   color-scheme: dark;
 }
 
@@ -41,4 +41,59 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+
+/* Cyber Monolith Cave Floating Island Animations */
+@keyframes island-levitate {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes island-shard-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+}
+
+@keyframes island-shard-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+
+@keyframes cyber-vein-pulse {
+  0%, 100% {
+    opacity: 0.55;
+    filter: drop-shadow(0 0 3px rgba(6, 182, 212, 0.4));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.8)) drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
+  }
+}
+
+.animate-island-levitate {
+  animation: island-levitate 6s ease-in-out infinite;
+}
+
+.animate-shard-1 {
+  animation: island-shard-1 5s ease-in-out infinite;
+}
+
+.animate-shard-2 {
+  animation: island-shard-2 6.5s ease-in-out infinite;
+}
+
+.animate-cyber-veins {
+  animation: cyber-vein-pulse 3.5s ease-in-out infinite;
 }
