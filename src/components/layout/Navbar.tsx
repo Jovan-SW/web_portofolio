@@ -83,6 +83,8 @@ export default function Navbar() {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(targetId);
       setMobileOpen(false);
+    } else {
+      window.location.href = `/${href}`;
     }
   };
 
