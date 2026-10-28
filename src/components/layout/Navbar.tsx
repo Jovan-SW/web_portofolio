@@ -11,14 +11,14 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 'hero', label: 'Hero', href: '#hero' },
+  { id: 'home', label: 'Home', href: '#home' },
   { id: 'about', label: 'About', href: '#about' },
   { id: 'projects', label: 'Projects', href: '#projects' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('home');
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,11 +35,13 @@ export default function Navbar() {
     handleScroll();
 
     // IntersectionObserver to sync active section indicator
-    const sectionIds = ['hero', 'about', 'projects', 'contact'];
+    const sectionIds = ['home', 'about', 'projects', 'contact'];
     const observerCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const cleanId = entry.target.id === 'project' ? 'projects' : entry.target.id;
+          let cleanId = entry.target.id;
+          if (cleanId === 'project') cleanId = 'projects';
+          if (cleanId === 'hero') cleanId = 'home';
           setActiveSection(cleanId);
         }
       });
@@ -58,6 +60,9 @@ export default function Navbar() {
     const legacyProject = document.getElementById('project');
     if (legacyProject) observer.observe(legacyProject);
 
+    const legacyHero = document.getElementById('hero');
+    if (legacyHero) observer.observe(legacyHero);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
@@ -68,6 +73,9 @@ export default function Navbar() {
     e.preventDefault();
     const targetId = href.replace('#', '');
     let element = document.getElementById(targetId);
+    if (!element && targetId === 'home') {
+      element = document.getElementById('hero');
+    }
     if (!element && targetId === 'projects') {
       element = document.getElementById('project');
     }
@@ -93,8 +101,8 @@ export default function Navbar() {
 
         {/* Left: Brand Identity with Satoshi Font (Tegas & Bold) */}
         <a
-          href="#hero"
-          onClick={(e) => handleNavClick(e, '#hero')}
+          href="#home"
+          onClick={(e) => handleNavClick(e, '#home')}
           className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-lg py-1 px-1 transition-transform active:scale-[0.98] cursor-pointer"
           aria-label="Jovan Sebastian William - Home"
         >

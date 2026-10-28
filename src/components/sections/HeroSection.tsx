@@ -41,7 +41,7 @@ export default function HeroSection() {
 
   return (
     <section
-      id="hero"
+      id="home"
       aria-label="Hero Section"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

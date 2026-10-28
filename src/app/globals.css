@@ -4,6 +4,7 @@
   --background: #090a0f;
   --foreground: #f4f4f5;
   --font-satoshi: 'Satoshi', system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-serif), 'Newsreader', 'Lora', 'Charter', 'Source Serif Pro', 'Iowan Old Style', 'Georgia', serif;
 }
 
 @theme inline {
@@ -12,6 +13,12 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-satoshi: var(--font-satoshi);
+  --font-serif: var(--font-serif);
+}
+
+.font-serif-contemporary {
+  font-family: var(--font-serif), 'Newsreader', 'Lora', 'Charter', 'Georgia', serif;
+  font-optical-sizing: auto;
 }
 
 html {

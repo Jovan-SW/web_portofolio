@@ -37,11 +37,11 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="flex items-center gap-6 text-xs sm:text-sm font-medium">
             <a
-              href="#hero"
-              onClick={(e) => handleNavClick(e, '#hero')}
+              href="#home"
+              onClick={(e) => handleNavClick(e, '#home')}
               className="hover:text-white transition-colors"
             >
-              Hero
+              Home
             </a>
             <a
               href="#about"
