@@ -8,7 +8,6 @@ import { Project } from '@/types';
 import { CardStack, CardStackItem } from '@/components/ui/card-stack';
 import {
   ExternalLink,
-  Layers,
   Sparkles,
   ArrowRight,
   Clock,
@@ -34,7 +33,7 @@ const getRepoUrl = (repo: any): string | null => {
 export default function ProjectSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Map the 3 projects to CardStackItem format
+  // Map the featured projects to CardStackItem format with updated categories
   const cardItems: PortfolioCardItem[] = PROJECTS_DATA.map((project) => ({
     id: project.id,
     title: project.title,
@@ -63,26 +62,16 @@ export default function ProjectSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold tracking-wide uppercase mb-3">
-            <Layers className="w-3.5 h-3.5" />
-            <span>Interactive 3D Showcase</span>
-          </div>
-
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4"
             style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
           >
-            Studi Kasus & Portofolio Rekayasa
+            Studi Kasus & Portofolio
           </h2>
 
           <p className="max-w-2xl text-zinc-400 text-base sm:text-lg leading-relaxed font-serif-contemporary">
             Jelajahi karya produksi pilihan yang dibangun dengan perhatian mendalam terhadap arsitektur web modern, kinerja maksimal, dan pengalaman pengguna presisi.
           </p>
-
-          <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs text-zinc-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-            <span>Geser kartu atau gunakan tombol panah untuk menavigasi proyek</span>
-          </div>
         </div>
 
         {/* 3D Card Stack Component */}

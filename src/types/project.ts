@@ -20,6 +20,7 @@
  */
 export type ProjectCategory =
   | 'Full-Stack'
+  | 'Fullstack'
   | 'Frontend'
   | 'Backend / API'
   | 'Mobile App'

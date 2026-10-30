@@ -226,8 +226,8 @@ export const PROJECTS_DATA: Project[] = [
     title: 'RevLume - Interactive Movie Discovery',
     slug: 'revlume-movie-explorer',
     tagline: 'Platform web penjelajah film interaktif berbasis React dengan integrasi real-time TMDB API.',
-    category: 'Frontend',
-    subCategories: ['Full-Stack', 'UI/UX Design'],
+    category: 'Fullstack',
+    subCategories: ['Frontend', 'UI/UX Design'],
     status: 'completed',
     featured: true,
     order: 2,
@@ -423,7 +423,7 @@ export const PROJECTS_DATA: Project[] = [
       metaTitle: 'RevLume - Movie Discovery Platform | Portfolio Case Study',
       metaDescription:
         'Studi kasus pembuatan aplikasi penjelajah film interaktif berbasis React dan TMDB API oleh Jovan Sebastian William.',
-      keywords: ['RevLume', 'React Movie App', 'TMDB API', 'Frontend Portfolio', 'JavaScript'],
+      keywords: ['RevLume', 'React Movie App', 'TMDB API', 'Full-Stack Portfolio', 'JavaScript'],
     },
   },
 

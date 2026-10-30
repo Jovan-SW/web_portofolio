@@ -13,7 +13,6 @@ import {
   Sparkles,
   CheckCircle2,
   Calendar,
-  Clock,
   Code2,
   SlidersHorizontal,
   Search,
@@ -33,6 +32,8 @@ import Footer from '@/components/layout/Footer';
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+export const instant = false;
 
 export function generateStaticParams() {
   return PROJECTS_DATA.map((project) => ({
@@ -182,29 +183,6 @@ export default async function ProjectDetailPage({ params }: Props) {
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16 sm:space-y-24">
         {/* Project Header */}
         <section className="flex flex-col gap-6">
-          {/* Badges / Pill Meta */}
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-              {project.category}
-            </span>
-            {project.subCategories?.map((sub) => (
-              <span
-                key={sub}
-                className="px-2.5 py-1 rounded-full text-xs font-mono bg-zinc-900 text-zinc-400 border border-zinc-800"
-              >
-                {sub}
-              </span>
-            ))}
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{project.status === 'completed' ? 'Selesai & Produksi' : 'Dalam Pengembangan'}</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-zinc-900 text-zinc-400 border border-zinc-800">
-              <Clock className="w-3 h-3 text-zinc-500" />
-              <span>{project.timeline.duration || '2 Minggu'}</span>
-            </span>
-          </div>
-
           {/* Title */}
           <h1
             className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight"
