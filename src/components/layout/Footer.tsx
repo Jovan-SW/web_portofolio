@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowUp, Sparkles, Mail } from 'lucide-react';
-import { GithubIcon } from '@/components/ui/Icons';
+import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -83,21 +83,30 @@ export default function Footer() {
         {/* Bottom credits */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <div>
-            &copy; 2026 Jovan. Seluruh hak cipta dilindungi.
+            &copy; 2026 Jovan Sebastian William. Seluruh hak cipta dilindungi.
           </div>
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/Jovan-SW"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-zinc-300 transition-colors flex items-center gap-1"
+              className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
             >
               <GithubIcon className="w-3.5 h-3.5" />
               <span>GitHub</span>
             </a>
             <a
-              href="mailto:contact@jovan.dev"
-              className="hover:text-zinc-300 transition-colors flex items-center gap-1"
+              href="https://www.linkedin.com/in/jovansebastian"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
+            >
+              <LinkedinIcon className="w-3.5 h-3.5" />
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="mailto:jovanwill139@gmail.com"
+              className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>Email</span>
