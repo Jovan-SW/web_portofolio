@@ -1,13 +1,6 @@
 'use client';
 
-import { ArrowUp, Sparkles, Mail } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
-
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const id = href.replace('#', '');
@@ -25,14 +18,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-900">
           {/* Logo & Tagline */}
           <div className="flex flex-col items-center md:items-start gap-1">
-            <div className="flex items-center gap-2 text-white font-bold text-lg font-mono">
-              <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center text-white">
-                <Sparkles className="w-3.5 h-3.5" />
-              </div>
-              <span>Jovan<span className="text-indigo-400">.dev</span></span>
+            <div className="text-white font-bold text-lg font-mono">
+              <span>jovansw<span className="text-indigo-400">.dev</span></span>
             </div>
             <p className="text-xs text-zinc-500 mt-1">
-              Full-Stack Web Engineering & Modern Product Development.
+              Full-Stack Web Engineering &amp; Modern Product Development.
             </p>
           </div>
 
@@ -67,50 +57,12 @@ export default function Footer() {
               Contact
             </a>
           </div>
-
-          {/* Back to top button */}
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs text-zinc-300 hover:text-white transition-colors cursor-pointer"
-            aria-label="Kembali ke atas"
-          >
-            <span>Kembali ke Atas</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
         </div>
 
         {/* Bottom credits */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <div>
             &copy; 2026 Jovan Sebastian William. Seluruh hak cipta dilindungi.
-          </div>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/Jovan-SW"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
-            >
-              <GithubIcon className="w-3.5 h-3.5" />
-              <span>GitHub</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/jovansebastian"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
-            >
-              <LinkedinIcon className="w-3.5 h-3.5" />
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="mailto:jovanwill139@gmail.com"
-              className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>Email</span>
-            </a>
           </div>
         </div>
       </div>

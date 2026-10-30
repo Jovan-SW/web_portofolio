@@ -112,7 +112,7 @@ export default function Navbar() {
             className="text-base sm:text-lg font-black tracking-tight text-white group-hover:text-zinc-200 transition-colors"
             style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
           >
-            <span className="hidden sm:inline">JOVAN SEBASTIAN WILLIAM</span>
+            <span className="hidden sm:inline">JOVANSW.DEV</span>
             <span className="sm:hidden font-mono">JOVAN S.W</span>
           </span>
         </a>
