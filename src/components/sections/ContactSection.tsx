@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 import { caveCardVariants, subPanelPopVariants } from '@/components/ui/bento';
 import {
   Mail,
@@ -16,6 +17,7 @@ import {
 import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
 
 export default function ContactSection() {
+  const { lang, t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [wibTime, setWibTime] = useState<string>('');
 
@@ -28,7 +30,7 @@ export default function ContactSection() {
     const updateWibTime = () => {
       try {
         const now = new Date();
-        const formatted = new Intl.DateTimeFormat('id-ID', {
+        const formatted = new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'id-ID', {
           timeZone: 'Asia/Jakarta',
           hour: '2-digit',
           minute: '2-digit',
@@ -44,7 +46,7 @@ export default function ContactSection() {
     updateWibTime();
     const timer = setInterval(updateWibTime, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [lang]);
 
   const handleCopyEmail = async () => {
     try {
@@ -96,32 +98,32 @@ export default function ContactSection() {
             {/* Top Hero Banner: Massive "Contact Me" Title */}
             <div className="px-6 sm:px-12 pt-10 sm:pt-14 pb-8 sm:pb-10 border-b border-white/10 bg-black/20">
               <span className="text-xs font-mono tracking-widest text-zinc-400 group-hover:text-zinc-300 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] block mb-2 transition-colors">
-                Get In Touch
+                {t('contact.eyebrow')}
               </span>
               <h2
                 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] group-hover:text-zinc-100 transition-colors"
                 style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
               >
-                Contact Me
+                {t('contact.title')}
               </h2>
             </div>
 
             {/* Content Area: Headline Ajakan & Grid Saluran Kontak */}
             <div className="px-6 sm:px-12 py-10 sm:py-14 space-y-8 sm:space-y-10">
-              {/* Headline Ajakan (Bahasa Indonesia) */}
+              {/* Headline Ajakan */}
               <div className="max-w-3xl">
                 <h3
                   className="text-2xl sm:text-4xl font-black text-white leading-tight tracking-tight mb-3 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
                   style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
                 >
-                  Butuh informasi lebih lanjut?
+                  {t('contact.heading1')}
                   <br />
                   <span className="text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                    Mari terhubung dan berdiskusi dengan kami
+                    {t('contact.heading2')}
                   </span>
                 </h3>
                 <p className="text-sm sm:text-base text-zinc-200 leading-relaxed max-w-2xl drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                  Rangkaian layanan rekayasa perangkat lunak full-stack dan pengembangan produk modern yang dirancang untuk mewujudkan strategi serta ide Anda menjadi solusi berskala besar.
+                  {t('contact.subheading')}
                 </p>
               </div>
 
@@ -142,7 +144,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <span className="text-xs font-semibold text-zinc-400 group-hover/email:text-zinc-300 uppercase tracking-wider block transition-colors">
-                        Email Resmi
+                        {t('contact.officialEmail')}
                       </span>
                       <a
                         href={`mailto:${emailAddress}`}
@@ -159,17 +161,17 @@ export default function ContactSection() {
                       type="button"
                       onClick={handleCopyEmail}
                       className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white border border-zinc-600/50 transition-all cursor-pointer active:scale-95 shadow-sm"
-                      title="Salin alamat email ke clipboard"
+                      title={lang === 'en' ? 'Copy email address to clipboard' : 'Salin alamat email ke clipboard'}
                     >
                       {copied ? (
                         <>
                           <Check className="w-3.5 h-3.5 text-emerald-400" />
-                          <span className="text-emerald-400">Email Tersalin!</span>
+                          <span className="text-emerald-400">{t('contact.emailCopied')}</span>
                         </>
                       ) : (
                         <>
                           <Copy className="w-3.5 h-3.5 text-zinc-400" />
-                          <span>Salin Email</span>
+                          <span>{t('contact.copyEmail')}</span>
                         </>
                       )}
                     </button>
@@ -177,9 +179,9 @@ export default function ContactSection() {
                     <a
                       href={`mailto:${emailAddress}`}
                       className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-200 hover:bg-white text-zinc-950 transition-all shadow-md shadow-black/40 active:scale-95"
-                      title="Kirim pesan langsung via aplikasi email Anda"
+                      title={lang === 'en' ? 'Send a message directly via your email client' : 'Kirim pesan langsung via aplikasi email Anda'}
                     >
-                      <span>Buka Mailto</span>
+                      <span>{t('contact.openMailto')}</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -201,15 +203,15 @@ export default function ContactSection() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-xs font-semibold text-zinc-400 group-hover/avail:text-zinc-300 uppercase tracking-wider transition-colors">
-                          Ketersediaan (Availability)
+                          {t('contact.availability')}
                         </span>
                       </div>
                       <p className="text-sm font-semibold text-white group-hover/avail:text-zinc-100 transition-colors">
-                        Tersedia untuk Kontrak &amp; Freelance
+                        {t('contact.availStatus')}
                       </p>
                       <p className="text-xs text-zinc-300 mt-1 flex items-center gap-1.5">
                         <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                        Respons cepat &lt; 24 jam kerja
+                        {t('contact.availResponse')}
                       </p>
                     </div>
                   </div>
@@ -231,18 +233,18 @@ export default function ContactSection() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-xs font-semibold text-zinc-400 group-hover/zone:text-zinc-300 uppercase tracking-wider transition-colors">
-                          Zona Waktu &amp; Remote
+                          {t('contact.timezone')}
                         </span>
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-800 text-zinc-200 border border-zinc-600/50">
                           <Sparkles className="w-2.5 h-2.5 text-zinc-300" />
-                          Worldwide Remote
+                          {t('contact.timezoneRemote')}
                         </span>
                       </div>
                       <p className="text-sm font-semibold text-white group-hover/zone:text-zinc-100 transition-colors">
-                        Indonesia (UTC+7 / WIB)
+                        {t('contact.timezoneDetail')}
                       </p>
                       <p className="text-xs text-zinc-300 mt-1 font-mono">
-                        {wibTime ? `Waktu lokal: ${wibTime}` : 'Indonesia Standard Time'} • Remote Worldwide Ready
+                        {wibTime ? `${t('contact.wibLabel')} ${wibTime}` : 'Indonesia Standard Time'} • {t('contact.wibRemoteReady')}
                       </p>
                     </div>
                   </div>
@@ -267,7 +269,7 @@ export default function ContactSection() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-semibold text-zinc-400 group-hover/li:text-zinc-300 uppercase tracking-wider transition-colors">
-                          LinkedIn Profil
+                          {t('contact.linkedin')}
                         </span>
                         <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover/li:text-white group-hover/li:translate-x-0.5 group-hover/li:-translate-y-0.5 transition-transform" />
                       </div>
@@ -275,7 +277,7 @@ export default function ContactSection() {
                         www.linkedin.com/in/jovansebastian
                       </p>
                       <p className="text-xs text-zinc-300 mt-1">
-                        Koneksi profesional &amp; riwayat karir
+                        {t('contact.linkedinDesc')}
                       </p>
                     </div>
                   </div>
@@ -300,7 +302,7 @@ export default function ContactSection() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-semibold text-zinc-400 group-hover/gh:text-zinc-300 uppercase tracking-wider transition-colors">
-                          GitHub Profil
+                          {t('contact.github')}
                         </span>
                         <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover/gh:text-white group-hover/gh:translate-x-0.5 group-hover/gh:-translate-y-0.5 transition-transform" />
                       </div>
@@ -308,7 +310,7 @@ export default function ContactSection() {
                         https://github.com/Jovan-SW
                       </p>
                       <p className="text-xs text-zinc-300 mt-1">
-                        Repositori kode, arsitektur, &amp; proyek open source
+                        {t('contact.githubDesc')}
                       </p>
                     </div>
                   </div>

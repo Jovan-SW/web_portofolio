@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion';
 import { BentoCard, caveCardVariants, subPanelPopVariants } from '@/components/ui/bento';
 import { InteractiveTiltCard } from '@/components/ui/tilt-card';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function AboutSection() {
+  const { lang, t } = useLanguage();
+
   return (
     <section
       id="about"
@@ -21,9 +24,9 @@ export default function AboutSection() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-stretch">
             {/* Card 1: Technical Journey Text (Pop-In dari Dalam Goa 1) */}
             <BentoCard
-              eyebrow="Evolution & Journey"
+              eyebrow={lang === 'en' ? 'Evolution & Journey' : 'Evolusi & Perjalanan'}
               title="Technical Journey"
-              description="Perjalanan rekayasa perangkat lunak saya bermula dari pemahaman mendasar mengenai arsitektur jaringan dan komunikasi peladen, yang kemudian berkembang menjadi spesialisasi dalam pengembangan sistem web full-stack. Berangkat dari perancangan sistem interaktif berbasis konsumsi data hingga pembangunan platform niaga elektronik dengan alur transaksi terintegrasi, fokus rekayasa saya terpusat pada ekosistem Next.js, TypeScript, dan PostgreSQL. Pendekatan kerja saya menitikberatkan pada struktur arsitektur yang modular, kepatuhan pengetikan kode yang ketat, serta penjaminan keamanan data tingkat lanjut demi menghadirkan solusi digital yang andal dan berkinerja tinggi."
+              description={t('about.description')}
               delay={0.04}
               className="md:col-span-7 lg:col-span-8 h-full"
             />
@@ -53,7 +56,7 @@ export default function AboutSection() {
                   <InteractiveTiltCard
                     image={{
                       src: '/inimahgw.png',
-                      alt: 'Jovan - Technical Journey',
+                      alt: t('about.photoAlt'),
                     }}
                     tiltFactor={14}
                     perspective={1000}
@@ -81,32 +84,48 @@ export default function AboutSection() {
             {/* Card 3: Keamanan Berlapis pada Tingkat Basis Data (Pop-In dari Dalam Goa 3) */}
             <BentoCard
               eyebrow="Database Security"
-              title="Keamanan Berlapis pada Tingkat Basis Data"
-              description="Validasi data tidak boleh hanya bergantung pada logika antarmuka pengguna. Saya menerapkan isolasi data dan kebijakan kontrol akses berbasis baris (Row-Level Security) langsung pada lapisan basis data untuk memastikan setiap entitas data terlindungi secara absolut dari akses yang tidak terotorisasi."
+              title={lang === 'en' ? 'Multi-Layered Database-Level Security' : 'Keamanan Berlapis pada Tingkat Basis Data'}
+              description={
+                lang === 'en'
+                  ? 'Data validation must never solely rely on client-side logic. I implement data isolation and Row-Level Security directly at the database layer to ensure every entity is strictly shielded from unauthorized access.'
+                  : 'Validasi data tidak boleh hanya bergantung pada logika antarmuka pengguna. Saya menerapkan isolasi data dan kebijakan kontrol akses berbasis baris (Row-Level Security) langsung pada lapisan basis data untuk memastikan setiap entitas data terlindungi secara absolut dari akses yang tidak terotorisasi.'
+              }
               delay={0.28}
             />
 
             {/* Card 4: Kepastian Tipe Data Menyeluruh (Pop-In dari Dalam Goa 4) */}
             <BentoCard
               eyebrow="Type Safety"
-              title="Kepastian Tipe Data Menyeluruh (End-to-End Type Safety)"
-              description="Saya mengeliminasi potensi kegagalan sistem saat aplikasi berjalan (runtime error) melalui sinkronisasi tipe data statis yang terhubung tanpa putus, mulai dari skema basis data, protokol transmisi data, hingga komponen visual. Konsistensi ini menjamin stabilitas kode dan kemudahan pemeliharaan jangka panjang."
+              title={lang === 'en' ? 'End-to-End Type Safety' : 'Kepastian Tipe Data Menyeluruh (End-to-End Type Safety)'}
+              description={
+                lang === 'en'
+                  ? 'I eliminate runtime system errors through seamless static type synchronization spanning database schemas, API transmission contracts, and UI components. This consistency guarantees long-term maintainability.'
+                  : 'Saya mengeliminasi potensi kegagalan sistem saat aplikasi berjalan (runtime error) melalui sinkronisasi tipe data statis yang terhubung tanpa putus, mulai dari skema basis data, protokol transmisi data, hingga komponen visual. Konsistensi ini menjamin stabilitas kode dan kemudahan pemeliharaan jangka panjang.'
+              }
               delay={0.40}
             />
 
             {/* Card 5: Arsitektur Berorientasi Latensi Rendah (Pop-In dari Dalam Goa 5) */}
             <BentoCard
               eyebrow="Latency & Performance"
-              title="Arsitektur Berorientasi Latensi Rendah"
-              description="Efisiensi sistem dicapai melalui pemilahan beban komputasi yang terukur antara pemrosesan peladen (server-side) dan interaksi peramban (client-side). Fokus rekayasa saya diarahkan pada efisiensi kueri data, minimalisasi ukuran paket berkas, dan percepatan waktu muat halaman demi menjaga keandalan pengalaman pengguna."
+              title={lang === 'en' ? 'Low-Latency Oriented Architecture' : 'Arsitektur Berorientasi Latensi Rendah'}
+              description={
+                lang === 'en'
+                  ? 'System efficiency is achieved through calculated workload distribution between server-side compute and client-side interactivity. My focus centers on query optimization, minimal bundle payloads, and fast initial paint times.'
+                  : 'Efisiensi sistem dicapai melalui pemilahan beban komputasi yang terukur antara pemrosesan peladen (server-side) dan interaksi peramban (client-side). Fokus rekayasa saya diarahkan pada efisiensi kueri data, minimalisasi ukuran paket berkas, dan percepatan waktu muat halaman demi menjaga keandalan pengalaman pengguna.'
+              }
               delay={0.52}
             />
 
             {/* Card 6: Integritas Transaksi dan Ketahanan Sistem (Pop-In dari Dalam Goa 6) */}
             <BentoCard
               eyebrow="Resilience & Integrity"
-              title="Integritas Transaksi dan Ketahanan Sistem"
-              description="Setiap alur pertukaran data kritis—terutama integrasi layanan pihak ketiga dan pencatatan transaksi—dirancang dengan antisipasi kegagalan jaringan serta penanganan kondisi batas (edge cases). Konsistensi status data dan pencegahan anomali duplikasi merupakan prioritas mutlak dalam perancangan logika bisnis."
+              title={lang === 'en' ? 'Transaction Integrity & System Resilience' : 'Integritas Transaksi dan Ketahanan Sistem'}
+              description={
+                lang === 'en'
+                  ? 'Mission-critical data workflows—specifically third-party integrations and financial ledgers—are designed with network partition resilience and edge-case idempotency. Preventing anomalies is paramount.'
+                  : 'Setiap alur pertukaran data kritis—terutama integrasi layanan pihak ketiga dan pencatatan transaksi—dirancang dengan antisipasi kegagalan jaringan serta penanganan kondisi batas (edge cases). Konsistensi status data dan pencegahan anomali duplikasi merupakan prioritas mutlak dalam perancangan logika bisnis.'
+              }
               delay={0.64}
             />
           </div>
@@ -140,10 +159,10 @@ export default function AboutSection() {
                 {/* Header Area */}
                 <div className="mb-6 sm:mb-8">
                   <span className="text-[11px] font-mono tracking-widest text-amber-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
-                    Workflow &amp; Collaboration
+                    {lang === 'en' ? 'Workflow & Collaboration' : 'Alur Kerja & Kolaborasi'}
                   </span>
                   <h3 className="mt-2 text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-amber-100 transition-colors">
-                    Cara Kerja
+                    {lang === 'en' ? 'How I Work' : 'Cara Kerja'}
                   </h3>
                 </div>
 
@@ -160,10 +179,10 @@ export default function AboutSection() {
                   >
                     <div className="space-y-2.5">
                       <h4 className="text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
-                        Komunikasi Tertulis yang Jelas
+                        {lang === 'en' ? 'Clear Written Communication' : 'Komunikasi Tertulis yang Jelas'}
                       </h4>
                       <p className="font-serif-contemporary text-[15px] sm:text-[16px] leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                        Saya selalu membiasakan menulis deskripsi Pull Request yang informatif, riwayat commit yang bermakna, dan dokumentasi yang terstruktur. Komunikasi asinkron yang jelas membuat kolaborasi tim tetap berjalan lancar tanpa harus bergantung pada rapat berulang.
+                        {t('about.pillar1Desc')}
                       </p>
                     </div>
                   </motion.div>
@@ -179,10 +198,10 @@ export default function AboutSection() {
                   >
                     <div className="space-y-2.5">
                       <h4 className="text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
-                        Standar Kode yang Ketat
+                        {lang === 'en' ? 'Rigorous Code Standards' : 'Standar Kode yang Ketat'}
                       </h4>
                       <p className="font-serif-contemporary text-[15px] sm:text-[16px] leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                        Bagi saya, kode tidak cukup sekadar &quot;berfungsi&quot;. Saya menerapkan pengetikan statis yang ketat (type safety) di TypeScript, struktur branch Git yang teratur, dan validasi kode sebelum digabungkan ke main branch agar sistem di production tetap stabil.
+                        {t('about.pillar2Desc')}
                       </p>
                     </div>
                   </motion.div>
@@ -198,10 +217,12 @@ export default function AboutSection() {
                   >
                     <div className="space-y-2.5">
                       <h4 className="text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
-                        Terbuka terhadap Masukan
+                        {lang === 'en' ? 'Open to Feedback' : 'Terbuka terhadap Masukan'}
                       </h4>
                       <p className="font-serif-contemporary text-[15px] sm:text-[16px] leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                        Saya memandang code review sebagai sarana menjaga kualitas sistem bersama tim, bukan ajang mencari kesalahan. Masukan teknis yang kritis selalu saya manfaatkan untuk memperkuat arsitektur kode.
+                        {lang === 'en'
+                          ? 'I consider code reviews an opportunity to elevate code quality collectively, not find fault. Constructive feedback is consistently leveraged to strengthen system architecture.'
+                          : 'Saya memandang code review sebagai sarana menjaga kualitas sistem bersama tim, bukan ajang mencari kesalahan. Masukan teknis yang kritis selalu saya manfaatkan untuk memperkuat arsitektur kode.'}
                       </p>
                     </div>
                   </motion.div>

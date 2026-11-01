@@ -2,22 +2,25 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { TranslationKey } from '@/data/translations';
 
 interface NavItem {
   id: string;
-  label: string;
+  key: TranslationKey;
   href: string;
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 'home', label: 'Home', href: '#home' },
-  { id: 'about', label: 'About', href: '#about' },
-  { id: 'projects', label: 'Projects', href: '#projects' },
-  { id: 'contact', label: 'Contact', href: '#contact' },
+  { id: 'home', key: 'nav.home', href: '#home' },
+  { id: 'about', key: 'nav.about', href: '#about' },
+  { id: 'projects', key: 'nav.projects', href: '#projects' },
+  { id: 'contact', key: 'nav.contact', href: '#contact' },
 ];
 
 export default function Navbar() {
+  const { lang, setLang, t } = useLanguage();
   const [activeSection, setActiveSection] = useState('home');
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -117,57 +120,103 @@ export default function Navbar() {
           </span>
         </a>
 
-        {/* Right: Desktop Navigation Links (Mengambang Bebas Tanpa Border Kotak) */}
-        <div className="hidden md:flex items-center gap-1 sm:gap-2">
-          {NAV_ITEMS.map((item) => {
-            const isActive = activeSection === item.id;
+        {/* Right: Desktop Navigation Links & Language Switcher */}
+        <div className="hidden md:flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1 sm:gap-2">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
 
-            return (
-              <a
-                key={item.id}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                onMouseEnter={() => setHoveredTab(item.id)}
-                onMouseLeave={() => setHoveredTab(null)}
-                style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
-                className={`relative px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer select-none ${
-                  isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                {/* Floating Soft Aura Indicator on Hover */}
-                {hoveredTab === item.id && mounted && (
-                  <motion.span
-                    layoutId="navbar-hover-glow"
-                    className="absolute inset-0 rounded-lg bg-zinc-800/80 backdrop-blur-sm"
-                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
-                  />
-                )}
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  onMouseEnter={() => setHoveredTab(item.id)}
+                  onMouseLeave={() => setHoveredTab(null)}
+                  style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
+                  className={`relative px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer select-none ${
+                    isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {/* Floating Soft Aura Indicator on Hover */}
+                  {hoveredTab === item.id && mounted && (
+                    <motion.span
+                      layoutId="navbar-hover-glow"
+                      className="absolute inset-0 rounded-lg bg-zinc-800/80 backdrop-blur-sm"
+                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                    />
+                  )}
 
-                {/* Subtle Clean Active Indicator */}
-                {isActive && !hoveredTab && mounted && (
-                  <motion.span
-                    layoutId="navbar-active-box"
-                    className="absolute inset-0 rounded-lg bg-zinc-800/60"
-                    transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                  />
-                )}
+                  {/* Subtle Clean Active Indicator */}
+                  {isActive && !hoveredTab && mounted && (
+                    <motion.span
+                      layoutId="navbar-active-box"
+                      className="absolute inset-0 rounded-lg bg-zinc-800/60"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
+                  )}
 
-                <span className="relative z-10">{item.label}</span>
-              </a>
-            );
-          })}
+                  <span className="relative z-10">{t(item.key)}</span>
+                </a>
+              );
+            })}
+          </div>
+
+          {/* Language Switcher Pill (Desktop) */}
+          <div className="flex items-center gap-1 p-1 rounded-lg bg-zinc-900/90 border border-zinc-700/60 backdrop-blur-md shadow-inner">
+            <button
+              type="button"
+              onClick={() => setLang('id')}
+              className={`px-2.5 py-1 rounded-md text-xs font-mono font-bold transition-all cursor-pointer ${
+                lang === 'id'
+                  ? 'bg-zinc-100 text-zinc-950 shadow-sm'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+              title="Ganti ke Bahasa Indonesia"
+              aria-label="Bahasa Indonesia"
+            >
+              ID
+            </button>
+            <button
+              type="button"
+              onClick={() => setLang('en')}
+              className={`px-2.5 py-1 rounded-md text-xs font-mono font-bold transition-all cursor-pointer ${
+                lang === 'en'
+                  ? 'bg-zinc-100 text-zinc-950 shadow-sm'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+              title="Switch to English"
+              aria-label="English Language"
+            >
+              EN
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Menu Toggle Button */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-lg border border-zinc-800 bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 hover:text-white transition-all active:scale-95 focus:outline-none cursor-pointer"
-          aria-label={mobileOpen ? 'Tutup Menu' : 'Buka Menu'}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
-        </button>
+        {/* Mobile Actions: Language Switcher & Hamburger Toggle */}
+        <div className="md:hidden flex items-center gap-2">
+          {/* Compact Language Toggle for Mobile Bar */}
+          <div className="flex items-center p-0.5 rounded-lg bg-zinc-900/90 border border-zinc-800">
+            <button
+              type="button"
+              onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
+              className="px-2 py-1 rounded text-xs font-mono font-bold text-zinc-200 hover:text-white"
+              title="Ganti Bahasa / Switch Language"
+            >
+              {lang.toUpperCase()}
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-2 rounded-lg border border-zinc-800 bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 hover:text-white transition-all active:scale-95 focus:outline-none cursor-pointer"
+            aria-label={mobileOpen ? 'Tutup Menu' : 'Buka Menu'}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Dropdown Sheet - Clean Dark Rectangular Crystal Box */}
@@ -194,10 +243,38 @@ export default function Navbar() {
                       : 'text-zinc-300 hover:text-white hover:bg-zinc-900/60'
                   }`}
                 >
-                  <span>{item.label}</span>
+                  <span>{t(item.key)}</span>
                 </a>
               );
             })}
+
+            {/* Mobile Language Selector inside drawer */}
+            <div className="pt-2 mt-1 border-t border-zinc-800/80 flex items-center justify-between px-3 py-1.5">
+              <span className="text-xs font-medium text-zinc-400 flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5" />
+                <span>{lang === 'id' ? 'Pilihan Bahasa' : 'Language Choice'}</span>
+              </span>
+              <div className="flex items-center gap-1 p-0.5 rounded-lg bg-zinc-900 border border-zinc-700/60">
+                <button
+                  type="button"
+                  onClick={() => setLang('id')}
+                  className={`px-2.5 py-1 rounded text-xs font-mono font-bold ${
+                    lang === 'id' ? 'bg-zinc-100 text-zinc-950' : 'text-zinc-400'
+                  }`}
+                >
+                  ID
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLang('en')}
+                  className={`px-2.5 py-1 rounded text-xs font-mono font-bold ${
+                    lang === 'en' ? 'bg-zinc-100 text-zinc-950' : 'text-zinc-400'
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -646,3 +646,368 @@ export function getAllProjectCategories(): string[] {
   const categories = new Set(PROJECTS_DATA.map((p) => p.category));
   return ['All', ...Array.from(categories)];
 }
+
+// ----------------------------------------------------------------------------
+// ENGLISH TRANSLATIONS & OVERRIDES FOR ALL PROJECTS
+// ----------------------------------------------------------------------------
+export const PROJECTS_DATA_EN: Record<string, Partial<Project>> = {
+  'proj-jovique-official': {
+    tagline: 'Contemporary D2C fashion e-commerce platform with fast performance, dynamic catalog, and unified checkout.',
+    category: 'Full-Stack',
+    summary: 'Direct-to-Consumer (D2C) single-brand fashion e-commerce platform delivering a curated, fast, intuitive shopping experience while eliminating digital checkout friction.',
+    description: 'Jovique is a single-brand e-commerce platform engineered specifically for modern fashion labels. It delivers an intuitive, fast D2C shopping experience, eliminating friction in conventional digital transaction workflows.',
+    architectureOverview: 'Modern web architecture powered by Next.js App Router integrating Server Components for rapid catalog rendering and SEO optimization, coupled with interactive Client Components for cart state, category filtering, and instant search.',
+    problemStatement: '1. Dependency on Third-Party Marketplaces: Independent brands often forfeit exclusive visual identity and pay heavy platform commissions that erode profit margins.\n2. Inefficient Manual Transactions: Traditional chat-based orders lead to recording errors, sluggish response times, and tedious manual payment verification.\n3. High Cart Abandonment Rates: Slow navigation and cluttered catalogs frequently cause prospective buyers to drop out before completing checkout.',
+    solution: '1. Autonomous Brand Ecosystem: Delivers a sleek, minimalist interface to elevate brand prestige without competitor distractions.\n2. Automated Transaction Pipeline: Implements unified ordering and checkout to validate purchases instantly and eliminate manual reconciliation.\n3. Streamlined Navigation & Checkout: Deploys an interactive shopping cart and dynamic catalog to complete purchase conversions within seconds.',
+    responsibilities: [
+      'Architecting full-stack Next.js App Router with Server & Client components separation.',
+      'Designing high-performance product catalog with dynamic multi-attribute filtering.',
+      'Developing interactive client-side cart and wishlist state management.',
+      'Optimizing Core Web Vitals and image delivery pipelines.',
+    ],
+    keyLearnings: [
+      'Optimal implementation of Next.js App Router with Server/Client component separation.',
+      'Interactive client-side shopping cart and wishlist state management.',
+      'Dynamic product catalog architecture with clothing category filters and responsive navigation.',
+    ],
+    challenges: [
+      {
+        title: 'Building an instant, intuitive catalog and checkout workflow',
+        problem: 'E-commerce catalogs often lag and confuse users when loading numerous apparel items with varying sizes and categories.',
+        solution: 'Structured product schema with dynamic category filters and responsive mini-cart component without navigation interruptions.',
+        result: 'Seamless, instantaneous catalog browsing and cart additions.',
+      },
+    ],
+    features: [
+      {
+        title: 'Dynamic Product Catalog & Category Filters',
+        description: 'Filtering apparel collections (T-Shirts & Polos, Shirts & Flannels, Jackets, Pants & Denim, Footwear).',
+        icon: 'SlidersHorizontal',
+      },
+      {
+        title: 'Instant Product Search',
+        description: 'Rapid search across fashion collections with an intuitive keyboard shortcut input.',
+        icon: 'Search',
+      },
+      {
+        title: 'Interactive Cart & Wishlist',
+        description: 'Real-time cart management with item count tallying and streamlined checkout access.',
+        icon: 'ShoppingBag',
+      },
+      {
+        title: 'Modern Editorial Fashion Layout',
+        description: 'Responsive dark/navy aesthetic accentuating luxury fashion imagery.',
+        icon: 'Sparkles',
+      },
+    ],
+    metrics: [
+      {
+        label: 'Development Time',
+        value: '14 Days',
+        description: 'Engineering sprint completed within two weeks',
+        trend: 'neutral',
+      },
+      {
+        label: 'Architecture Format',
+        value: 'D2C Storefront',
+        description: 'Single-brand direct sales model without marketplace intermediaries',
+        trend: 'up',
+      },
+      {
+        label: 'Core Components',
+        value: '15+ UI Modules',
+        description: 'Modular reusable UI component system',
+        trend: 'up',
+      },
+    ],
+    timeline: {
+      startDate: '2026-09-07',
+      endDate: '2026-09-20',
+      duration: '2 weeks (14 days)',
+    },
+    techStack: [
+      {
+        name: 'Next.js',
+        category: 'frontend',
+        icon: 'SiNextdotjs',
+        version: '15.x',
+        purpose: 'App Router, Server Components & Web Application Routing',
+        isPrimary: true,
+      },
+      {
+        name: 'React',
+        category: 'frontend',
+        icon: 'SiReact',
+        version: '19.x',
+        purpose: 'Declarative component-driven user interface library',
+        isPrimary: true,
+      },
+      {
+        name: 'TypeScript',
+        category: 'frontend',
+        icon: 'SiTypescript',
+        purpose: 'Strict static type safety across product models and cart state',
+        isPrimary: true,
+      },
+      {
+        name: 'Tailwind CSS',
+        category: 'styling',
+        icon: 'SiTailwindcss',
+        purpose: 'Custom utility-first dark editorial theme styling',
+        isPrimary: true,
+      },
+      {
+        name: 'Lucide Icons',
+        category: 'frontend',
+        purpose: 'Consistent, modern UI iconography across navigation and carts',
+        isPrimary: false,
+      },
+    ],
+  },
+
+  'proj-revlume-movies': {
+    tagline: 'Interactive movie discovery web application with TMDB API integration, instant search, and real-time movie curation.',
+    category: 'Frontend',
+    role: 'Solo Frontend / API Engineer',
+    summary: 'Interactive movie discovery platform built with React, connecting directly to TMDB API to explore thousands of global titles, trending releases, and detailed cinematic metadata.',
+    description: 'RevLume is an interactive movie discovery platform engineered with React, designed to streamline film browsing and curation. Integrated with TMDB API, the platform enables users to navigate thousands of international titles, monitor recent release trends, and conduct targeted queries through a fast, modern, and responsive UI.',
+    architectureOverview: 'React Single Page Application (SPA) communicating directly with TMDB API to fetch real-time film metadata, supported by reactive state management for instant filtering without page reloads.',
+    problemStatement: '1. Fragmented Cinematic Information: Film enthusiasts struggle to find comprehensive metadata, trailers, and ratings across scattered websites.\n2. Sluggish Discovery Interfaces: Many movie sites suffer from heavy page reloads that interrupt discovery.\n3. Cluttered Browsing Experience: Lack of curated trending categories makes discovering new releases tedious.',
+    solution: '1. Unified Metadata Hub: Aggregates global movie database, cast details, release dates, and ratings into a cohesive interface.\n2. Reactive Instant Search: Implements debounce filtering for instantaneous search results without reload delays.\n3. Modern Curated Feeds: Features categorized rails for trending, top-rated, and now-playing cinema.',
+    responsibilities: [
+      'Architecting React client architecture with TMDB REST API integration.',
+      'Developing responsive search input with debounced query optimization.',
+      'Building responsive modal viewports for movie trailers and detailed synopsis.',
+      'Configuring reactive category toggles and smooth carousel rails.',
+    ],
+    keyLearnings: [
+      'Efficient third-party REST API consumption with TMDB metadata structures.',
+      'Asynchronous state management and query debouncing for instant search.',
+      'Interactive modal routing and media embed handling in React.',
+    ],
+    challenges: [
+      {
+        title: 'Handling API rate limits and seamless search debouncing',
+        problem: 'Rapid user keystrokes in the search bar can trigger excessive API calls and UI stutter.',
+        solution: 'Implemented debounced query hooks to batch keystrokes and cache recurring results.',
+        result: 'Fluid real-time search with zero UI lag and minimal network overhead.',
+      },
+    ],
+    features: [
+      {
+        title: 'Dynamic TMDB Integration',
+        description: 'Direct live connection to TMDB API for thousands of movie titles, synopses, and ratings.',
+        icon: 'Film',
+      },
+      {
+        title: 'Instant Live Search',
+        description: 'Fast movie lookup with debounced search query and immediate suggestion view.',
+        icon: 'Search',
+      },
+      {
+        title: 'Curated Categorical Rails',
+        description: 'Organized rails for Now Playing, Top Rated, and Trending Releases.',
+        icon: 'Bookmark',
+      },
+      {
+        title: 'Detailed Cinematic Modal',
+        description: 'In-depth views featuring high-res backdrops, release timelines, and genre tags.',
+        icon: 'Sparkles',
+      },
+    ],
+    metrics: [
+      {
+        label: 'Development Time',
+        value: '14 Days',
+        description: 'Rapid iterative development lifecycle',
+        trend: 'neutral',
+      },
+      {
+        label: 'Data Integration',
+        value: 'Real TMDB API',
+        description: 'Direct REST API integration with real-time cinema endpoints',
+        trend: 'up',
+      },
+      {
+        label: 'Catalog Coverage',
+        value: 'Thousands of Titles',
+        description: 'Broad international cinematic database coverage',
+        trend: 'up',
+      },
+    ],
+    timeline: {
+      startDate: '2026-08-01',
+      endDate: '2026-08-15',
+      duration: '2 weeks (14 days)',
+    },
+    techStack: [
+      {
+        name: 'React',
+        category: 'frontend',
+        icon: 'SiReact',
+        version: '18.x',
+        purpose: 'SPA component architecture and reactive UI lifecycle',
+        isPrimary: true,
+      },
+      {
+        name: 'TMDB API',
+        category: 'backend',
+        purpose: 'Third-party REST API source for real-time global movie metadata',
+        isPrimary: true,
+      },
+      {
+        name: 'JavaScript (ES6+)',
+        category: 'frontend',
+        icon: 'SiJavascript',
+        purpose: 'Asynchronous fetch pipelines, promises, and dynamic array transforms',
+        isPrimary: true,
+      },
+      {
+        name: 'Tailwind CSS',
+        category: 'styling',
+        icon: 'SiTailwindcss',
+        purpose: 'Fluid dark cinematic user interface design',
+        isPrimary: true,
+      },
+    ],
+  },
+
+  'proj-barber-o': {
+    tagline: 'Premium barbershop digital reservation platform with service selection, barber master booking, and time slot scheduling.',
+    category: 'Frontend',
+    role: 'Solo Frontend Engineer',
+    summary: 'Exclusive digital booking platform for luxury barbershops offering personalized haircut selections, master barber booking, and automated reservation management.',
+    description: 'Barber-O is a dedicated digital booking platform designed for luxury modern barbershops. It simplifies appointment reservations with intuitive service selection, master barber availability schedules, and direct booking confirmation.',
+    architectureOverview: 'Modern frontend web application featuring responsive service catalogs, interactive schedule selection, and structured client-side booking confirmation state.',
+    problemStatement: '1. Booking Friction & Overlapping Appointments: Manual phone and chat bookings frequently cause scheduling conflicts and missed appointments.\n2. Lack of Service Clarity: Customers cannot easily browse haircut tiers, add-on treatments, and pricing upfront.\n3. Barber Selection Inconvenience: Difficulty booking specific master barbers based on their exact daily shift availability.',
+    solution: '1. Automated Time-Slot Scheduling: Displays real-time available time slots to completely prevent double-booking.\n2. Transparent Service Menu: Comprehensive catalog detailing grooming packages, treatment duration, and transparent pricing.\n3. Master Barber Profiles: Allows clients to select their preferred barber and verify schedule availability instantly.',
+    responsibilities: [
+      'Developing interactive reservation interface with service and barber selection logic.',
+      'Designing high-contrast luxury dark-gold visual design system.',
+      'Implementing client-side validation for booking forms and contact details.',
+      'Creating responsive mobile-first booking steps with instant confirmation.',
+    ],
+    keyLearnings: [
+      'Designing multi-step reservation flows with persistent form state.',
+      'Managing complex scheduling constraints and appointment slot validation.',
+      'Crafting luxury-themed dark aesthetics with high-contrast accessibility.',
+    ],
+    challenges: [
+      {
+        title: 'Preventing time slot booking collisions and maintaining state',
+        problem: 'Managing dynamic slot availability across different barbers without confusing the user.',
+        solution: 'Built reactive slot generator that filters occupied hours based on selected barber and service duration.',
+        result: 'Frictionless booking experience completed in under 60 seconds.',
+      },
+    ],
+    features: [
+      {
+        title: 'Barber Selection & Profile',
+        description: 'Choose specific master barbers with transparent portfolio and specialty details.',
+        icon: 'Scissors',
+      },
+      {
+        title: 'Interactive Schedule Picker',
+        description: 'Intuitive date and hourly time slot selector with real-time availability indicator.',
+        icon: 'CalendarCheck',
+      },
+      {
+        title: 'Tiered Grooming Services',
+        description: 'Detailed service packages including classic cuts, beard grooming, and hot towel treatments.',
+        icon: 'Users',
+      },
+      {
+        title: 'Automated Confirmation Slip',
+        description: 'Instant digital reservation receipt with booking reference and schedule summary.',
+        icon: 'Sparkles',
+      },
+    ],
+    metrics: [
+      {
+        label: 'Booking Duration',
+        value: '< 1 Minute',
+        description: 'Booking completed in under 60 seconds',
+        trend: 'down',
+      },
+      {
+        label: 'Schedule Efficiency',
+        value: '100% Conflict-Free',
+        description: 'Prevents double-booking conflicts',
+        trend: 'up',
+      },
+      {
+        label: 'User Satisfaction',
+        value: 'High',
+        description: 'Intuitive and elegant interface reviews',
+        trend: 'up',
+      },
+    ],
+    timeline: {
+      startDate: '2026-07-10',
+      endDate: '2026-07-24',
+      duration: '2 weeks (14 days)',
+    },
+    techStack: [
+      {
+        name: 'Vanilla JavaScript',
+        category: 'frontend',
+        icon: 'SiJavascript',
+        purpose: 'Event-driven DOM interactions, form validations, and booking calculations',
+        isPrimary: true,
+      },
+      {
+        name: 'HTML5 Semantic',
+        category: 'frontend',
+        icon: 'SiHtml5',
+        purpose: 'Accessible semantic structure and booking form fields',
+        isPrimary: true,
+      },
+      {
+        name: 'CSS3 Custom Properties',
+        category: 'styling',
+        icon: 'SiCss3',
+        purpose: 'Luxury dark-gold theme tokens, glassmorphic panels, and responsive grid layouts',
+        isPrimary: true,
+      },
+    ],
+  },
+};
+
+/**
+ * Helper function: Ambil proyek dengan teks yang sudah dilokalisasi (ID / EN)
+ */
+export function getLocalizedProject(project: Project, lang: 'id' | 'en'): Project {
+  if (lang === 'id') return project;
+  const enOverride = PROJECTS_DATA_EN[project.id];
+  if (!enOverride) return project;
+  return {
+    ...project,
+    ...enOverride,
+    timeline: {
+      ...project.timeline,
+      ...(enOverride.timeline || {}),
+    },
+    metrics: enOverride.metrics || project.metrics,
+    features: enOverride.features || project.features,
+    challenges: enOverride.challenges || project.challenges,
+    keyLearnings: enOverride.keyLearnings || project.keyLearnings,
+    responsibilities: enOverride.responsibilities || project.responsibilities,
+    techStack: enOverride.techStack || project.techStack,
+  };
+}
+
+/**
+ * Helper function: Ambil seluruh daftar proyek sesuai bahasa yang dipilih
+ */
+export function getLocalizedProjects(lang: 'id' | 'en'): Project[] {
+  return PROJECTS_DATA.map((p) => getLocalizedProject(p, lang));
+}
+
+/**
+ * Helper function: Ambil detail proyek berdasarkan slug dan bahasa
+ */
+export function getLocalizedProjectBySlug(slug: string, lang: 'id' | 'en'): Project | undefined {
+  const p = getProjectBySlug(slug);
+  return p ? getLocalizedProject(p, lang) : undefined;
+}
+

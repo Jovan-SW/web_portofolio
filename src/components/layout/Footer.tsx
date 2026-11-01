@@ -1,6 +1,10 @@
 'use client';
 
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function Footer() {
+  const { t } = useLanguage();
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const id = href.replace('#', '');
@@ -22,7 +26,7 @@ export default function Footer() {
               <span>jovansw<span className="text-indigo-400">.dev</span></span>
             </div>
             <p className="text-xs text-zinc-500 mt-1">
-              Full-Stack Web Engineering &amp; Modern Product Development.
+              {t('footer.tagline')}
             </p>
           </div>
 
@@ -33,28 +37,28 @@ export default function Footer() {
               onClick={(e) => handleNavClick(e, '#home')}
               className="hover:text-white transition-colors"
             >
-              Home
+              {t('nav.home')}
             </a>
             <a
               href="#about"
               onClick={(e) => handleNavClick(e, '#about')}
               className="hover:text-white transition-colors"
             >
-              About
+              {t('nav.about')}
             </a>
             <a
               href="#project"
               onClick={(e) => handleNavClick(e, '#project')}
               className="hover:text-white transition-colors"
             >
-              Project
+              {t('nav.projects')}
             </a>
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
               className="hover:text-white transition-colors"
             >
-              Contact
+              {t('nav.contact')}
             </a>
           </div>
         </div>
@@ -62,7 +66,7 @@ export default function Footer() {
         {/* Bottom credits */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <div>
-            &copy; 2026 Jovan Sebastian William. Seluruh hak cipta dilindungi.
+            &copy; 2026 Jovan Sebastian William. {t('footer.copyright')}
           </div>
         </div>
       </div>

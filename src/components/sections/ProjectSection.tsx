@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PROJECTS_DATA } from '@/data/projects';
+import { getLocalizedProjects } from '@/data/projects';
+import { useLanguage } from '@/context/LanguageContext';
 import { Project } from '@/types';
 import { CardStack, CardStackItem } from '@/components/ui/card-stack';
 import {
@@ -31,10 +32,13 @@ const getRepoUrl = (repo: any): string | null => {
 };
 
 export default function ProjectSection() {
+  const { lang, t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const localizedProjects = getLocalizedProjects(lang);
+
   // Map the featured projects to CardStackItem format with updated categories
-  const cardItems: PortfolioCardItem[] = PROJECTS_DATA.map((project) => ({
+  const cardItems: PortfolioCardItem[] = localizedProjects.map((project) => ({
     id: project.id,
     title: project.title,
     description: project.tagline || project.summary,
@@ -44,7 +48,7 @@ export default function ProjectSection() {
     project,
   }));
 
-  const activeProject = cardItems[activeIndex]?.project || PROJECTS_DATA[0];
+  const activeProject = cardItems[activeIndex]?.project || localizedProjects[0];
   const activeRepoUrl = getRepoUrl(activeProject.links?.repository);
 
   return (
@@ -63,11 +67,11 @@ export default function ProjectSection() {
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4"
             style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
           >
-            Studi Kasus & Portofolio
+            {t('projects.sectionTitle')}
           </h2>
 
           <p className="max-w-2xl text-base sm:text-lg text-white font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] [text-shadow:0_1px_3px_rgba(0,0,0,1),0_2px_14px_rgba(0,0,0,0.9)] font-serif-contemporary">
-            Jelajahi karya produksi pilihan yang dibangun dengan perhatian mendalam terhadap arsitektur web modern, kinerja maksimal, dan pengalaman pengguna presisi.
+            {t('projects.sectionSubtitle')}
           </p>
         </div>
 
@@ -124,13 +128,13 @@ export default function ProjectSection() {
                       </span>
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-zinc-950/85 backdrop-blur-md text-emerald-300 border border-white/20 shadow-md">
                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                        <span>Completed</span>
+                        <span>{t('projects.completed')}</span>
                       </span>
                     </div>
 
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-zinc-950/85 backdrop-blur-md text-white border border-white/20 shadow-md">
                       <Clock className="w-3.5 h-3.5 text-zinc-300" />
-                      <span>{project.timeline.duration || '2 Minggu'}</span>
+                      <span>{project.timeline.duration || (lang === 'en' ? '2 Weeks' : '2 Minggu')}</span>
                     </span>
                   </div>
 
@@ -173,7 +177,7 @@ export default function ProjectSection() {
                           }
                         }}
                       >
-                        <span>Lihat Studi Kasus</span>
+                        <span>{t('projects.viewCaseStudyShort')}</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                       </Link>
 
@@ -186,7 +190,7 @@ export default function ProjectSection() {
                             onClick={(e) => e.stopPropagation()}
                             className="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 hover:text-white border border-white/20 transition-colors shadow-sm"
                             aria-label="GitHub Repository"
-                            title="Buka Repositori GitHub"
+                            title={lang === 'en' ? 'Open GitHub Repository' : 'Buka Repositori GitHub'}
                           >
                             <GithubIcon className="w-3.5 h-3.5" />
                           </a>
@@ -199,7 +203,7 @@ export default function ProjectSection() {
                             onClick={(e) => e.stopPropagation()}
                             className="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 hover:text-white border border-white/20 transition-colors shadow-sm"
                             aria-label="Live Demo"
-                            title="Buka Live Demo"
+                            title={lang === 'en' ? 'Open Live Demo' : 'Buka Live Demo'}
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                           </a>
@@ -250,7 +254,7 @@ export default function ProjectSection() {
                   <div className="group/arch p-4 rounded-xl bg-black/35 hover:bg-zinc-900/80 border border-white/10 hover:border-zinc-500/60 card-3d-glass-darkgrey flex items-start gap-3 transition-all duration-300 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
                     <Code2 className="w-4 h-4 text-zinc-400 group-hover/arch:text-zinc-200 group-hover/arch:scale-110 flex-shrink-0 mt-0.5 transition-all duration-300" />
                     <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                      <strong className="text-zinc-100 group-hover/arch:text-white font-semibold transition-colors">Arsitektur Rekayasa:</strong>{' '}
+                      <strong className="text-zinc-100 group-hover/arch:text-white font-semibold transition-colors">{t('projects.architectureTitle')}</strong>{' '}
                       <span className="group-hover/arch:text-zinc-200 transition-colors">{activeProject.architectureOverview}</span>
                     </p>
                   </div>
@@ -262,7 +266,7 @@ export default function ProjectSection() {
                     href={`/projects/${activeProject.slug}`}
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-200 hover:bg-white text-zinc-950 text-sm font-semibold shadow-lg shadow-black/40 transition-all hover:scale-[1.02] cursor-pointer"
                   >
-                    <span>Buka Halaman Studi Kasus Lengkap</span>
+                    <span>{t('projects.viewCaseStudy')}</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
 
@@ -273,7 +277,7 @@ export default function ProjectSection() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-black/40 hover:bg-zinc-800 text-zinc-200 hover:text-white text-sm font-medium border border-white/15 hover:border-zinc-500/60 transition-all shadow-md hover:shadow-[0_0_15px_rgba(113,113,122,0.4)]"
                     >
-                      <span>Live Demo</span>
+                      <span>{t('projects.liveDemo')}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
@@ -286,7 +290,7 @@ export default function ProjectSection() {
                       className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-black/40 hover:bg-zinc-800 text-zinc-200 hover:text-white text-sm font-medium border border-white/15 hover:border-zinc-500/60 transition-all shadow-md hover:shadow-[0_0_15px_rgba(113,113,122,0.4)]"
                     >
                       <GithubIcon className="w-3.5 h-3.5" />
-                      <span>GitHub</span>
+                      <span>{t('projects.github')}</span>
                     </a>
                   )}
                 </div>
@@ -295,7 +299,7 @@ export default function ProjectSection() {
               {/* Right 1 Col: Quantifiable Metrics Highlight in Dark Grey */}
               <div className="space-y-3 lg:border-l lg:border-white/10 lg:pl-8">
                 <span className="text-xs font-semibold text-zinc-400 group-hover:text-zinc-300 uppercase tracking-wider block mb-2 font-mono transition-colors">
-                  Metrik Utama Proyek
+                  {t('projects.metricsHeader')}
                 </span>
 
                 {activeProject.metrics?.map((metric, mIdx) => (

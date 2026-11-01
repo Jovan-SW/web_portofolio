@@ -5,8 +5,10 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
 import CaveDebrisCanvas from '@/components/ui/CaveDebrisCanvas';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function HeroSection() {
+  const { lang, t } = useLanguage();
   // 3D Mouse Parallax values for organic interactive tilt
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -69,11 +71,17 @@ export default function HeroSection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center relative z-10 flex-1 flex flex-col justify-center">
         {/* Top Metadata: Location & Availability (Editorial, High-Tech HUD Styling) */}
         <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs sm:text-sm font-mono tracking-wider uppercase mb-7 sm:mb-9 select-none">
-          <span className="text-zinc-100 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Based in Indonesia (UTC+7)</span>
+          <span className="text-zinc-100 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            {lang === 'en' ? 'Based in Indonesia (UTC+7)' : 'Berdomisili di Indonesia (UTC+7)'}
+          </span>
           <span className="text-zinc-500 font-bold">/</span>
-          <span className="text-zinc-100 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Remote Worldwide</span>
+          <span className="text-zinc-100 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            {lang === 'en' ? 'Remote Worldwide' : 'Remote Seluruh Dunia'}
+          </span>
           <span className="text-zinc-500 font-bold">/</span>
-          <span className="text-amber-300 font-semibold drop-shadow-[0_0_12px_rgba(251,191,36,0.6)]">Available for Contract &amp; Freelance</span>
+          <span className="text-amber-300 font-semibold drop-shadow-[0_0_12px_rgba(251,191,36,0.6)]">
+            {lang === 'en' ? 'Available for Contract & Freelance' : 'Tersedia untuk Kontrak & Freelance'}
+          </span>
         </div>
 
         {/* Headline: Sculpted 3D Golden Monolith with Interactive Tilt */}
@@ -111,12 +119,21 @@ export default function HeroSection() {
             }}
           >
             <Typewriter
-              words={[
-                'Full-Stack Web Developer',
-                'Software Engineer',
-                'Next.js & TypeScript Specialist',
-                'Full-Stack System Architect',
-              ]}
+              words={
+                lang === 'en'
+                  ? [
+                      'Full-Stack Web Developer',
+                      'Software Engineer',
+                      'Next.js & TypeScript Specialist',
+                      'Full-Stack System Architect',
+                    ]
+                  : [
+                      'Full-Stack Web Developer',
+                      'Software Engineer',
+                      'Spesialis Next.js & TypeScript',
+                      'Full-Stack System Architect',
+                    ]
+              }
               typingSpeed={65}
               deletingSpeed={28}
               pauseDuration={2400}
@@ -127,7 +144,15 @@ export default function HeroSection() {
         {/* Elevator Pitch: Crisp Legibility over 3D Monolith */}
         <div className="max-w-2xl sm:max-w-3xl mx-auto mb-9 sm:mb-11 text-center">
           <p className="text-base sm:text-lg text-white font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] [text-shadow:0_1px_3px_rgba(0,0,0,1),0_2px_14px_rgba(0,0,0,0.9)]">
-            Saya adalah seorang <strong className="text-amber-300 font-semibold [text-shadow:0_0_14px_rgba(251,191,36,0.55),0_1px_3px_rgba(0,0,0,1)]">Full-Stack Engineer</strong> yang berfokus membangun aplikasi web tangguh dan berkinerja tinggi dari antarmuka hingga basis data. Menggunakan <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">Next.js</strong>, <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">TypeScript</strong>, dan <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">PostgreSQL</strong>, saya mengatasi tantangan fragmentasi sistem, latensi transmisi data, serta kerentanan akses—memastikan setiap komponen aplikasi beroperasi selaras, aman, dan siap diskalakan.
+            {lang === 'en' ? (
+              <>
+                I am a <strong className="text-amber-300 font-semibold [text-shadow:0_0_14px_rgba(251,191,36,0.55),0_1px_3px_rgba(0,0,0,1)]">Full-Stack Engineer</strong> dedicated to building resilient, high-performance web applications from interface to database. Leveraging <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">Next.js</strong>, <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">TypeScript</strong>, and <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">PostgreSQL</strong>, I solve system fragmentation, data transmission latency, and access vulnerability challenges—ensuring every application component operates seamlessly, securely, and ready to scale.
+              </>
+            ) : (
+              <>
+                Saya adalah seorang <strong className="text-amber-300 font-semibold [text-shadow:0_0_14px_rgba(251,191,36,0.55),0_1px_3px_rgba(0,0,0,1)]">Full-Stack Engineer</strong> yang berfokus membangun aplikasi web tangguh dan berkinerja tinggi dari antarmuka hingga basis data. Menggunakan <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">Next.js</strong>, <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">TypeScript</strong>, dan <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">PostgreSQL</strong>, saya mengatasi tantangan fragmentasi sistem, latensi transmisi data, serta kerentanan akses—memastikan setiap komponen aplikasi beroperasi selaras, aman, dan siap diskalakan.
+              </>
+            )}
           </p>
         </div>
 
@@ -138,7 +163,7 @@ export default function HeroSection() {
             onClick={() => scrollTo('projects')}
             className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 rounded-lg bg-zinc-100 hover:bg-white text-zinc-950 font-semibold text-sm tracking-wide active:scale-[0.98] transition-all duration-200 shadow-[0_4px_25px_rgba(255,255,255,0.2)] cursor-pointer"
           >
-            <span>Lihat Projek</span>
+            <span>{lang === 'en' ? 'Explore Projects' : 'Lihat Projek'}</span>
             <ArrowRight className="w-4 h-4 text-zinc-950" />
           </button>
 
@@ -147,7 +172,7 @@ export default function HeroSection() {
             onClick={() => scrollTo('contact')}
             className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-lg bg-zinc-950/80 hover:bg-zinc-900 border border-zinc-700/80 hover:border-zinc-500 text-zinc-200 hover:text-white font-medium text-sm tracking-wide active:scale-[0.98] transition-all duration-200 cursor-pointer backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
           >
-            <span>Hubungi Saya</span>
+            <span>{lang === 'en' ? 'Get in Touch' : 'Hubungi Saya'}</span>
           </button>
         </div>
       </div>
@@ -160,7 +185,9 @@ export default function HeroSection() {
           className="flex flex-col items-center gap-1.5 text-zinc-200 hover:text-amber-300 transition-colors cursor-pointer group"
           aria-label="Scroll to About Section"
         >
-          <span className="font-mono text-[11px] tracking-widest uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Scroll to explore</span>
+          <span className="font-mono text-[11px] tracking-widest uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            {lang === 'en' ? 'Scroll to explore' : 'Gulir untuk eksplorasi'}
+          </span>
           <ChevronDown className="w-4 h-4 text-amber-400 group-hover:translate-y-1 transition-transform animate-bounce drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" />
         </button>
       </div>

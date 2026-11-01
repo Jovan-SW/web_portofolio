@@ -42,6 +42,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { LanguageProvider } from '@/context/LanguageContext';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,7 +64,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">{children}</body>
+      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
