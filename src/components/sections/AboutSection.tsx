@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { BentoCard, caveCardVariants, subPanelPopVariants } from '@/components/ui/bento';
 import { InteractiveTiltCard } from '@/components/ui/tilt-card';
 import { useLanguage } from '@/context/LanguageContext';
+import CaveFireflyCanvas from '@/components/ui/CaveFireflyCanvas';
 
 export default function AboutSection() {
   const { lang, t } = useLanguage();
@@ -14,6 +15,8 @@ export default function AboutSection() {
       aria-label="About Section"
       className="py-12 sm:py-20 md:py-28 relative border-t border-white/10 bg-transparent overflow-hidden"
     >
+      {/* Ambient Cave Fireflies Effect */}
+      <CaveFireflyCanvas />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:gap-7 md:gap-10">
           {/* =========================================================================
@@ -38,40 +41,22 @@ export default function AboutSection() {
               viewport={{ once: false, amount: 0.15, margin: '-20px 0px -20px 0px' }}
               variants={caveCardVariants}
               custom={0.16}
-              className="group relative col-span-5 sm:col-span-5 md:col-span-5 lg:col-span-4 rounded-xl sm:rounded-2xl md:rounded-3xl p-[1px] bg-gradient-to-b from-white/35 via-white/10 to-transparent hover:from-amber-400/80 hover:via-amber-400/30 hover:to-transparent transition-colors duration-300 h-full min-h-[190px] sm:min-h-[280px] md:min-h-full flex flex-col"
+              className="col-span-5 sm:col-span-5 md:col-span-5 lg:col-span-4 h-full min-h-[200px] sm:min-h-[290px] md:min-h-full flex flex-col"
             >
-              {/* Inner 3D Clean Transparent Glass Card Body */}
-              <div className="relative flex-1 rounded-[calc(0.75rem-1px)] sm:rounded-[calc(1rem-1px)] md:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/15 hover:bg-black/25 transition-colors duration-300 card-3d-glass border border-white/10 hover:border-amber-400/50 border-b-2 border-b-black/50 flex flex-col">
-                {/* Specular Top Rim Glint Hairline */}
-                <div className="absolute top-0 inset-x-4 sm:inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-amber-300 transition-colors duration-300" />
-
-                {/* 3D Cyber Hardware Corner Accents & Rivets */}
-                <div className="absolute top-2 sm:top-3 left-2 sm:left-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-t-2 border-l-2 border-amber-400/70 rounded-tl-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-                <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-b-2 border-r-2 border-amber-400/70 rounded-br-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
-                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
-
-                {/* Interactive 3D Tilt Card dengan Glare Cursor Tracking */}
-                <div className="relative w-full h-full min-h-[190px] sm:min-h-[280px] md:min-h-full overflow-hidden">
-                  <InteractiveTiltCard
-                    image={{
-                      src: '/inimahgw.png',
-                      alt: t('about.photoAlt'),
-                    }}
-                    tiltFactor={14}
-                    perspective={1000}
-                    borderRadius={0}
-                    backgroundColor="transparent"
-                    hoverScale={1.03}
-                    glareEffect={true}
-                    glareIntensity={0.35}
-                    glareSize={75}
-                    transitionDuration={0.25}
-                    className="w-full h-full min-h-[190px] sm:min-h-[280px] md:min-h-full"
-                  />
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl sm:rounded-2xl md:rounded-3xl pointer-events-none z-20" />
-                </div>
-              </div>
+              <InteractiveTiltCard
+                image={{
+                  src: '/inimahgw.png',
+                  alt: t('about.photoAlt'),
+                }}
+                tiltFactor={12}
+                perspective={1100}
+                hoverScale={1.025}
+                glareEffect={true}
+                glareIntensity={0.3}
+                holographicFoil={true}
+                cornerAccents={true}
+                className="w-full h-full min-h-[200px] sm:min-h-[290px] md:min-h-full flex-1 flex flex-col"
+              />
             </motion.div>
           </div>
 

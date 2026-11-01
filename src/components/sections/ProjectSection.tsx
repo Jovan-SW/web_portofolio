@@ -18,6 +18,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/Icons';
+import CaveFireflyCanvas from '@/components/ui/CaveFireflyCanvas';
 
 type PortfolioCardItem = CardStackItem & {
   project: Project;
@@ -67,6 +68,9 @@ export default function ProjectSection() {
       aria-label="Project Section"
       className="py-14 sm:py-24 relative overflow-hidden"
     >
+      {/* Ambient Cave Fireflies Effect */}
+      <CaveFireflyCanvas />
+
       {/* Anchor alias for backwards compatibility */}
       <div id="project" className="absolute -top-24 pointer-events-none" />
 

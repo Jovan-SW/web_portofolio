@@ -15,6 +15,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
+import CaveFireflyCanvas from '@/components/ui/CaveFireflyCanvas';
 
 export default function ContactSection() {
   const { lang, t } = useLanguage();
@@ -73,6 +74,9 @@ export default function ContactSection() {
       aria-label="Contact Section"
       className="py-20 sm:py-28 relative border-t border-white/10 bg-transparent overflow-hidden"
     >
+      {/* Ambient Cave Fireflies Effect */}
+      <CaveFireflyCanvas />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main 3D Transparent Glass Card with Cara Kerja Pop-In Animation & Dark Grey Hover */}
         <motion.div
