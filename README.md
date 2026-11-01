@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jovan Sebastian William — Portfolio Website
 
-## Getting Started
+> A high-performance, immersive developer portfolio built with **Next.js**, **TypeScript**, and **Tailwind CSS**, featuring 3D spatial physics, organic canvas particles, and a cyber-monolith aesthetic.
 
-First, run the development server:
+---
 
+## ⚡ Core Highlights
+
+- **Cyber Monolith & Cave Aesthetics**: Custom dark glassmorphism design system with 3D bevels, specular hairline glints, and hardware accents.
+- **Interactive 3D Spatial Photo**: Portrait card featuring spring-damped 3D tilt physics and Apple-inspired **Liquid Iridescence** (diffuse organic color blooms with glass caustics).
+- **Dual-Engine Canvas Particles**:
+  - *Hero Section*: Interactive floating rock debris reacting to cursor physics (`CaveDebrisCanvas`).
+  - *About, Projects & Contact*: Ambient glowing fireflies drifting in smooth organic looping paths (`CaveFireflyCanvas`), paused automatically when offscreen via `IntersectionObserver`.
+- **Interactive Project Showcase**: Dynamic 3D Card Stack with category filtering, live previews, and project deep-dives.
+- **Bilingual Support (i18n)**: Instant runtime language toggle between English and Bahasa Indonesia.
+- **Zero-Bloat Performance**: Built on Next.js App Router, React 19, and Tailwind CSS v4 with optimized GPU-accelerated animations (60–120 FPS).
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router, Turbopack)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **UI & Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Motion & 3D Physics**: [Framer Motion](https://www.framer.com/motion/)
+- **Graphics Engine**: HTML5 Canvas (Offscreen sprite pre-rendering & IntersectionObserver lifecycle)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Jovan-SW/web_portofolio.git
+cd web_portofolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run development server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-## Learn More
+### 4. Build for production
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📬 Contact & Connect
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Portfolio**: [jovansebastian.dev](#) *(or your deployed domain)*
+- **GitHub**: [@Jovan-SW](https://github.com/Jovan-SW)
+- **LinkedIn**: [Jovan Sebastian](https://www.linkedin.com/in/jovansebastian)
+- **Email**: [jovanwill139@gmail.com](mailto:jovanwill139@gmail.com)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Crafted with precision by Jovan Sebastian William.*
