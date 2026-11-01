@@ -51,7 +51,7 @@ export default function ProjectSection() {
     <section
       id="projects"
       aria-label="Project Section"
-      className="py-24 relative border-t border-zinc-900 overflow-hidden"
+      className="py-24 relative border-t border-zinc-800/40 bg-zinc-950/20 backdrop-blur-[2px] overflow-hidden"
     >
       {/* Anchor alias for backwards compatibility */}
       <div id="project" className="absolute -top-24 pointer-events-none" />

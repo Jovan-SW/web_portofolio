@@ -32,7 +32,7 @@ export function BentoCard({
       className={clsx(
         className,
         'group relative flex flex-col justify-between overflow-hidden',
-        'bg-zinc-950/80 border border-zinc-800/80 hover:border-amber-400/50',
+        'bg-zinc-950/80 backdrop-blur-xl border border-zinc-800/80 hover:border-amber-400/50',
         'shadow-[0_4px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.06)]',
         'transition-all duration-300'
       )}

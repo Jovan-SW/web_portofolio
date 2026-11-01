@@ -67,20 +67,20 @@ export default function ContactSection() {
     <section
       id="contact"
       aria-label="Contact Section"
-      className="py-20 sm:py-28 relative border-t border-zinc-900 bg-zinc-950 overflow-hidden"
+      className="py-20 sm:py-28 relative border-t border-zinc-800/40 bg-zinc-950/20 backdrop-blur-[2px] overflow-hidden"
     >
       {/* Background Ambient Glows */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-indigo-600/10 rounded-full blur-[140px]" />
-        <div className="absolute bottom-10 right-10 w-[450px] h-[260px] bg-emerald-600/5 rounded-full blur-[140px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-cyan-600/10 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 right-10 w-[450px] h-[260px] bg-amber-600/5 rounded-full blur-[140px]" />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Canvas Card - Sesuai Layout Referensi */}
-        <div className="rounded-3xl bg-zinc-900/50 border border-zinc-800/90 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-md overflow-hidden">
+        <div className="rounded-3xl bg-zinc-950/75 border border-zinc-800/90 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(34,211,238,0.12)] backdrop-blur-xl overflow-hidden">
           
           {/* Top Hero Banner: Massive "Contact Us" Title */}
-          <div className="px-6 sm:px-12 pt-10 sm:pt-14 pb-8 sm:pb-12 bg-zinc-900/80 border-b border-zinc-800/80">
+          <div className="px-6 sm:px-12 pt-10 sm:pt-14 pb-8 sm:pb-12 bg-zinc-950/80 border-b border-zinc-800/80 backdrop-blur-xl">
             {/* Massive Heading */}
             <h1
               className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none"
@@ -91,7 +91,7 @@ export default function ContactSection() {
           </div>
 
           {/* Content Area: Headline Ajakan & Grid Saluran Kontak */}
-          <div className="px-6 sm:px-12 py-10 sm:py-14 bg-zinc-950/60 space-y-8 sm:space-y-10">
+          <div className="px-6 sm:px-12 py-10 sm:py-14 bg-zinc-950/60 backdrop-blur-xl space-y-8 sm:space-y-10">
             
             {/* Headline Ajakan (Bahasa Indonesia) */}
             <div className="max-w-3xl">

@@ -13,7 +13,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-zinc-900 bg-zinc-950 text-zinc-400 py-12 text-sm">
+    <footer className="border-t border-zinc-800/50 bg-zinc-950/70 backdrop-blur-xl text-zinc-400 py-12 text-sm relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-900">
           {/* Logo & Tagline */}

@@ -4,15 +4,19 @@ import AboutSection from '@/components/sections/AboutSection';
 import ProjectSection from '@/components/sections/ProjectSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/layout/Footer';
+import FullPageSceneBackground from '@/components/3d/FullPageSceneBackground';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col selection:bg-indigo-600 selection:text-white">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col selection:bg-indigo-600 selection:text-white relative">
+      {/* Persistent Full-Page 3D Background */}
+      <FullPageSceneBackground />
+
       {/* Fixed / Sticky Navigation */}
       <Navbar />
 
       {/* Main Single Page Content with 4 Sections */}
-      <main className="flex-1 w-full flex flex-col">
+      <main className="flex-1 w-full flex flex-col relative z-10">
         {/* Section 1: Hero */}
         <HeroSection />
 

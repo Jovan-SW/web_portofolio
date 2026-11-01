@@ -9,11 +9,12 @@ export default function AboutSection() {
     <section
       id="about"
       aria-label="About Section"
-      className="py-20 sm:py-28 relative border-t border-zinc-900 bg-zinc-950 overflow-hidden"
+      className="py-20 sm:py-28 relative border-t border-zinc-800/40 bg-zinc-950/20 backdrop-blur-[2px] overflow-hidden"
     >
       {/* Subtle ambient lighting */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         <div className="absolute top-1/4 -left-40 w-[500px] h-[500px] bg-gradient-to-br from-amber-600/5 via-yellow-600/3 to-transparent rounded-full blur-[140px]" />
+        <div className="absolute -top-24 -right-40 w-[500px] h-[500px] bg-gradient-to-bl from-cyan-600/6 via-zinc-900/5 to-transparent rounded-full blur-[140px]" />
         <div className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-gradient-to-tl from-zinc-800/10 via-zinc-900/5 to-transparent rounded-full blur-[140px]" />
       </div>
 
@@ -95,7 +96,7 @@ export default function AboutSection() {
           {/* =========================================================================
               BAGIAN 3: Cara Kerja (1 Kotak Utuh Agak Besar di Bawah)
               ========================================================================= */}
-          <div className="w-full rounded-2xl sm:rounded-3xl bg-zinc-950/80 border border-zinc-800/80 hover:border-amber-400/50 p-7 sm:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.06)] transition-all duration-300">
+          <div className="w-full rounded-2xl sm:rounded-3xl bg-zinc-950/80 backdrop-blur-xl border border-zinc-800/80 hover:border-amber-400/50 p-7 sm:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.06)] transition-all duration-300">
             <div className="mb-6 sm:mb-8">
               <span className="text-[11px] font-mono tracking-widest text-amber-400 font-semibold uppercase">
                 Workflow &amp; Collaboration
