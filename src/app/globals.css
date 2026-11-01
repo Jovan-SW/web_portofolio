@@ -154,3 +154,26 @@ body {
   animation: cursor-smooth-blink 0.95s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* 3D Clean Transparent Glass Card Bevel & Depth Shadows */
+.card-3d-glass {
+  box-shadow:
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.45),
+    inset 1px 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset -1px 0 1px 0 rgba(0, 0, 0, 0.3),
+    0 12px 32px -4px rgba(0, 0, 0, 0.4);
+}
+
+.card-3d-glass:hover {
+  box-shadow:
+    inset 0 1.5px 2px 0 rgba(251, 191, 36, 0.7),
+    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.5),
+    inset 1px 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset -1px 0 1px 0 rgba(0, 0, 0, 0.35),
+    0 20px 48px -8px rgba(0, 0, 0, 0.5),
+    0 0 25px -2px rgba(245, 158, 11, 0.28);
+}
+
+
+
+

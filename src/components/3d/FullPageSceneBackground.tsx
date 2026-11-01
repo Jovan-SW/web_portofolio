@@ -54,7 +54,7 @@ export default function FullPageSceneBackground() {
 
   return (
     <>
-      {/* Persistent Full-Page 3D Canvas Backdrop */}
+      {/* Persistent Full-Page 3D Canvas Backdrop - Completely bright and raw without shadow layers */}
       <div
         className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
         aria-hidden="true"
@@ -65,16 +65,6 @@ export default function FullPageSceneBackground() {
           enableIdleBreathing={true}
           className="w-full h-full"
         />
-
-        {/* Global Cinematic Vignette & Atmospheric Contrast Layer */}
-        {/* Deep radial focus to ensure 100% typography legibility across all sections */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(9,10,15,0.45)_0%,rgba(9,10,15,0.72)_65%,rgba(9,10,15,0.92)_100%)] pointer-events-none" />
-
-        {/* Top subtle vignette for Navbar contrast */}
-        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-zinc-950 via-zinc-950/60 to-transparent pointer-events-none" />
-
-        {/* Bottom subtle vignette for Footer contrast */}
-        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent pointer-events-none" />
       </div>
     </>
   );
