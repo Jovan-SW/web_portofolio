@@ -7,6 +7,8 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export const instant = false;
+
 export function generateStaticParams() {
   return PROJECTS_DATA.map((project) => ({
     slug: project.slug,

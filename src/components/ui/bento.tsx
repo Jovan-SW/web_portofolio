@@ -83,7 +83,7 @@ export function BentoCard({
       data-dark={dark ? 'true' : undefined}
       className={clsx(
         'group relative flex flex-col justify-between',
-        'rounded-2xl sm:rounded-3xl p-[1px]',
+        'rounded-xl sm:rounded-2xl md:rounded-3xl p-[1px]',
         // 3D Transparan Glass Outer Bevel
         'bg-gradient-to-b from-white/35 via-white/10 to-transparent',
         'hover:from-amber-400/80 hover:via-amber-400/30 hover:to-transparent',
@@ -95,19 +95,19 @@ export function BentoCard({
       <div
         className={clsx(
           'relative flex-1 flex flex-col justify-between overflow-hidden',
-          'rounded-[calc(1rem-1px)] sm:rounded-[calc(1.5rem-1px)]',
+          'rounded-[calc(0.75rem-1px)] sm:rounded-[calc(1rem-1px)] md:rounded-[calc(1.5rem-1px)]',
           'bg-black/15 hover:bg-black/25 transition-colors duration-300 card-3d-glass',
           'border border-white/10 hover:border-amber-400/50 border-b-2 border-b-black/50 h-full'
         )}
       >
         {/* Specular Top Rim Glint Hairline */}
-        <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-amber-300 transition-colors duration-300" />
+        <div className="absolute top-0 inset-x-4 sm:inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-amber-300 transition-colors duration-300" />
 
         {/* 3D Cyber Hardware Corner Accents & Rivets */}
-        <div className="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-amber-400/70 rounded-tl-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-        <div className="absolute bottom-3 right-3 w-2.5 h-2.5 border-b-2 border-r-2 border-amber-400/70 rounded-br-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-        <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
-        <div className="absolute bottom-3 left-3 w-1.5 h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
+        <div className="absolute top-2 sm:top-3 left-2 sm:left-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-t-2 border-l-2 border-amber-400/70 rounded-tl-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+        <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-b-2 border-r-2 border-amber-400/70 rounded-br-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+        <div className="absolute top-2 sm:top-3 right-2 sm:right-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
+        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
 
         {/* Top Graphic Area (if provided) */}
         {graphic && (
@@ -125,25 +125,25 @@ export function BentoCard({
         {/* Content Area */}
         <div
           className={clsx(
-            'relative p-6 sm:p-8 z-20 flex-1 flex flex-col',
+            'relative p-3.5 sm:p-6 md:p-8 z-20 flex-1 flex flex-col',
             graphic ? 'justify-end' : 'justify-start'
           )}
         >
           {/* Eyebrow Header */}
           {eyebrow && (
-            <span className="text-[11px] font-mono tracking-widest text-amber-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] mb-1">
+            <span className="text-[9px] sm:text-[10px] md:text-[11px] font-mono tracking-widest text-amber-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] mb-0.5 sm:mb-1">
               {eyebrow}
             </span>
           )}
 
           {title && (
-            <h3 className="mt-1 text-lg sm:text-xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-amber-100 transition-colors">
+            <h3 className="mt-0.5 sm:mt-1 text-[15px] sm:text-lg md:text-xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-amber-100 transition-colors">
               {title}
             </h3>
           )}
 
           {description && (
-            <p className="mt-3.5 font-serif-contemporary text-[15px] sm:text-[17px] leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
+            <p className="mt-2 sm:mt-3 md:mt-3.5 font-serif-contemporary text-[12.5px] sm:text-[14px] md:text-[16px] leading-[1.6] sm:leading-[1.75] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               {description}
             </p>
           )}

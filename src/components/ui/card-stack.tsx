@@ -203,17 +203,17 @@ export function CardStack<T extends CardStackItem>({
       {/* Stage */}
       <div
         className="relative w-full"
-        style={{ height: Math.max(380, cardHeight + 80) }}
+        style={{ height: Math.max(290, cardHeight + 50) }}
         tabIndex={0}
         onKeyDown={onKeyDown}
       >
         {/* background wash / spotlight (unique feel) */}
         <div
-          className="pointer-events-none absolute inset-x-0 top-6 mx-auto h-48 w-[70%] rounded-full bg-black/5 blur-3xl dark:bg-white/5"
+          className="pointer-events-none absolute inset-x-0 top-4 mx-auto h-40 w-[70%] rounded-full bg-black/5 blur-3xl dark:bg-white/5"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-40 w-[76%] rounded-full bg-black/10 blur-3xl dark:bg-black/30"
+          className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-32 w-[76%] rounded-full bg-black/10 blur-3xl dark:bg-black/30"
           aria-hidden="true"
         />
 
@@ -235,7 +235,7 @@ export function CardStack<T extends CardStackItem>({
               // fan geometry
               const rotateZ = off * stepDeg;
               const x = off * cardSpacing;
-              const y = abs * 10; // subtle arc-down feel
+              const y = abs * 8; // subtle arc-down feel
               const z = -abs * depthPx;
 
               const isActive = off === 0;
@@ -247,12 +247,12 @@ export function CardStack<T extends CardStackItem>({
 
               const zIndex = 100 - abs;
 
-              // drag only on the active card
+              // drag only on the active card (optimized for mobile swipe feel)
               const dragProps = isActive
                 ? {
                     drag: "x" as const,
                     dragConstraints: { left: 0, right: 0 },
-                    dragElastic: 0.18,
+                    dragElastic: 0.22,
                     onDragEnd: (
                       _e: any,
                       info: { offset: { x: number }; velocity: { x: number } },
@@ -260,11 +260,11 @@ export function CardStack<T extends CardStackItem>({
                       if (reduceMotion) return;
                       const travel = info.offset.x;
                       const v = info.velocity.x;
-                      const threshold = Math.min(160, cardWidth * 0.22);
+                      const threshold = Math.min(100, cardWidth * 0.18);
 
-                      // swipe logic
-                      if (travel > threshold || v > 650) prev();
-                      else if (travel < -threshold || v < -650) next();
+                      // swipe logic: smoother flick & drag response
+                      if (travel > threshold || v > 400) prev();
+                      else if (travel < -threshold || v < -400) next();
                     },
                   }
                 : {};

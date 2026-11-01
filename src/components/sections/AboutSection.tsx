@@ -12,47 +12,47 @@ export default function AboutSection() {
     <section
       id="about"
       aria-label="About Section"
-      className="py-20 sm:py-28 relative border-t border-white/10 bg-transparent overflow-hidden"
+      className="py-12 sm:py-20 md:py-28 relative border-t border-white/10 bg-transparent overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-7 sm:gap-10">
+        <div className="flex flex-col gap-4 sm:gap-7 md:gap-10">
           {/* =========================================================================
               BAGIAN 1: Technical Journey & Portrait
-              Urutan Pop-In Murni dari Dalam Goa: Card 1 -> Card 2
+              Mobile: Tetap Berdampingan (Side-by-Side) Card 1 (7/12) & Card 2 (5/12)
               Clean & Transparan 3D Glass Cards (Interactive Tilt & Glare Photo)
               ========================================================================= */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-stretch">
-            {/* Card 1: Technical Journey Text (Pop-In dari Dalam Goa 1) */}
+          <div className="grid grid-cols-12 gap-3 sm:gap-6 md:gap-8 items-stretch">
+            {/* Card 1: Technical Journey Text */}
             <BentoCard
               eyebrow={lang === 'en' ? 'Evolution & Journey' : 'Evolusi & Perjalanan'}
               title="Technical Journey"
               description={t('about.description')}
               delay={0.04}
-              className="md:col-span-7 lg:col-span-8 h-full"
+              className="col-span-7 sm:col-span-7 md:col-span-7 lg:col-span-8 h-full"
             />
 
-            {/* Card 2: Foto Jovan (Pop-In dari Dalam Goa 2) - Interactive 3D Tilt Card dengan Glare Effect */}
+            {/* Card 2: Foto Jovan (Pop-In dari Dalam Goa 2) - Tetap Berada di Samping Tulisan Technical Journey */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.15, margin: '-20px 0px -20px 0px' }}
               variants={caveCardVariants}
               custom={0.16}
-              className="group relative md:col-span-5 lg:col-span-4 rounded-2xl sm:rounded-3xl p-[1px] bg-gradient-to-b from-white/35 via-white/10 to-transparent hover:from-amber-400/80 hover:via-amber-400/30 hover:to-transparent transition-colors duration-300 min-h-[360px] sm:min-h-[400px] md:min-h-full flex flex-col"
+              className="group relative col-span-5 sm:col-span-5 md:col-span-5 lg:col-span-4 rounded-xl sm:rounded-2xl md:rounded-3xl p-[1px] bg-gradient-to-b from-white/35 via-white/10 to-transparent hover:from-amber-400/80 hover:via-amber-400/30 hover:to-transparent transition-colors duration-300 h-full min-h-[190px] sm:min-h-[280px] md:min-h-full flex flex-col"
             >
               {/* Inner 3D Clean Transparent Glass Card Body */}
-              <div className="relative flex-1 rounded-[calc(1rem-1px)] sm:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/15 hover:bg-black/25 transition-colors duration-300 card-3d-glass border border-white/10 hover:border-amber-400/50 border-b-2 border-b-black/50 flex flex-col">
+              <div className="relative flex-1 rounded-[calc(0.75rem-1px)] sm:rounded-[calc(1rem-1px)] md:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/15 hover:bg-black/25 transition-colors duration-300 card-3d-glass border border-white/10 hover:border-amber-400/50 border-b-2 border-b-black/50 flex flex-col">
                 {/* Specular Top Rim Glint Hairline */}
-                <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-amber-300 transition-colors duration-300" />
+                <div className="absolute top-0 inset-x-4 sm:inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-amber-300 transition-colors duration-300" />
 
                 {/* 3D Cyber Hardware Corner Accents & Rivets */}
-                <div className="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-amber-400/70 rounded-tl-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-                <div className="absolute bottom-3 right-3 w-2.5 h-2.5 border-b-2 border-r-2 border-amber-400/70 rounded-br-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-                <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
-                <div className="absolute bottom-3 left-3 w-1.5 h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
+                <div className="absolute top-2 sm:top-3 left-2 sm:left-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-t-2 border-l-2 border-amber-400/70 rounded-tl-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+                <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-b-2 border-r-2 border-amber-400/70 rounded-br-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
+                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
 
                 {/* Interactive 3D Tilt Card dengan Glare Cursor Tracking */}
-                <div className="relative w-full h-full min-h-[360px] sm:min-h-[400px] md:min-h-full overflow-hidden">
+                <div className="relative w-full h-full min-h-[190px] sm:min-h-[280px] md:min-h-full overflow-hidden">
                   <InteractiveTiltCard
                     image={{
                       src: '/inimahgw.png',
@@ -67,9 +67,9 @@ export default function AboutSection() {
                     glareIntensity={0.35}
                     glareSize={75}
                     transitionDuration={0.25}
-                    className="w-full h-full min-h-[360px] sm:min-h-[400px] md:min-h-full"
+                    className="w-full h-full min-h-[190px] sm:min-h-[280px] md:min-h-full"
                   />
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl sm:rounded-3xl pointer-events-none z-20" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl sm:rounded-2xl md:rounded-3xl pointer-events-none z-20" />
                 </div>
               </div>
             </motion.div>
@@ -78,10 +78,10 @@ export default function AboutSection() {
           {/* =========================================================================
               BAGIAN 2: Keamanan & Pilar Rekayasa (Format 2x2: 2 Kotak Atas & 2 Kotak Bawah)
               Urutan Pop-In Murni dari Dalam Goa: Card 3 -> Card 4 -> Card 5 -> Card 6
-              Tanpa Bubble / Tag Badges
+              Di mobile dibuat lebih kompak dan tidak memenuhi layar
               ========================================================================= */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {/* Card 3: Keamanan Berlapis pada Tingkat Basis Data (Pop-In dari Dalam Goa 3) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6 md:gap-8">
+            {/* Card 3: Keamanan Berlapis pada Tingkat Basis Data */}
             <BentoCard
               eyebrow="Database Security"
               title={lang === 'en' ? 'Multi-Layered Database-Level Security' : 'Keamanan Berlapis pada Tingkat Basis Data'}
@@ -93,7 +93,7 @@ export default function AboutSection() {
               delay={0.28}
             />
 
-            {/* Card 4: Kepastian Tipe Data Menyeluruh (Pop-In dari Dalam Goa 4) */}
+            {/* Card 4: Kepastian Tipe Data Menyeluruh */}
             <BentoCard
               eyebrow="Type Safety"
               title={lang === 'en' ? 'End-to-End Type Safety' : 'Kepastian Tipe Data Menyeluruh (End-to-End Type Safety)'}
@@ -105,7 +105,7 @@ export default function AboutSection() {
               delay={0.40}
             />
 
-            {/* Card 5: Arsitektur Berorientasi Latensi Rendah (Pop-In dari Dalam Goa 5) */}
+            {/* Card 5: Arsitektur Berorientasi Latensi Rendah */}
             <BentoCard
               eyebrow="Latency & Performance"
               title={lang === 'en' ? 'Low-Latency Oriented Architecture' : 'Arsitektur Berorientasi Latensi Rendah'}
@@ -117,7 +117,7 @@ export default function AboutSection() {
               delay={0.52}
             />
 
-            {/* Card 6: Integritas Transaksi dan Ketahanan Sistem (Pop-In dari Dalam Goa 6) */}
+            {/* Card 6: Integritas Transaksi dan Ketahanan Sistem */}
             <BentoCard
               eyebrow="Resilience & Integrity"
               title={lang === 'en' ? 'Transaction Integrity & System Resilience' : 'Integritas Transaksi dan Ketahanan Sistem'}
@@ -131,9 +131,7 @@ export default function AboutSection() {
           </div>
 
           {/* =========================================================================
-              BAGIAN 3: Cara Kerja (1 Kotak Utuh Agak Besar di Bawah)
-              Urutan Pop-In Murni dari Dalam Goa: Card 7 -> Sub-Panel 1 -> 2 -> 3
-              Tanpa Bubble / Tag Badges
+              BAGIAN 3: Cara Kerja (1 Kotak Utuh di Bawah, Compact di Mobile)
               ========================================================================= */}
           <div className="w-full">
             <motion.div
@@ -143,83 +141,83 @@ export default function AboutSection() {
               variants={caveCardVariants}
               custom={0.76}
               whileHover={{ scale: 1.015 }}
-              className="group relative w-full rounded-2xl sm:rounded-3xl p-[1px] bg-gradient-to-b from-white/35 via-white/10 to-transparent hover:from-amber-400/80 hover:via-amber-400/30 hover:to-transparent transition-colors duration-300"
+              className="group relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl p-[1px] bg-gradient-to-b from-white/35 via-white/10 to-transparent hover:from-amber-400/80 hover:via-amber-400/30 hover:to-transparent transition-colors duration-300"
             >
               {/* 3D Clean Transparent Glass Panel Body */}
-              <div className="relative rounded-[calc(1rem-1px)] sm:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/15 hover:bg-black/25 transition-colors duration-300 card-3d-glass border border-white/10 hover:border-amber-400/50 border-b-2 border-b-black/50 p-7 sm:p-10">
+              <div className="relative rounded-[calc(0.75rem-1px)] sm:rounded-[calc(1rem-1px)] md:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/15 hover:bg-black/25 transition-colors duration-300 card-3d-glass border border-white/10 hover:border-amber-400/50 border-b-2 border-b-black/50 p-4 sm:p-7 md:p-10">
                 {/* Specular Top Rim Glint Hairline */}
-                <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-amber-300 transition-colors duration-300" />
+                <div className="absolute top-0 inset-x-4 sm:inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-amber-300 transition-colors duration-300" />
 
                 {/* 3D Cyber Hardware Corner Accents & Rivets */}
-                <div className="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-amber-400/70 rounded-tl-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-                <div className="absolute bottom-3 right-3 w-2.5 h-2.5 border-b-2 border-r-2 border-amber-400/70 rounded-br-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-                <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
-                <div className="absolute bottom-3 left-3 w-1.5 h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
+                <div className="absolute top-2 sm:top-3 left-2 sm:left-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-t-2 border-l-2 border-amber-400/70 rounded-tl-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+                <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-b-2 border-r-2 border-amber-400/70 rounded-br-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
+                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
 
                 {/* Header Area */}
-                <div className="mb-6 sm:mb-8">
-                  <span className="text-[11px] font-mono tracking-widest text-amber-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+                <div className="mb-3.5 sm:mb-6 md:mb-8">
+                  <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-amber-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
                     {lang === 'en' ? 'Workflow & Collaboration' : 'Alur Kerja & Kolaborasi'}
                   </span>
-                  <h3 className="mt-2 text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-amber-100 transition-colors">
+                  <h3 className="mt-1 sm:mt-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-amber-100 transition-colors">
                     {lang === 'en' ? 'How I Work' : 'Cara Kerja'}
                   </h3>
                 </div>
 
-                {/* 3 Pillars Sub-Panels with clean transparent glass & mini center-out pop-ins (Tanpa bubble tag) */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-6 border-t border-white/15">
-                  {/* Point 1: Komunikasi Tertulis yang Jelas (Pop-In 7.1) */}
+                {/* 3 Pillars Sub-Panels: Compact di Mobile */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 pt-3.5 sm:pt-6 border-t border-white/15">
+                  {/* Point 1: Komunikasi Tertulis yang Jelas */}
                   <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.15 }}
                     variants={subPanelPopVariants}
                     custom={0.86}
-                    className="relative p-5 sm:p-6 rounded-xl sm:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
+                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div className="space-y-2.5">
-                      <h4 className="text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+                    <div className="space-y-1.5 sm:space-y-2.5">
+                      <h4 className="text-sm sm:text-base md:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
                         {lang === 'en' ? 'Clear Written Communication' : 'Komunikasi Tertulis yang Jelas'}
                       </h4>
-                      <p className="font-serif-contemporary text-[15px] sm:text-[16px] leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                      <p className="font-serif-contemporary text-[12.5px] sm:text-[14px] md:text-[16px] leading-[1.6] sm:leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                         {t('about.pillar1Desc')}
                       </p>
                     </div>
                   </motion.div>
 
-                  {/* Point 2: Standar Kode yang Ketat (Pop-In 7.2) */}
+                  {/* Point 2: Standar Kode yang Ketat */}
                   <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.15 }}
                     variants={subPanelPopVariants}
                     custom={0.96}
-                    className="relative p-5 sm:p-6 rounded-xl sm:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
+                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div className="space-y-2.5">
-                      <h4 className="text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+                    <div className="space-y-1.5 sm:space-y-2.5">
+                      <h4 className="text-sm sm:text-base md:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
                         {lang === 'en' ? 'Rigorous Code Standards' : 'Standar Kode yang Ketat'}
                       </h4>
-                      <p className="font-serif-contemporary text-[15px] sm:text-[16px] leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                      <p className="font-serif-contemporary text-[12.5px] sm:text-[14px] md:text-[16px] leading-[1.6] sm:leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                         {t('about.pillar2Desc')}
                       </p>
                     </div>
                   </motion.div>
 
-                  {/* Point 3: Terbuka terhadap Masukan (Pop-In 7.3) */}
+                  {/* Point 3: Terbuka terhadap Masukan */}
                   <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.15 }}
                     variants={subPanelPopVariants}
                     custom={1.06}
-                    className="relative p-5 sm:p-6 rounded-xl sm:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
+                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div className="space-y-2.5">
-                      <h4 className="text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+                    <div className="space-y-1.5 sm:space-y-2.5">
+                      <h4 className="text-sm sm:text-base md:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
                         {lang === 'en' ? 'Open to Feedback' : 'Terbuka terhadap Masukan'}
                       </h4>
-                      <p className="font-serif-contemporary text-[15px] sm:text-[16px] leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                      <p className="font-serif-contemporary text-[12.5px] sm:text-[14px] md:text-[16px] leading-[1.6] sm:leading-[1.8] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                         {lang === 'en'
                           ? 'I consider code reviews an opportunity to elevate code quality collectively, not find fault. Constructive feedback is consistently leveraged to strengthen system architecture.'
                           : 'Saya memandang code review sebagai sarana menjaga kualitas sistem bersama tim, bukan ajang mencari kesalahan. Masukan teknis yang kritis selalu saya manfaatkan untuk memperkuat arsitektur kode.'}
