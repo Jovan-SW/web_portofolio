@@ -51,13 +51,10 @@ export default function ProjectSection() {
     <section
       id="projects"
       aria-label="Project Section"
-      className="py-24 relative border-t border-zinc-800/40 bg-zinc-950/20 backdrop-blur-[2px] overflow-hidden"
+      className="py-24 relative overflow-hidden"
     >
       {/* Anchor alias for backwards compatibility */}
       <div id="project" className="absolute -top-24 pointer-events-none" />
-
-      {/* Ambient background glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-indigo-600/10 blur-[140px] pointer-events-none rounded-full" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -69,7 +66,7 @@ export default function ProjectSection() {
             Studi Kasus & Portofolio
           </h2>
 
-          <p className="max-w-2xl text-zinc-400 text-base sm:text-lg leading-relaxed font-serif-contemporary">
+          <p className="max-w-2xl text-base sm:text-lg text-white font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] [text-shadow:0_1px_3px_rgba(0,0,0,1),0_2px_14px_rgba(0,0,0,0.9)] font-serif-contemporary">
             Jelajahi karya produksi pilihan yang dibangun dengan perhatian mendalam terhadap arsitektur web modern, kinerja maksimal, dan pengalaman pengguna presisi.
           </p>
         </div>
@@ -101,7 +98,7 @@ export default function ProjectSection() {
               const projectUrl = `/projects/${project.slug}`;
 
               return (
-                <div className="relative h-full w-full rounded-2xl overflow-hidden bg-zinc-950 flex flex-col justify-between p-5 sm:p-6 border border-zinc-700/60 shadow-2xl">
+                <div className="relative h-full w-full rounded-2xl overflow-hidden bg-gradient-to-b from-zinc-700/95 via-zinc-800/95 to-zinc-800/95 flex flex-col justify-between p-3.5 sm:p-4 border-2 border-zinc-400/60 shadow-2xl">
                   {/* Background Screenshot Image */}
                   <div className="absolute inset-0 z-0">
                     {project.media?.thumbnail?.url ? (
@@ -109,66 +106,66 @@ export default function ProjectSection() {
                         src={project.media.thumbnail.url}
                         alt={project.title}
                         fill
-                        className="object-cover object-top filter brightness-[0.7] contrast-[1.05]"
+                        className="object-cover object-top filter brightness-[0.72] contrast-[1.1]"
                         sizes="560px"
                       />
                     ) : (
-                      <div className="w-full h-full bg-zinc-900" />
+                      <div className="w-full h-full bg-zinc-700" />
                     )}
-                    {/* Deep gradient overlay for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/30" />
+                    {/* Refined grey gradient overlay with bottom contrast scrim */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-800/50 to-zinc-700/30" />
                   </div>
 
                   {/* Top Header inside Card */}
                   <div className="relative z-10 flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-zinc-950/80 backdrop-blur-md text-indigo-300 border border-white/10">
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-zinc-950/85 backdrop-blur-md text-white border border-white/20 shadow-md">
                         {project.category}
                       </span>
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-zinc-950/80 backdrop-blur-md text-emerald-400 border border-white/10">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-zinc-950/85 backdrop-blur-md text-emerald-300 border border-white/20 shadow-md">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
                         <span>Completed</span>
                       </span>
                     </div>
 
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono bg-zinc-950/80 backdrop-blur-md text-zinc-400 border border-white/10">
-                      <Clock className="w-3 h-3 text-zinc-500" />
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-zinc-950/85 backdrop-blur-md text-white border border-white/20 shadow-md">
+                      <Clock className="w-3.5 h-3.5 text-zinc-300" />
                       <span>{project.timeline.duration || '2 Minggu'}</span>
                     </span>
                   </div>
 
-                  {/* Bottom Content inside Card */}
-                  <div className="relative z-10 flex flex-col pt-8">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-1.5 group-hover:text-indigo-300 transition-colors">
+                  {/* Bottom Content inside Card with High-Contrast Frosted Glass Container */}
+                  <div className="relative z-10 flex flex-col p-3.5 sm:p-4 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-white/15 shadow-xl">
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [text-shadow:0_1px_3px_rgba(0,0,0,1)] group-hover:text-zinc-100 transition-colors">
                       {project.title}
                     </h3>
 
-                    <p className="font-serif-contemporary text-zinc-300 text-xs sm:text-sm line-clamp-2 mb-3.5 leading-relaxed">
+                    <p className="text-zinc-100 text-xs sm:text-sm line-clamp-2 mb-3 leading-relaxed font-normal drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
                       {project.tagline || project.summary}
                     </p>
 
                     {/* Tech Badges */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
                       {project.techStack?.slice(0, 3).map((tech, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-900/90 text-zinc-300 border border-zinc-700/60 backdrop-blur-sm"
+                          className="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-zinc-800 text-white border border-white/20 backdrop-blur-sm shadow-sm"
                         >
                           {tech.name}
                         </span>
                       ))}
                       {(project.techStack?.length || 0) > 3 && (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-zinc-900/60 text-zinc-500">
+                        <span className="px-1.5 py-0.5 rounded text-[11px] font-mono font-medium bg-zinc-800/80 text-zinc-300 border border-white/10">
                           +{(project.techStack?.length || 0) - 3}
                         </span>
                       )}
                     </div>
 
                     {/* Action Bar */}
-                    <div className="pt-3 border-t border-zinc-800/80 flex items-center justify-between gap-3">
+                    <div className="pt-2.5 border-t border-white/15 flex items-center justify-between gap-3">
                       <Link
                         href={projectUrl}
-                        className="group/btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 transition-all cursor-pointer"
+                        className="group/btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 transition-all cursor-pointer"
                         onClick={(e) => {
                           // Allow natural navigation without stopping event propagation if active
                           if (!active) {
@@ -187,7 +184,7 @@ export default function ProjectSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="p-1.5 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700/60 transition-colors"
+                            className="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 hover:text-white border border-white/20 transition-colors shadow-sm"
                             aria-label="GitHub Repository"
                             title="Buka Repositori GitHub"
                           >
@@ -200,7 +197,7 @@ export default function ProjectSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="p-1.5 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700/60 transition-colors"
+                            className="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 hover:text-white border border-white/20 transition-colors shadow-sm"
                             aria-label="Live Demo"
                             title="Buka Live Demo"
                           >
@@ -216,98 +213,108 @@ export default function ProjectSection() {
           />
         </div>
 
-        {/* Synchronized Active Project Detail & Metrics Bar */}
-        <div className="mt-8 rounded-3xl bg-zinc-900/50 border border-zinc-800/80 p-6 sm:p-8 backdrop-blur-md relative overflow-hidden shadow-2xl">
-          {/* Subtle top indicator line */}
-          <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent" />
+        {/* Synchronized Active Project Detail & Metrics Bar (Hover in Dark Grey / Abu-abu Tua) */}
+        <div className="mt-8 group relative w-full rounded-2xl sm:rounded-3xl p-[1px] bg-gradient-to-b from-white/20 via-white/10 to-transparent hover:from-zinc-500/70 hover:via-zinc-700/40 hover:to-transparent transition-colors duration-300">
+          <div className="relative rounded-[calc(1rem-1px)] sm:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/35 hover:bg-zinc-950/85 transition-all duration-300 card-3d-glass-darkgrey border border-white/10 hover:border-zinc-500/60 border-b-2 border-b-black/60 p-6 sm:p-8">
+            {/* Specular Top Rim Glint Hairline */}
+            <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none z-30 group-hover:via-zinc-300 transition-colors duration-300" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-            {/* Left 2 Cols: Architectural Highlight & Project Info */}
-            <div className="lg:col-span-2 space-y-4">
-              <div className="flex items-center gap-2.5">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                  {activeProject.category}
-                </span>
-                <span className="text-xs text-zinc-500">•</span>
-                <span className="text-xs text-zinc-400 font-medium">{activeProject.role}</span>
-              </div>
+            {/* 3D Cyber Hardware Corner Accents & Rivets in Dark Grey */}
+            <div className="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-zinc-500/70 rounded-tl-sm pointer-events-none group-hover:border-zinc-300 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(113,113,122,0.4)]" />
+            <div className="absolute bottom-3 right-3 w-2.5 h-2.5 border-b-2 border-r-2 border-zinc-500/70 rounded-br-sm pointer-events-none group-hover:border-zinc-300 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(113,113,122,0.4)]" />
+            <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-zinc-500/70 group-hover:bg-zinc-300 shadow-[0_0_8px_rgba(113,113,122,0.6)] pointer-events-none transition-colors duration-300 z-30" />
+            <div className="absolute bottom-3 left-3 w-1.5 h-1.5 rounded-full bg-zinc-500/70 group-hover:bg-zinc-300 shadow-[0_0_8px_rgba(113,113,122,0.6)] pointer-events-none transition-colors duration-300 z-30" />
 
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">
-                  {activeProject.title}
-                </h3>
-                <p className="font-serif-contemporary text-zinc-300 text-sm sm:text-base leading-relaxed">
-                  {activeProject.description || activeProject.summary}
-                </p>
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+              {/* Left 2 Cols: Architectural Highlight & Project Info */}
+              <div className="lg:col-span-2 space-y-4">
+                <div className="flex items-center gap-2.5">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-black/45 text-zinc-300 border border-zinc-600/40 shadow-sm group-hover:border-zinc-400/60 group-hover:text-zinc-100 transition-colors">
+                    {activeProject.category}
+                  </span>
+                  <span className="text-xs text-zinc-500">•</span>
+                  <span className="text-xs text-zinc-300 font-medium group-hover:text-zinc-100 transition-colors">{activeProject.role}</span>
+                </div>
 
-              {/* Architecture callout */}
-              {activeProject.architectureOverview && (
-                <div className="p-4 rounded-xl bg-zinc-950/60 border border-zinc-800/80 flex items-start gap-3">
-                  <Code2 className="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                    <strong className="text-zinc-200">Arsitektur Rekayasa:</strong>{' '}
-                    {activeProject.architectureOverview}
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] group-hover:text-white transition-colors duration-300">
+                    {activeProject.title}
+                  </h3>
+                  <p className="font-serif-contemporary text-zinc-200 group-hover:text-zinc-100 text-sm sm:text-base leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] transition-colors duration-300">
+                    {activeProject.description || activeProject.summary}
                   </p>
                 </div>
-              )}
 
-              {/* Action row */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link
-                  href={`/projects/${activeProject.slug}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.02] cursor-pointer"
-                >
-                  <span>Buka Halaman Studi Kasus Lengkap</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-
-                {activeProject.links?.demo && (
-                  <a
-                    href={activeProject.links.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white text-sm font-medium border border-zinc-700/60 transition-all"
-                  >
-                    <span>Live Demo</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                )}
-
-                {activeRepoUrl && (
-                  <a
-                    href={activeRepoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white text-sm font-medium border border-zinc-700/60 transition-all"
-                  >
-                    <GithubIcon className="w-3.5 h-3.5" />
-                    <span>GitHub</span>
-                  </a>
-                )}
-              </div>
-            </div>
-
-            {/* Right 1 Col: Quantifiable Metrics Highlight */}
-            <div className="space-y-3 lg:border-l lg:border-zinc-800/80 lg:pl-8">
-              <span className="text-xs font-semibold text-indigo-400 uppercase tracking-wider block mb-2">
-                Metrik Utama Proyek
-              </span>
-
-              {activeProject.metrics?.map((metric, mIdx) => (
-                <div
-                  key={mIdx}
-                  className="p-3.5 rounded-xl bg-zinc-950/50 border border-zinc-800/60 flex items-center justify-between"
-                >
-                  <div>
-                    <span className="text-xs text-zinc-400 block">{metric.label}</span>
-                    <strong className="text-sm font-bold text-white font-mono">
-                      {metric.value}
-                    </strong>
+                {/* Architecture callout with interactive dark grey hover */}
+                {activeProject.architectureOverview && (
+                  <div className="group/arch p-4 rounded-xl bg-black/35 hover:bg-zinc-900/80 border border-white/10 hover:border-zinc-500/60 card-3d-glass-darkgrey flex items-start gap-3 transition-all duration-300 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
+                    <Code2 className="w-4 h-4 text-zinc-400 group-hover/arch:text-zinc-200 group-hover/arch:scale-110 flex-shrink-0 mt-0.5 transition-all duration-300" />
+                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                      <strong className="text-zinc-100 group-hover/arch:text-white font-semibold transition-colors">Arsitektur Rekayasa:</strong>{' '}
+                      <span className="group-hover/arch:text-zinc-200 transition-colors">{activeProject.architectureOverview}</span>
+                    </p>
                   </div>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                )}
+
+                {/* Action row */}
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <Link
+                    href={`/projects/${activeProject.slug}`}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-200 hover:bg-white text-zinc-950 text-sm font-semibold shadow-lg shadow-black/40 transition-all hover:scale-[1.02] cursor-pointer"
+                  >
+                    <span>Buka Halaman Studi Kasus Lengkap</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  {activeProject.links?.demo && (
+                    <a
+                      href={activeProject.links.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-black/40 hover:bg-zinc-800 text-zinc-200 hover:text-white text-sm font-medium border border-white/15 hover:border-zinc-500/60 transition-all shadow-md hover:shadow-[0_0_15px_rgba(113,113,122,0.4)]"
+                    >
+                      <span>Live Demo</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+
+                  {activeRepoUrl && (
+                    <a
+                      href={activeRepoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-black/40 hover:bg-zinc-800 text-zinc-200 hover:text-white text-sm font-medium border border-white/15 hover:border-zinc-500/60 transition-all shadow-md hover:shadow-[0_0_15px_rgba(113,113,122,0.4)]"
+                    >
+                      <GithubIcon className="w-3.5 h-3.5" />
+                      <span>GitHub</span>
+                    </a>
+                  )}
                 </div>
-              ))}
+              </div>
+
+              {/* Right 1 Col: Quantifiable Metrics Highlight in Dark Grey */}
+              <div className="space-y-3 lg:border-l lg:border-white/10 lg:pl-8">
+                <span className="text-xs font-semibold text-zinc-400 group-hover:text-zinc-300 uppercase tracking-wider block mb-2 font-mono transition-colors">
+                  Metrik Utama Proyek
+                </span>
+
+                {activeProject.metrics?.map((metric, mIdx) => (
+                  <div
+                    key={mIdx}
+                    className="group/metric p-3.5 rounded-xl bg-black/35 hover:bg-zinc-900/80 border border-white/10 hover:border-zinc-500/60 card-3d-glass-darkgrey flex items-center justify-between transition-all duration-300 hover:scale-[1.02] shadow-[0_4px_16px_rgba(0,0,0,0.3)] cursor-default"
+                  >
+                    <div>
+                      <span className="text-xs text-zinc-400 group-hover/metric:text-zinc-300 font-medium block transition-colors">
+                        {metric.label}
+                      </span>
+                      <strong className="text-sm font-bold text-white group-hover/metric:text-zinc-100 font-mono drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] transition-colors">
+                        {metric.value}
+                      </strong>
+                    </div>
+                    <span className="w-2 h-2 rounded-full bg-zinc-400 group-hover/metric:bg-zinc-200 shadow-[0_0_8px_rgba(161,161,170,0.7)] group-hover/metric:shadow-[0_0_12px_rgba(255,255,255,0.9)] transition-all duration-300" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
