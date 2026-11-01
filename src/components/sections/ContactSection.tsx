@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { caveCardVariants, subPanelPopVariants } from '@/components/ui/bento';
 import {
   Mail,
   Check,
@@ -67,211 +69,254 @@ export default function ContactSection() {
     <section
       id="contact"
       aria-label="Contact Section"
-      className="py-20 sm:py-28 relative border-t border-zinc-800/40 bg-zinc-950/20 backdrop-blur-[2px] overflow-hidden"
+      className="py-20 sm:py-28 relative border-t border-white/10 bg-transparent overflow-hidden"
     >
-      {/* Background Ambient Glows */}
-      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-cyan-600/10 rounded-full blur-[140px]" />
-        <div className="absolute bottom-10 right-10 w-[450px] h-[260px] bg-amber-600/5 rounded-full blur-[140px]" />
-      </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Main 3D Transparent Glass Card with Cara Kerja Pop-In Animation & Dark Grey Hover */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15, margin: '-20px 0px -20px 0px' }}
+          variants={caveCardVariants}
+          custom={0.2}
+          whileHover={{ scale: 1.012 }}
+          className="group relative w-full rounded-2xl sm:rounded-3xl p-[1px] bg-gradient-to-b from-white/35 via-white/10 to-transparent hover:from-zinc-500/70 hover:via-zinc-700/40 hover:to-transparent transition-colors duration-300"
+        >
+          {/* 3D Clean Transparent Glass Panel Body */}
+          <div className="relative rounded-[calc(1rem-1px)] sm:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/35 hover:bg-zinc-950/85 transition-all duration-300 card-3d-glass-darkgrey border border-white/10 hover:border-zinc-500/60 border-b-2 border-b-black/60">
+            {/* Specular Top Rim Glint Hairline */}
+            <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-zinc-300 transition-colors duration-300" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Canvas Card - Sesuai Layout Referensi */}
-        <div className="rounded-3xl bg-zinc-950/75 border border-zinc-800/90 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(34,211,238,0.12)] backdrop-blur-xl overflow-hidden">
-          
-          {/* Top Hero Banner: Massive "Contact Us" Title */}
-          <div className="px-6 sm:px-12 pt-10 sm:pt-14 pb-8 sm:pb-12 bg-zinc-950/80 border-b border-zinc-800/80 backdrop-blur-xl">
-            {/* Massive Heading */}
-            <h1
-              className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none"
-              style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
-            >
-              Contact Me
-            </h1>
-          </div>
+            {/* 3D Cyber Hardware Corner Accents & Rivets in Dark Grey */}
+            <div className="absolute top-3 left-3 w-2.5 h-2.5 border-t-2 border-l-2 border-zinc-500/70 rounded-tl-sm pointer-events-none group-hover:border-zinc-300 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(113,113,122,0.4)]" />
+            <div className="absolute bottom-3 right-3 w-2.5 h-2.5 border-b-2 border-r-2 border-zinc-500/70 rounded-br-sm pointer-events-none group-hover:border-zinc-300 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(113,113,122,0.4)]" />
+            <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-zinc-500/70 group-hover:bg-zinc-300 shadow-[0_0_8px_rgba(113,113,122,0.6)] pointer-events-none transition-colors duration-300 z-30" />
+            <div className="absolute bottom-3 left-3 w-1.5 h-1.5 rounded-full bg-zinc-500/70 group-hover:bg-zinc-300 shadow-[0_0_8px_rgba(113,113,122,0.6)] pointer-events-none transition-colors duration-300 z-30" />
 
-          {/* Content Area: Headline Ajakan & Grid Saluran Kontak */}
-          <div className="px-6 sm:px-12 py-10 sm:py-14 bg-zinc-950/60 backdrop-blur-xl space-y-8 sm:space-y-10">
-            
-            {/* Headline Ajakan (Bahasa Indonesia) */}
-            <div className="max-w-3xl">
+            {/* Top Hero Banner: Massive "Contact Me" Title */}
+            <div className="px-6 sm:px-12 pt-10 sm:pt-14 pb-8 sm:pb-10 border-b border-white/10 bg-black/20">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 group-hover:text-zinc-300 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] block mb-2 transition-colors">
+                Get In Touch
+              </span>
               <h2
-                className="text-2xl sm:text-4xl font-black text-white leading-tight tracking-tight mb-3"
+                className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] group-hover:text-zinc-100 transition-colors"
                 style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
               >
-                Butuh informasi lebih lanjut?
-                <br />
-                <span className="text-zinc-300">Mari terhubung dan berdiskusi dengan kami</span>
+                Contact Me
               </h2>
-              <p className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-2xl">
-                Rangkaian layanan rekayasa perangkat lunak full-stack dan pengembangan produk modern yang dirancang untuk mewujudkan strategi serta ide Anda menjadi solusi berskala besar.
-              </p>
             </div>
 
-            {/* Grid Kartu Informasi & Aksi Kontak */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-2">
-              
-              {/* Item 1: Email (Salin Email & mailto) - Span 2 kolom pada tablet/desktop agar menonjol */}
-              <div className="md:col-span-2 p-5 sm:p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/90 hover:border-zinc-700/80 transition-all group flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-start sm:items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 group-hover:border-indigo-500/50 group-hover:text-indigo-400 transition-all flex-shrink-0 shadow-sm">
-                    <Mail className="w-5 h-5" />
+            {/* Content Area: Headline Ajakan & Grid Saluran Kontak */}
+            <div className="px-6 sm:px-12 py-10 sm:py-14 space-y-8 sm:space-y-10">
+              {/* Headline Ajakan (Bahasa Indonesia) */}
+              <div className="max-w-3xl">
+                <h3
+                  className="text-2xl sm:text-4xl font-black text-white leading-tight tracking-tight mb-3 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
+                  style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
+                >
+                  Butuh informasi lebih lanjut?
+                  <br />
+                  <span className="text-zinc-300 group-hover:text-zinc-200 transition-colors">
+                    Mari terhubung dan berdiskusi dengan kami
+                  </span>
+                </h3>
+                <p className="text-sm sm:text-base text-zinc-200 leading-relaxed max-w-2xl drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                  Rangkaian layanan rekayasa perangkat lunak full-stack dan pengembangan produk modern yang dirancang untuk mewujudkan strategi serta ide Anda menjadi solusi berskala besar.
+                </p>
+              </div>
+
+              {/* Grid Kartu Informasi & Aksi Kontak (Pop-in murni dari dalam goa layaknya sub-panel Cara Kerja) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-2">
+                {/* Item 1: Email (Salin Email & mailto) */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.15 }}
+                  variants={subPanelPopVariants}
+                  custom={0.3}
+                  className="md:col-span-2 p-5 sm:p-6 rounded-2xl bg-black/35 hover:bg-zinc-900/80 border border-white/10 hover:border-zinc-500/60 card-3d-glass-darkgrey transition-all duration-300 group/email flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+                >
+                  <div className="flex items-start sm:items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-zinc-900/90 border border-zinc-700/60 flex items-center justify-center text-zinc-300 group-hover/email:border-zinc-400 group-hover/email:text-white transition-all flex-shrink-0 shadow-sm">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-zinc-400 group-hover/email:text-zinc-300 uppercase tracking-wider block transition-colors">
+                        Email Resmi
+                      </span>
+                      <a
+                        href={`mailto:${emailAddress}`}
+                        className="text-base sm:text-lg font-bold text-white group-hover/email:text-zinc-100 transition-colors break-all"
+                      >
+                        {emailAddress}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider block">
-                      Email Resmi
-                    </span>
+
+                  {/* Tombol Aksi: Salin Email & Buka Mailto */}
+                  <div className="flex items-center gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/10">
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white border border-zinc-600/50 transition-all cursor-pointer active:scale-95 shadow-sm"
+                      title="Salin alamat email ke clipboard"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="text-emerald-400">Email Tersalin!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5 text-zinc-400" />
+                          <span>Salin Email</span>
+                        </>
+                      )}
+                    </button>
+
                     <a
                       href={`mailto:${emailAddress}`}
-                      className="text-base sm:text-lg font-bold text-white hover:text-indigo-400 transition-colors break-all"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-200 hover:bg-white text-zinc-950 transition-all shadow-md shadow-black/40 active:scale-95"
+                      title="Kirim pesan langsung via aplikasi email Anda"
                     >
-                      {emailAddress}
+                      <span>Buka Mailto</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
-                </div>
+                </motion.div>
 
-                {/* Tombol Aksi: Salin Email & Buka Mailto */}
-                <div className="flex items-center gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-zinc-800/80">
-                  <button
-                    type="button"
-                    onClick={handleCopyEmail}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white border border-zinc-700 transition-all cursor-pointer active:scale-95"
-                    title="Salin alamat email ke clipboard"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-emerald-400">Email Tersalin!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5 text-zinc-400" />
-                        <span>Salin Email</span>
-                      </>
-                    )}
-                  </button>
+                {/* Item 2: Ketersediaan (Availability) */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.15 }}
+                  variants={subPanelPopVariants}
+                  custom={0.38}
+                  className="p-5 sm:p-6 rounded-2xl bg-black/35 hover:bg-zinc-900/80 border border-white/10 hover:border-zinc-500/60 card-3d-glass-darkgrey transition-all duration-300 group/avail shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-zinc-900/90 border border-zinc-700/60 flex items-center justify-center text-emerald-400 group-hover/avail:border-zinc-400 transition-all flex-shrink-0 shadow-sm">
+                      <CalendarCheck className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-semibold text-zinc-400 group-hover/avail:text-zinc-300 uppercase tracking-wider transition-colors">
+                          Ketersediaan (Availability)
+                        </span>
+                      </div>
+                      <p className="text-sm font-semibold text-white group-hover/avail:text-zinc-100 transition-colors">
+                        Tersedia untuk Kontrak &amp; Freelance
+                      </p>
+                      <p className="text-xs text-zinc-300 mt-1 flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                        Respons cepat &lt; 24 jam kerja
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
 
-                  <a
-                    href={`mailto:${emailAddress}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-sm shadow-indigo-600/30 active:scale-95"
-                    title="Kirim pesan langsung via aplikasi email Anda"
-                  >
-                    <span>Buka Mailto</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
+                {/* Item 3: Zona Waktu & Remote */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.15 }}
+                  variants={subPanelPopVariants}
+                  custom={0.46}
+                  className="p-5 sm:p-6 rounded-2xl bg-black/35 hover:bg-zinc-900/80 border border-white/10 hover:border-zinc-500/60 card-3d-glass-darkgrey transition-all duration-300 group/zone shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-zinc-900/90 border border-zinc-700/60 flex items-center justify-center text-zinc-300 group-hover/zone:border-zinc-400 group-hover/zone:text-white transition-all flex-shrink-0 shadow-sm">
+                      <Globe className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-semibold text-zinc-400 group-hover/zone:text-zinc-300 uppercase tracking-wider transition-colors">
+                          Zona Waktu &amp; Remote
+                        </span>
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-800 text-zinc-200 border border-zinc-600/50">
+                          <Sparkles className="w-2.5 h-2.5 text-zinc-300" />
+                          Worldwide Remote
+                        </span>
+                      </div>
+                      <p className="text-sm font-semibold text-white group-hover/zone:text-zinc-100 transition-colors">
+                        Indonesia (UTC+7 / WIB)
+                      </p>
+                      <p className="text-xs text-zinc-300 mt-1 font-mono">
+                        {wibTime ? `Waktu lokal: ${wibTime}` : 'Indonesia Standard Time'} • Remote Worldwide Ready
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Item 4: LinkedIn Profile Link */}
+                <motion.a
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.15 }}
+                  variants={subPanelPopVariants}
+                  custom={0.54}
+                  href={linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-5 sm:p-6 rounded-2xl bg-black/35 hover:bg-zinc-900/80 border border-white/10 hover:border-zinc-500/60 card-3d-glass-darkgrey transition-all duration-300 group/li block shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-zinc-900/90 border border-zinc-700/60 flex items-center justify-center text-zinc-300 group-hover/li:border-[#0077B5]/80 group-hover/li:text-[#0077B5] transition-all flex-shrink-0 shadow-sm">
+                      <LinkedinIcon className="w-5 h-5 fill-current" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-zinc-400 group-hover/li:text-zinc-300 uppercase tracking-wider transition-colors">
+                          LinkedIn Profil
+                        </span>
+                        <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover/li:text-white group-hover/li:translate-x-0.5 group-hover/li:-translate-y-0.5 transition-transform" />
+                      </div>
+                      <p className="text-sm font-semibold text-white group-hover/li:text-zinc-100 transition-colors mt-0.5">
+                        www.linkedin.com/in/jovansebastian
+                      </p>
+                      <p className="text-xs text-zinc-300 mt-1">
+                        Koneksi profesional &amp; riwayat karir
+                      </p>
+                    </div>
+                  </div>
+                </motion.a>
+
+                {/* Item 5: GitHub Profile Link */}
+                <motion.a
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.15 }}
+                  variants={subPanelPopVariants}
+                  custom={0.62}
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-5 sm:p-6 rounded-2xl bg-black/35 hover:bg-zinc-900/80 border border-white/10 hover:border-zinc-500/60 card-3d-glass-darkgrey transition-all duration-300 group/gh block shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-zinc-900/90 border border-zinc-700/60 flex items-center justify-center text-zinc-300 group-hover/gh:border-zinc-400 group-hover/gh:text-white transition-all flex-shrink-0 shadow-sm">
+                      <GithubIcon className="w-5 h-5 fill-current" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-zinc-400 group-hover/gh:text-zinc-300 uppercase tracking-wider transition-colors">
+                          GitHub Profil
+                        </span>
+                        <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover/gh:text-white group-hover/gh:translate-x-0.5 group-hover/gh:-translate-y-0.5 transition-transform" />
+                      </div>
+                      <p className="text-sm font-semibold text-white group-hover/gh:text-zinc-100 transition-colors mt-0.5">
+                        https://github.com/Jovan-SW
+                      </p>
+                      <p className="text-xs text-zinc-300 mt-1">
+                        Repositori kode, arsitektur, &amp; proyek open source
+                      </p>
+                    </div>
+                  </div>
+                </motion.a>
               </div>
-
-              {/* Item 2: Ketersediaan (Availability) */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/90 hover:border-zinc-700/80 transition-all group">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-400 group-hover:border-emerald-500/50 transition-all flex-shrink-0 shadow-sm">
-                    <CalendarCheck className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                        Ketersediaan (Availability)
-                      </span>
-                    </div>
-                    <p className="text-sm font-semibold text-white">
-                      Tersedia untuk Kontrak &amp; Freelance
-                    </p>
-                    <p className="text-xs text-zinc-400 mt-1 flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-zinc-500" />
-                      Respons cepat &lt; 24 jam kerja
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Item 3: Zona Waktu & Remote */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/90 hover:border-zinc-700/80 transition-all group">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-indigo-400 group-hover:border-indigo-500/50 transition-all flex-shrink-0 shadow-sm">
-                    <Globe className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                        Zona Waktu &amp; Remote
-                      </span>
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                        <Sparkles className="w-2.5 h-2.5" />
-                        Worldwide Remote
-                      </span>
-                    </div>
-                    <p className="text-sm font-semibold text-white">
-                      Indonesia (UTC+7 / WIB)
-                    </p>
-                    <p className="text-xs text-zinc-400 mt-1 font-mono">
-                      {wibTime ? `Waktu lokal: ${wibTime}` : 'Indonesia Standard Time'} • Remote Worldwide Ready
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Item 4: LinkedIn Profile Link */}
-              <a
-                href={linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 sm:p-6 rounded-2xl bg-zinc-900/50 hover:bg-zinc-900/80 border border-zinc-800/90 hover:border-zinc-700/80 transition-all group block"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 group-hover:border-[#0077B5]/60 group-hover:text-[#0077B5] transition-all flex-shrink-0 shadow-sm">
-                    <LinkedinIcon className="w-5 h-5 fill-current" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                        LinkedIn Profil
-                      </span>
-                      <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </div>
-                    <p className="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors mt-0.5">
-                      www.linkedin.com/in/jovansebastian
-                    </p>
-                    <p className="text-xs text-zinc-400 mt-1">
-                      Koneksi profesional &amp; riwayat karir
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              {/* Item 5: GitHub Profile Link */}
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 sm:p-6 rounded-2xl bg-zinc-900/50 hover:bg-zinc-900/80 border border-zinc-800/90 hover:border-zinc-700/80 transition-all group block"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 group-hover:border-zinc-500 group-hover:text-white transition-all flex-shrink-0 shadow-sm">
-                    <GithubIcon className="w-5 h-5 fill-current" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                        GitHub Profil
-                      </span>
-                      <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </div>
-                    <p className="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors mt-0.5">
-                      https://github.com/Jovan-SW
-                    </p>
-                    <p className="text-xs text-zinc-400 mt-1">
-                      Repositori kode, arsitektur, &amp; proyek open source
-                    </p>
-                  </div>
-                </div>
-              </a>
-
             </div>
-
           </div>
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );
