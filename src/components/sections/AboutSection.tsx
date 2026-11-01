@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { BentoCard } from '@/components/ui/bento';
 
 export default function AboutSection() {
@@ -16,17 +18,42 @@ export default function AboutSection() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Layout Bento: Jarak Lega & Bernapas, Mudah Dibaca (1 -> 2x2 -> 1) */}
+        {/* Layout Bento: Jarak Lega & Bernapas, Mudah Dibaca */}
         <div className="flex flex-col gap-6 sm:gap-8">
           {/* =========================================================================
-              BAGIAN 1: Technical Journey (1 Kotak Penuh di Tengah)
+              BAGIAN 1: Technical Journey & Portrait (Format Bento: Teks di Kiri & Foto di Kanan)
               ========================================================================= */}
-          <BentoCard
-            eyebrow="Evolution & Journey"
-            title="Technical Journey"
-            description="Perjalanan rekayasa perangkat lunak saya bermula dari pemahaman mendasar mengenai arsitektur jaringan dan komunikasi peladen, yang kemudian berkembang menjadi spesialisasi dalam pengembangan sistem web full-stack. Berangkat dari perancangan sistem interaktif berbasis konsumsi data hingga pembangunan platform niaga elektronik dengan alur transaksi terintegrasi, fokus rekayasa saya terpusat pada ekosistem Next.js, TypeScript, dan PostgreSQL. Pendekatan kerja saya menitikberatkan pada struktur arsitektur yang modular, kepatuhan pengetikan kode yang ketat, serta penjaminan keamanan data tingkat lanjut demi menghadirkan solusi digital yang andal dan berkinerja tinggi."
-            className="w-full rounded-2xl sm:rounded-3xl p-2 sm:p-4"
-          />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+            {/* Kotak Teks Technical Journey */}
+            <BentoCard
+              eyebrow="Evolution & Journey"
+              title="Technical Journey"
+              description="Perjalanan rekayasa perangkat lunak saya bermula dari pemahaman mendasar mengenai arsitektur jaringan dan komunikasi peladen, yang kemudian berkembang menjadi spesialisasi dalam pengembangan sistem web full-stack. Berangkat dari perancangan sistem interaktif berbasis konsumsi data hingga pembangunan platform niaga elektronik dengan alur transaksi terintegrasi, fokus rekayasa saya terpusat pada ekosistem Next.js, TypeScript, dan PostgreSQL. Pendekatan kerja saya menitikberatkan pada struktur arsitektur yang modular, kepatuhan pengetikan kode yang ketat, serta penjaminan keamanan data tingkat lanjut demi menghadirkan solusi digital yang andal dan berkinerja tinggi."
+              className="md:col-span-7 lg:col-span-8 rounded-2xl sm:rounded-3xl p-2 sm:p-4 h-full"
+            />
+
+            {/* Kotak Foto: Terletak di sebelah kanan tulisan Technical Journey */}
+            <motion.div
+              initial="idle"
+              whileHover="active"
+              variants={{ idle: {}, active: {} }}
+              className="group relative md:col-span-5 lg:col-span-4 rounded-2xl sm:rounded-3xl overflow-hidden bg-zinc-950/80 border border-zinc-800/80 hover:border-amber-400/50 shadow-[0_4px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.06)] transition-all duration-300 min-h-[340px] sm:min-h-[380px] md:min-h-full flex flex-col"
+            >
+              <div className="relative w-full h-full min-h-[340px] sm:min-h-[380px] md:min-h-full overflow-hidden">
+                <Image
+                  src="/inimahgw.png"
+                  alt="Jovan - Technical Journey"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 42vw, 380px"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  priority
+                />
+                {/* Subtle dark gradient overlay & inner ring for seamless aesthetic */}
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/15 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl sm:rounded-3xl pointer-events-none" />
+              </div>
+            </motion.div>
+          </div>
 
           {/* =========================================================================
               BAGIAN 2: Pilar Rekayasa (Format 2x2: 2 Kotak Atas & 2 Kotak Bawah)
