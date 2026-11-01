@@ -4,6 +4,7 @@ import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
+import CaveDebrisCanvas from '@/components/ui/CaveDebrisCanvas';
 
 export default function HeroSection() {
   // 3D Mouse Parallax values for organic interactive tilt
@@ -48,6 +49,15 @@ export default function HeroSection() {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[95vh] sm:min-h-screen flex flex-col justify-between items-center pt-32 sm:pt-36 pb-12 sm:pb-16 overflow-hidden"
     >
+      {/* Interactive Floating Cave Rock Debris Effect */}
+      <CaveDebrisCanvas />
+
+      {/* Hero-Only Soft Ambient Vignette - very gentle and fades to completely transparent at the bottom to prevent any dividing line */}
+      <div
+        className="absolute inset-0 pointer-events-none -z-10 bg-gradient-to-b from-zinc-950/25 via-zinc-950/10 to-transparent"
+        aria-hidden="true"
+      />
+
       {/* Subtle Ambient Lighting over the Monolith Server */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         {/* Soft golden spotlight behind 3D header to make it pop and feel luminous */}
@@ -58,12 +68,12 @@ export default function HeroSection() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center relative z-10 flex-1 flex flex-col justify-center">
         {/* Top Metadata: Location & Availability (Editorial, High-Tech HUD Styling) */}
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs sm:text-sm font-mono tracking-wider uppercase mb-7 sm:mb-9 text-zinc-400 select-none">
-          <span className="text-zinc-300">Based in Indonesia (UTC+7)</span>
-          <span className="text-zinc-600">/</span>
-          <span className="text-zinc-300">Remote Worldwide</span>
-          <span className="text-zinc-600">/</span>
-          <span className="text-amber-400 font-semibold">Available for Contract &amp; Freelance</span>
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs sm:text-sm font-mono tracking-wider uppercase mb-7 sm:mb-9 select-none">
+          <span className="text-zinc-100 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Based in Indonesia (UTC+7)</span>
+          <span className="text-zinc-500 font-bold">/</span>
+          <span className="text-zinc-100 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Remote Worldwide</span>
+          <span className="text-zinc-500 font-bold">/</span>
+          <span className="text-amber-300 font-semibold drop-shadow-[0_0_12px_rgba(251,191,36,0.6)]">Available for Contract &amp; Freelance</span>
         </div>
 
         {/* Headline: Sculpted 3D Golden Monolith with Interactive Tilt */}
@@ -116,8 +126,8 @@ export default function HeroSection() {
 
         {/* Elevator Pitch: Crisp Legibility over 3D Monolith */}
         <div className="max-w-2xl sm:max-w-3xl mx-auto mb-9 sm:mb-11 text-center">
-          <p className="text-base sm:text-lg text-zinc-200/95 font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
-            Saya adalah seorang <strong className="text-yellow-400 font-semibold">Full-Stack Engineer</strong> yang berfokus membangun aplikasi web tangguh dan berkinerja tinggi dari antarmuka hingga basis data. Menggunakan <strong className="text-zinc-100 font-semibold">Next.js</strong>, <strong className="text-zinc-100 font-semibold">TypeScript</strong>, dan <strong className="text-zinc-100 font-semibold">PostgreSQL</strong>, saya mengatasi tantangan fragmentasi sistem, latensi transmisi data, serta kerentanan akses—memastikan setiap komponen aplikasi beroperasi selaras, aman, dan siap diskalakan.
+          <p className="text-base sm:text-lg text-white font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] [text-shadow:0_1px_3px_rgba(0,0,0,1),0_2px_14px_rgba(0,0,0,0.9)]">
+            Saya adalah seorang <strong className="text-amber-300 font-semibold [text-shadow:0_0_14px_rgba(251,191,36,0.55),0_1px_3px_rgba(0,0,0,1)]">Full-Stack Engineer</strong> yang berfokus membangun aplikasi web tangguh dan berkinerja tinggi dari antarmuka hingga basis data. Menggunakan <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">Next.js</strong>, <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">TypeScript</strong>, dan <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">PostgreSQL</strong>, saya mengatasi tantangan fragmentasi sistem, latensi transmisi data, serta kerentanan akses—memastikan setiap komponen aplikasi beroperasi selaras, aman, dan siap diskalakan.
           </p>
         </div>
 
@@ -147,11 +157,11 @@ export default function HeroSection() {
         <button
           type="button"
           onClick={() => scrollTo('about')}
-          className="flex flex-col items-center gap-1.5 text-zinc-400 hover:text-amber-400 transition-colors cursor-pointer group"
+          className="flex flex-col items-center gap-1.5 text-zinc-200 hover:text-amber-300 transition-colors cursor-pointer group"
           aria-label="Scroll to About Section"
         >
-          <span className="font-mono text-[11px] tracking-widest uppercase">Scroll to explore</span>
-          <ChevronDown className="w-4 h-4 text-amber-400/80 group-hover:translate-y-1 transition-transform animate-bounce" />
+          <span className="font-mono text-[11px] tracking-widest uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Scroll to explore</span>
+          <ChevronDown className="w-4 h-4 text-amber-400 group-hover:translate-y-1 transition-transform animate-bounce drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" />
         </button>
       </div>
     </section>

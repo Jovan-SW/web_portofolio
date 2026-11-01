@@ -92,14 +92,14 @@ export default function Navbar() {
     <header className="fixed top-4 sm:top-6 inset-x-0 mx-auto z-50 max-w-6xl px-4 sm:px-8 pointer-events-none transition-all duration-300">
       <nav
         aria-label="Main Navigation"
-        className={`pointer-events-auto relative w-full flex items-center justify-between px-5 sm:px-8 py-3 sm:py-3.5 rounded-xl transition-all duration-300 ease-out border-[1.5px] ${
+        className={`pointer-events-auto relative w-full flex items-center justify-between px-5 sm:px-8 py-3 sm:py-3.5 rounded-xl transition-all duration-300 ease-out border ${
           isScrolled
-            ? 'bg-zinc-950/45 backdrop-blur-xl border-white/[0.22] shadow-[0_10px_35px_rgba(0,0,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.1)]'
-            : 'bg-white/[0.03] backdrop-blur-md border-white/[0.18] shadow-[0_4px_24px_rgba(0,0,0,0.12)]'
+            ? 'bg-zinc-950/95 backdrop-blur-2xl border-zinc-800/90 shadow-[0_14px_40px_rgba(0,0,0,0.75),inset_0_1px_0_rgba(255,255,255,0.12)]'
+            : 'bg-zinc-950/85 backdrop-blur-xl border-zinc-800/80 shadow-[0_10px_35px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)]'
         }`}
       >
         {/* Subtle top crystal glare highlight line */}
-        <div className="absolute top-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+        <div className="absolute top-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
         {/* Left: Brand Identity with Satoshi Font (Tegas & Bold) */}
         <a
@@ -134,20 +134,20 @@ export default function Navbar() {
                   isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                {/* Floating Soft Aura Indicator on Hover (Tanpa Border Kotak) */}
+                {/* Floating Soft Aura Indicator on Hover */}
                 {hoveredTab === item.id && mounted && (
                   <motion.span
                     layoutId="navbar-hover-glow"
-                    className="absolute inset-0 rounded-lg bg-white/[0.08] backdrop-blur-sm"
+                    className="absolute inset-0 rounded-lg bg-zinc-800/80 backdrop-blur-sm"
                     transition={{ type: 'spring', stiffness: 450, damping: 32 }}
                   />
                 )}
 
-                {/* Subtle Clean Active Indicator (Mengambang Halus Tanpa Border Kotak) */}
+                {/* Subtle Clean Active Indicator */}
                 {isActive && !hoveredTab && mounted && (
                   <motion.span
                     layoutId="navbar-active-box"
-                    className="absolute inset-0 rounded-lg bg-white/[0.04]"
+                    className="absolute inset-0 rounded-lg bg-zinc-800/60"
                     transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                   />
                 )}
@@ -162,7 +162,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-lg border-[1.5px] border-white/20 bg-white/[0.05] hover:bg-white/[0.12] text-zinc-200 hover:text-white transition-all active:scale-95 focus:outline-none cursor-pointer"
+          className="md:hidden p-2 rounded-lg border border-zinc-800 bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 hover:text-white transition-all active:scale-95 focus:outline-none cursor-pointer"
           aria-label={mobileOpen ? 'Tutup Menu' : 'Buka Menu'}
           aria-expanded={mobileOpen}
         >
@@ -170,7 +170,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Dropdown Sheet - Clean Rectangular Crystal Box */}
+      {/* Mobile Dropdown Sheet - Clean Dark Rectangular Crystal Box */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -178,7 +178,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden pointer-events-auto mt-2 p-3 rounded-xl bg-zinc-950/80 backdrop-blur-2xl border-[1.5px] border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1)] flex flex-col gap-1.5"
+            className="md:hidden pointer-events-auto mt-2 p-3 rounded-xl bg-zinc-950/95 backdrop-blur-2xl border border-zinc-800 shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col gap-1.5"
           >
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
@@ -190,8 +190,8 @@ export default function Navbar() {
                   style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
                   className={`flex items-center justify-between px-4 py-2.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-all active:scale-[0.98] ${
                     isActive
-                      ? 'bg-white/[0.08] text-white'
-                      : 'text-zinc-300 hover:text-white hover:bg-white/[0.03]'
+                      ? 'bg-zinc-800/90 text-white'
+                      : 'text-zinc-300 hover:text-white hover:bg-zinc-900/60'
                   }`}
                 >
                   <span>{item.label}</span>
