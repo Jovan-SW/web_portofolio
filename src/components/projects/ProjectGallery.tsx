@@ -8,7 +8,6 @@ import {
   ChevronRight,
   Maximize2,
   X,
-  Layers,
 } from 'lucide-react';
 
 interface ProjectGalleryProps {
@@ -114,32 +113,11 @@ export default function ProjectGallery({ gallery, title }: ProjectGalleryProps) 
             </>
           )}
         </div>
-
-        {/* Caption Bar underneath */}
-        {activeItem.caption && (
-          <div className="px-5 py-3.5 bg-zinc-900/60 border-t border-zinc-800/80 flex items-center justify-between gap-4 text-xs sm:text-sm">
-            <div className="flex items-center gap-2 text-zinc-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0" />
-              <span className="font-medium text-zinc-200">{activeItem.alt}</span>
-              <span className="text-zinc-500 hidden sm:inline">—</span>
-              <span className="text-zinc-400 hidden sm:inline">{activeItem.caption}</span>
-            </div>
-            <span className="text-[11px] font-mono text-zinc-500 flex-shrink-0">
-              Klik gambar untuk memperbesar
-            </span>
-          </div>
-        )}
       </div>
 
       {/* Thumbnails Row */}
       {gallery.length > 1 && (
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-            <Layers className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Semua Tangkapan Layar ({gallery.length} Layar)</span>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
             {gallery.map((item, idx) => {
               const isActive = selectedIndex === idx;
               return (
@@ -171,8 +149,7 @@ export default function ProjectGallery({ gallery, title }: ProjectGalleryProps) 
               );
             })}
           </div>
-        </div>
-      )}
+        )}
 
       {/* Lightbox Fullscreen Modal */}
       {lightboxOpen && (

@@ -31,7 +31,7 @@ export default function AboutSection() {
               title="Technical Journey"
               description={t('about.description')}
               delay={0.04}
-              className="col-span-7 sm:col-span-7 md:col-span-7 lg:col-span-8 h-full"
+              className="col-span-7 sm:col-span-7 md:col-span-7 lg:col-span-7 h-full min-h-[230px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px]"
             />
 
             {/* Card 2: Foto Jovan (Pop-In dari Dalam Goa 2) - Tetap Berada di Samping Tulisan Technical Journey */}
@@ -41,7 +41,7 @@ export default function AboutSection() {
               viewport={{ once: false, amount: 0.15, margin: '-20px 0px -20px 0px' }}
               variants={caveCardVariants}
               custom={0.16}
-              className="col-span-5 sm:col-span-5 md:col-span-5 lg:col-span-4 h-full min-h-[200px] sm:min-h-[290px] md:min-h-full flex flex-col"
+              className="col-span-5 sm:col-span-5 md:col-span-5 lg:col-span-5 h-full min-h-[230px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px] flex flex-col"
             >
               <InteractiveTiltCard
                 image={{
@@ -55,7 +55,7 @@ export default function AboutSection() {
                 glareIntensity={0.3}
                 holographicFoil={true}
                 cornerAccents={true}
-                className="w-full h-full min-h-[200px] sm:min-h-[290px] md:min-h-full flex-1 flex flex-col"
+                className="w-full h-full min-h-[230px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px] flex-1 flex flex-col"
               />
             </motion.div>
           </div>
