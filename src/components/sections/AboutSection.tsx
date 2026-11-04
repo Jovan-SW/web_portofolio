@@ -5,6 +5,7 @@ import { BentoCard, caveCardVariants, subPanelPopVariants } from '@/components/u
 import { InteractiveTiltCard } from '@/components/ui/tilt-card';
 import { useLanguage } from '@/context/LanguageContext';
 import CaveFireflyCanvas from '@/components/ui/CaveFireflyCanvas';
+import IceMistCanvas from '@/components/ui/IceMistCanvas';
 
 export default function AboutSection() {
   const { lang, t } = useLanguage();
@@ -15,6 +16,8 @@ export default function AboutSection() {
       aria-label="About Section"
       className="py-12 sm:py-20 md:py-28 relative border-t border-white/10 bg-transparent overflow-hidden"
     >
+      {/* 3D Glacial Ice Fog Mist Effect on Scroll */}
+      <IceMistCanvas />
       {/* Ambient Cave Fireflies Effect */}
       <CaveFireflyCanvas />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,9 +55,11 @@ export default function AboutSection() {
                 perspective={1100}
                 hoverScale={1.025}
                 glareEffect={true}
-                glareIntensity={0.3}
-                holographicFoil={true}
-                cornerAccents={true}
+                glareIntensity={0.05}
+                holographicFoil={false}
+                iceGlassEffect={true}
+                iceFrame="/ice-frame.png"
+                cornerAccents={false}
                 className="w-full h-full min-h-[230px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px] flex-1 flex flex-col"
               />
             </motion.div>
@@ -126,25 +131,25 @@ export default function AboutSection() {
               variants={caveCardVariants}
               custom={0.76}
               whileHover={{ scale: 1.015 }}
-              className="group relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl p-[1px] bg-gradient-to-b from-white/35 via-white/10 to-transparent hover:from-amber-400/80 hover:via-amber-400/30 hover:to-transparent transition-colors duration-300"
+              className="group relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl p-[1px] bg-gradient-to-b from-white/35 via-white/10 to-transparent hover:from-sky-400/80 hover:via-cyan-400/30 hover:to-transparent transition-colors duration-300"
             >
               {/* 3D Clean Transparent Glass Panel Body */}
-              <div className="relative rounded-[calc(0.75rem-1px)] sm:rounded-[calc(1rem-1px)] md:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/15 hover:bg-black/25 transition-colors duration-300 card-3d-glass border border-white/10 hover:border-amber-400/50 border-b-2 border-b-black/50 p-4 sm:p-7 md:p-10">
+              <div className="relative rounded-[calc(0.75rem-1px)] sm:rounded-[calc(1rem-1px)] md:rounded-[calc(1.5rem-1px)] overflow-hidden bg-black/15 hover:bg-black/25 transition-colors duration-300 card-3d-glass border border-white/10 hover:border-sky-400/50 border-b-2 border-b-black/50 p-4 sm:p-7 md:p-10">
                 {/* Specular Top Rim Glint Hairline */}
-                <div className="absolute top-0 inset-x-4 sm:inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-amber-300 transition-colors duration-300" />
+                <div className="absolute top-0 inset-x-4 sm:inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none z-30 group-hover:via-cyan-200 transition-colors duration-300" />
 
                 {/* 3D Cyber Hardware Corner Accents & Rivets */}
-                <div className="absolute top-2 sm:top-3 left-2 sm:left-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-t-2 border-l-2 border-amber-400/70 rounded-tl-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-                <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-b-2 border-r-2 border-amber-400/70 rounded-br-sm pointer-events-none group-hover:border-amber-400 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
-                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-400/70 group-hover:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)] pointer-events-none transition-colors duration-300 z-30" />
+                <div className="absolute top-2 sm:top-3 left-2 sm:left-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-t-2 border-l-2 border-sky-400/70 rounded-tl-sm pointer-events-none group-hover:border-cyan-300 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
+                <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 w-2 sm:w-2.5 h-2 sm:h-2.5 border-b-2 border-r-2 border-sky-400/70 rounded-br-sm pointer-events-none group-hover:border-cyan-300 transition-colors duration-300 z-30 shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
+                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-sky-400/70 group-hover:bg-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.8)] pointer-events-none transition-colors duration-300 z-30" />
+                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-sky-400/70 group-hover:bg-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.8)] pointer-events-none transition-colors duration-300 z-30" />
 
                 {/* Header Area */}
                 <div className="mb-3.5 sm:mb-6 md:mb-8">
-                  <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-amber-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+                  <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-sky-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
                     {lang === 'en' ? 'Workflow & Collaboration' : 'Alur Kerja & Kolaborasi'}
                   </span>
-                  <h3 className="mt-1 sm:mt-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-amber-100 transition-colors">
+                  <h3 className="mt-1 sm:mt-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-cyan-100 transition-colors">
                     {lang === 'en' ? 'How I Work' : 'Cara Kerja'}
                   </h3>
                 </div>
@@ -158,7 +163,7 @@ export default function AboutSection() {
                     viewport={{ once: false, amount: 0.15 }}
                     variants={subPanelPopVariants}
                     custom={0.86}
-                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
+                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-sky-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
                   >
                     <div className="space-y-1.5 sm:space-y-2.5">
                       <h4 className="text-sm sm:text-base md:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
@@ -177,7 +182,7 @@ export default function AboutSection() {
                     viewport={{ once: false, amount: 0.15 }}
                     variants={subPanelPopVariants}
                     custom={0.96}
-                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
+                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-sky-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
                   >
                     <div className="space-y-1.5 sm:space-y-2.5">
                       <h4 className="text-sm sm:text-base md:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
@@ -196,7 +201,7 @@ export default function AboutSection() {
                     viewport={{ once: false, amount: 0.15 }}
                     variants={subPanelPopVariants}
                     custom={1.06}
-                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-amber-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
+                    className="relative p-3.5 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/25 hover:bg-black/40 border border-white/15 hover:border-sky-400/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.25)] transition-all duration-300 flex flex-col justify-between"
                   >
                     <div className="space-y-1.5 sm:space-y-2.5">
                       <h4 className="text-sm sm:text-base md:text-lg font-bold text-white tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">

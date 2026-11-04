@@ -50,10 +50,10 @@ export async function sendContactEmail(formData: FormData): Promise<ContactFormR
 
   // B. VERIFIKASI ENVIRONMENT VARIABLE
   const apiKey = process.env.RESEND_API_KEY;
-  const targetEmail = process.env.CONTACT_RECEIVER_EMAIL;
+  const targetEmail = process.env.CONTACT_RECEIVER_EMAIL || 'jovsebwil723@gmail.com';
 
-  if (!apiKey || !targetEmail) {
-    console.error('[SECURITY ALERT] RESEND_API_KEY atau CONTACT_RECEIVER_EMAIL belum diset.');
+  if (!apiKey) {
+    console.error('[SECURITY ALERT] RESEND_API_KEY belum diset.');
     return {
       success: false,
       message: 'Layanan email sedang dalam pemeliharaan. Silakan coba kembali nanti.',
@@ -213,7 +213,7 @@ export async function sendContactEmail(formData: FormData): Promise<ContactFormR
       console.error('[RESEND API ERROR]', error);
       return {
         success: false,
-        message: 'Gagal mengirimkan pesan ke server email. Silakan coba lagi beberapa saat lagi.',
+        message: error.message || 'Gagal mengirimkan pesan ke server email. Silakan coba lagi beberapa saat lagi.',
       };
     }
 

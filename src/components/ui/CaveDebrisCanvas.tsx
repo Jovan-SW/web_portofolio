@@ -88,32 +88,32 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
 
     let fragments: RockFragment[] = [];
 
-    // Natural stone color palette - bright, clearly visible ancient cave stones (limestone, sandstone, quartzite)
-    const stoneBaseColors = [
-      '#c2b9a7', // Pale travertine limestone
-      '#d4cbb8', // Light desert sandstone
-      '#a8b0bd', // Bright mineral granite
-      '#b5ad9e', // Warm pale quartzite
-      '#c9bead', // Weathered cave calcite
-      '#9da5b3', // Pale slate stone
+    // Glacial ice crystal color palette - crystalline translucent blues, cyans, and frosted whites
+    const crystalBaseColors = [
+      'rgba(186, 230, 254, 0.78)', // Pale glacial cyan ice (#BAE6FD)
+      'rgba(224, 242, 254, 0.85)', // Crisp translucent white ice (#E0F2FE)
+      'rgba(147, 197, 253, 0.72)', // Deep refraction ice blue (#93C5FD)
+      'rgba(165, 243, 252, 0.80)', // Bright arctic cyan (#A5F3FC)
+      'rgba(240, 249, 255, 0.90)', // Frosted diamond ice (#F0F9FF)
+      'rgba(125, 211, 252, 0.75)', // Sky blue ice crystal (#7DD3FC)
     ];
 
     const highlightFacetTones = [
-      'rgba(255, 255, 248, 0.65)', // Bright sun/lantern mineral sheen
-      'rgba(255, 248, 225, 0.55)', // Warm golden stone facet
-      'rgba(245, 250, 255, 0.50)', // Crisp calcite reflection
+      'rgba(255, 255, 255, 0.88)', // Razor-sharp specular white reflection
+      'rgba(224, 242, 254, 0.75)', // Pale cyan internal refraction
+      'rgba(186, 230, 254, 0.65)', // Pure ice facet glint
     ];
 
     const shadowFacetTones = [
-      'rgba(65, 60, 52, 0.38)', // Gentle warm shadow
-      'rgba(55, 60, 70, 0.35)', // Soft slate shadow
-      'rgba(75, 70, 62, 0.32)', // Light ambient crevice
+      'rgba(14, 116, 144, 0.45)', // Deep cyan crevice refraction
+      'rgba(3, 105, 161, 0.40)', // Deep glacial blue facet
+      'rgba(15, 23, 42, 0.35)', // Shadowed ice core
     ];
 
     const outlineTones = [
-      'rgba(255, 255, 255, 0.65)', // Crisp white mineral rim
-      'rgba(255, 245, 220, 0.60)', // Pale golden bevel
-      'rgba(254, 240, 138, 0.55)', // Warm sunlit edge
+      'rgba(255, 255, 255, 0.95)', // Crisp frosted white rim
+      'rgba(186, 230, 254, 0.85)', // Pale icy cyan outline
+      'rgba(56, 189, 248, 0.80)', // Radiant glacial electric rim
     ];
 
     // Determine particle count based on screen size and hardware
@@ -126,9 +126,9 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
       return cores < 4 ? 42 : 55; // 42-55 on desktop
     };
 
-    // Create an irregular rock polygon
-    const createRockGeometry = (isSmall: boolean) => {
-      // Radius: small rocks 3.5 - 7px, medium 8 - 14px, rare larger 15 - 19px
+    // Create an angular ice crystal polygon
+    const createCrystalGeometry = (isSmall: boolean) => {
+      // Radius: small shards 3.5 - 7px, medium 8 - 14px, rare larger 15 - 20px
       let radius: number;
       if (isSmall) {
         radius = 3.5 + Math.random() * 4.5;
@@ -136,28 +136,34 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
         radius = Math.random() < 0.8 ? 8 + Math.random() * 6 : 14 + Math.random() * 5;
       }
 
-      const numVertices = 5 + Math.floor(Math.random() * 3); // 5 to 7 vertices
+      // Crystal styles: 0 = sharp diamond lozenge (4 vertices), 1 = elongated shard prism (5 vertices), 2 = hexagonal faceted ice gem (6 vertices)
+      const crystalType = Math.floor(Math.random() * 3);
+      const numVertices = crystalType === 0 ? 4 : crystalType === 1 ? 5 : 6;
       const vertices: Vertex[] = [];
+
+      // Aspect ratio elongation along one axis for needle/shard crystal look
+      const aspectX = crystalType === 1 ? 0.6 + Math.random() * 0.3 : 0.85 + Math.random() * 0.3;
+      const aspectY = crystalType === 1 ? 1.35 + Math.random() * 0.5 : 0.95 + Math.random() * 0.25;
 
       for (let j = 0; j < numVertices; j++) {
         const baseAngle = (j / numVertices) * Math.PI * 2;
-        const angleJitter = (Math.random() - 0.5) * (Math.PI / numVertices) * 0.75;
+        // Minor angle jitter to give unique crystal fracture angles
+        const angleJitter = (Math.random() - 0.5) * (Math.PI / numVertices) * 0.45;
         const angle = baseAngle + angleJitter;
-        // Radial asymmetry to create natural fractured rock edges
-        const rJitter = radius * (0.68 + Math.random() * 0.52);
+        const rJitter = radius * (0.8 + Math.random() * 0.35);
         vertices.push({
-          x: Math.cos(angle) * rJitter,
-          y: Math.sin(angle) * rJitter,
+          x: Math.cos(angle) * rJitter * aspectX,
+          y: Math.sin(angle) * rJitter * aspectY,
         });
       }
 
-      // Central ridge point for 3D stone faceting
+      // Sharp central ridge point for 3D crystal refraction
       const ridgePoint: Vertex = {
-        x: (Math.random() - 0.5) * radius * 0.35,
-        y: (Math.random() - 0.5) * radius * 0.35,
+        x: (Math.random() - 0.5) * radius * 0.35 * aspectX,
+        y: (Math.random() - 0.5) * radius * 0.35 * aspectY,
       };
 
-      // Create facets: split polygon into 2 distinct shaded planes
+      // Create facets: split crystal into 2 distinct shaded refraction planes
       const mid = Math.floor(numVertices / 2);
       const facets: Facet[] = [
         {
@@ -175,7 +181,7 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
         vertices,
         ridgePoint,
         facets,
-        baseColor: stoneBaseColors[Math.floor(Math.random() * stoneBaseColors.length)],
+        baseColor: crystalBaseColors[Math.floor(Math.random() * crystalBaseColors.length)],
         outlineColor: outlineTones[Math.floor(Math.random() * outlineTones.length)],
       };
     };
@@ -204,7 +210,7 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
         const posY = homeNormY * currentH;
 
         const isSmall = i % 3 !== 0; // 2/3 small, 1/3 medium/large
-        const geo = createRockGeometry(isSmall);
+        const geo = createCrystalGeometry(isSmall);
 
         // Mass proportional to radius squared
         const mass = Math.max(1, (geo.radius * geo.radius) / 25);
@@ -288,19 +294,19 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
       }
     };
 
-    // Draw individual rock fragment
+    // Draw individual ice crystal fragment
     const drawRock = (f: RockFragment) => {
       ctx.save();
       ctx.translate(f.x, f.y);
       ctx.rotate(f.angle);
 
-      // Deep drop shadow to separate rock from background
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
-      ctx.shadowBlur = 6;
-      ctx.shadowOffsetX = 1.5;
-      ctx.shadowOffsetY = 2.5;
+      // Cool glacial ice ambient glow & drop shadow
+      ctx.shadowColor = 'rgba(56, 189, 248, 0.45)';
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetX = 0.5;
+      ctx.shadowOffsetY = 1.5;
 
-      // 1. Draw outer polygon base
+      // 1. Draw outer crystal polygon base
       ctx.beginPath();
       const len = f.vertices.length;
       ctx.moveTo(f.vertices[0].x, f.vertices[0].y);
@@ -317,7 +323,7 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 0;
 
-      // Crisp edge bevel / mineral rim highlight
+      // Crisp ice edge / crystalline rim highlight
       ctx.lineWidth = 0.9;
       ctx.strokeStyle = f.outlineColor;
       ctx.stroke();
@@ -331,7 +337,7 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
       ctx.fillStyle = f.facets[0].color;
       ctx.fill();
 
-      // 3. Draw facet 2 (shadow facet)
+      // 3. Draw facet 2 (shadow / inner refraction facet)
       ctx.beginPath();
       ctx.moveTo(f.ridgePoint.x, f.ridgePoint.y);
       const mid = Math.floor(len / 2);
@@ -339,6 +345,12 @@ export const CaveDebrisCanvas: React.FC<CaveDebrisCanvasProps> = ({ className = 
       ctx.lineTo(f.vertices[(mid + 1) % len].x, f.vertices[(mid + 1) % len].y);
       ctx.closePath();
       ctx.fillStyle = f.facets[1].color;
+      ctx.fill();
+
+      // 4. Subtle specular glint diamond spark at center
+      ctx.beginPath();
+      ctx.arc(f.ridgePoint.x, f.ridgePoint.y, 0.75, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
       ctx.fill();
 
       ctx.restore();

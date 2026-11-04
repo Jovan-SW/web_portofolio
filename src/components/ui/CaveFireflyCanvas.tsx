@@ -71,11 +71,11 @@ export const CaveFireflyCanvas: React.FC<CaveFireflyCanvasProps> = ({
 
         const center = size / 2;
         const grad = offCtx.createRadialGradient(center, center, 0, center, center, center);
-        grad.addColorStop(0, 'rgba(255, 255, 255, 1)'); // Intense white core
-        grad.addColorStop(0.16, 'rgba(254, 240, 138, 0.95)'); // Radiant bright yellow
-        grad.addColorStop(0.42, 'rgba(250, 204, 21, 0.75)'); // Warm golden amber
-        grad.addColorStop(0.72, 'rgba(234, 179, 8, 0.25)'); // Soft ambient aura
-        grad.addColorStop(1, 'rgba(234, 179, 8, 0)'); // Feathered boundary
+        grad.addColorStop(0, 'rgba(255, 255, 255, 1)'); // Intense crisp snow core
+        grad.addColorStop(0.2, 'rgba(255, 255, 255, 0.95)'); // Brilliant snow white
+        grad.addColorStop(0.48, 'rgba(240, 249, 255, 0.70)'); // Soft frosty snow luminescence
+        grad.addColorStop(0.78, 'rgba(224, 242, 254, 0.22)'); // Ethereal icy white aura
+        grad.addColorStop(1, 'rgba(224, 242, 254, 0)'); // Feathered boundary
 
         offCtx.fillStyle = grad;
         offCtx.beginPath();

@@ -112,7 +112,7 @@ export default function Navbar() {
           aria-label="Jovan Sebastian William - Home"
         >
           <span
-            className="text-base sm:text-lg font-black tracking-tight text-white group-hover:text-zinc-200 transition-colors"
+            className="text-base sm:text-lg font-black tracking-tight bg-gradient-to-r from-sky-400 via-sky-200 to-slate-400 bg-clip-text text-transparent group-hover:from-cyan-300 group-hover:via-white group-hover:to-slate-300 transition-all drop-shadow-[0_2px_10px_rgba(56,189,248,0.25)]"
             style={{ fontFamily: 'var(--font-satoshi), Satoshi, sans-serif' }}
           >
             <span className="hidden sm:inline">JOVANSW.DEV</span>

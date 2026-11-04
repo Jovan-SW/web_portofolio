@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { TOTAL_FRAMES, useFramePreloader, getFrameUrl } from './useFramePreloader';
 
 export interface SceneCanvasProps {
-  /** Target frame progress from 0.0 to 1.0 (or absolute frame index 0 to 279) */
+  /** Target frame progress from 0.0 to 1.0 (or absolute frame index 0 to 272) */
   progress: number;
   /** Whether the user is actively interacting/scrolling */
   isInteracting?: boolean;
@@ -32,7 +32,7 @@ export const SceneCanvas: React.FC<SceneCanvasProps> = ({
     maxConcurrency: 5,
   });
 
-  // Target frame index (0 to 279)
+  // Target frame index (0 to 272)
   const targetFrameRef = useRef<number>(0);
   const currentFrameRef = useRef<number>(0);
   const lastDrawnFrameRef = useRef<number>(-1);
@@ -47,7 +47,7 @@ export const SceneCanvas: React.FC<SceneCanvasProps> = ({
 
   // Synchronize target frame with incoming progress
   useEffect(() => {
-    // Map progress (0..1) to frame index (0..279)
+    // Map progress (0..1) to frame index (0..272)
     const nextTarget = Math.max(0, Math.min(TOTAL_FRAMES - 1, progress * (TOTAL_FRAMES - 1)));
     targetFrameRef.current = nextTarget;
     

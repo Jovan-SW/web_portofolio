@@ -239,6 +239,66 @@ export const translations = {
     id: 'Repositori kode, arsitektur, & proyek open source',
     en: 'Code repositories, architecture, & open source projects',
   },
+  'contact.formTitle': {
+    id: 'Kirim Pesan Langsung',
+    en: 'Send a Direct Message',
+  },
+  'contact.formSubtitle': {
+    id: 'Kirimkan detail ide, kolaborasi, atau tawaran proyek Anda. Pesan akan langsung diteruskan ke inbox email saya.',
+    en: 'Share your project ideas, collaboration, or inquiries. Messages are delivered straight to my personal inbox.',
+  },
+  'contact.nameLabel': {
+    id: 'Nama Lengkap',
+    en: 'Full Name',
+  },
+  'contact.namePlaceholder': {
+    id: 'cth. Jovan Sebastian',
+    en: 'e.g. Jovan Sebastian',
+  },
+  'contact.emailLabel': {
+    id: 'Alamat Email',
+    en: 'Email Address',
+  },
+  'contact.emailPlaceholder': {
+    id: 'nama@domain.com',
+    en: 'name@domain.com',
+  },
+  'contact.whatsappLabel': {
+    id: 'WhatsApp / Telepon (Opsional)',
+    en: 'WhatsApp / Phone (Optional)',
+  },
+  'contact.whatsappPlaceholder': {
+    id: '+62 812 3456 7890',
+    en: '+62 812 3456 7890',
+  },
+  'contact.messageLabel': {
+    id: 'Isi Pesan',
+    en: 'Message Details',
+  },
+  'contact.messagePlaceholder': {
+    id: 'Ceritakan detail proyek, arsitektur yang diinginkan, atau pertanyaan Anda...',
+    en: 'Tell me about your project scope, architecture, or inquiry...',
+  },
+  'contact.submitBtn': {
+    id: 'Kirim Pesan Sekarang',
+    en: 'Send Message Now',
+  },
+  'contact.sendingBtn': {
+    id: 'Mengirimkan Pesan...',
+    en: 'Sending Message...',
+  },
+  'contact.successTitle': {
+    id: 'Pesan Berhasil Terkirim!',
+    en: 'Message Sent Successfully!',
+  },
+  'contact.successDesc': {
+    id: 'Terima kasih telah menghubungi saya. Saya akan segera merespons ke email Anda dalam waktu kurang dari 24 jam.',
+    en: 'Thank you for reaching out. I will get back to your email within 24 hours.',
+  },
+  'contact.sendAnother': {
+    id: 'Kirim Pesan Lainnya',
+    en: 'Send Another Message',
+  },
 
   // --- Footer ---
   'footer.tagline': {

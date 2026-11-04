@@ -8,6 +8,7 @@ interface TypewriterProps {
   deletingSpeed?: number;
   pauseDuration?: number;
   className?: string;
+  textClassName?: string;
   cursorClassName?: string;
 }
 
@@ -17,7 +18,8 @@ export default function Typewriter({
   deletingSpeed = 28,
   pauseDuration = 2400,
   className = '',
-  cursorClassName = '',
+  textClassName = 'text-slate-200 drop-shadow-[0_2px_8px_rgba(148,163,184,0.35)]',
+  cursorClassName = 'bg-sky-400',
 }: TypewriterProps) {
   const [wordIndex, setWordIndex] = useState(0);
   const [displayText, setDisplayText] = useState(words[0] || '');
@@ -82,12 +84,12 @@ export default function Typewriter({
 
   return (
     <span className={`inline-flex items-center tracking-normal ${className}`}>
-      <span className="select-none font-medium text-amber-300 drop-shadow-[0_2px_8px_rgba(251,191,36,0.3)]">
+      <span className={`select-none font-medium ${textClassName}`}>
         {displayText}
       </span>
       <span
         aria-hidden="true"
-        className={`inline-block w-[2.5px] sm:w-[3px] h-[1.18em] ml-1 sm:ml-1.5 rounded-full bg-yellow-400 align-middle animate-cursor-smooth ${cursorClassName}`}
+        className={`inline-block w-[2.5px] sm:w-[3px] h-[1.18em] ml-1 sm:ml-1.5 rounded-full align-middle animate-cursor-smooth ${cursorClassName}`}
       />
     </span>
   );

@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 
-export const TOTAL_FRAMES = 280;
+export const TOTAL_FRAMES = 273;
 export const FRAME_ASPECT_RATIO = 800 / 450; // 16:9
 
 export const getFrameUrl = (index: number): string => {
   const clamped = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(index)));
   const padded = String(clamped).padStart(3, '0');
-  return `/ezgif-split/frame_${padded}_delay-0.05s.webp`;
+  return encodeURI(`/ezgif-split (1)/frame_${padded}_delay-0.045s.webp`);
 };
 
 interface PreloaderOptions {
@@ -22,7 +22,7 @@ export function useFramePreloader({
   keyframeStep = 8,
   maxConcurrency = 4,
 }: PreloaderOptions = {}) {
-  // Store all loaded HTMLImageElement references (index 0 to 279)
+  // Store all loaded HTMLImageElement references (index 0 to 272)
   const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(TOTAL_FRAMES).fill(null));
   
   // Track loading status

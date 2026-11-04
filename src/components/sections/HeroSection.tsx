@@ -62,10 +62,10 @@ export default function HeroSection() {
 
       {/* Subtle Ambient Lighting over the Monolith Server */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        {/* Soft golden spotlight behind 3D header to make it pop and feel luminous */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[320px] bg-gradient-to-b from-amber-500/15 via-yellow-600/8 to-transparent rounded-full blur-[130px]" />
-        {/* Subtle warm amber/copper horizon ambient glow on the side */}
-        <div className="absolute top-1/3 -right-24 w-[480px] h-[480px] bg-gradient-to-bl from-amber-600/10 via-orange-900/5 to-transparent rounded-full blur-[140px]" />
+        {/* Soft cool silver-white spotlight behind 3D header to make it pop and feel luminous */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[320px] bg-gradient-to-b from-slate-200/15 via-sky-500/8 to-transparent rounded-full blur-[130px]" />
+        {/* Subtle cool slate/blue horizon ambient glow on the side */}
+        <div className="absolute top-1/3 -right-24 w-[480px] h-[480px] bg-gradient-to-bl from-blue-600/10 via-slate-800/5 to-transparent rounded-full blur-[140px]" />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center relative z-10 flex-1 flex flex-col justify-center">
@@ -79,12 +79,12 @@ export default function HeroSection() {
             {lang === 'en' ? 'Remote Worldwide' : 'Remote Seluruh Dunia'}
           </span>
           <span className="text-zinc-500 font-bold">/</span>
-          <span className="text-amber-300 font-semibold drop-shadow-[0_0_12px_rgba(251,191,36,0.6)]">
+          <span className="text-sky-300 font-semibold drop-shadow-[0_0_12px_rgba(125,211,252,0.5)]">
             {lang === 'en' ? 'Available for Contract & Freelance' : 'Tersedia untuk Kontrak & Freelance'}
           </span>
         </div>
 
-        {/* Headline: Sculpted 3D Golden Monolith with Interactive Tilt */}
+        {/* Headline: Sculpted 3D Silver Monolith with Interactive Tilt */}
         <motion.div
           style={{
             perspective: 1000,
@@ -103,7 +103,7 @@ export default function HeroSection() {
           className="mb-6 sm:mb-8 cursor-default select-none will-change-transform"
         >
           <h1
-            className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-3d-gold leading-[1.12] mb-3 sm:mb-4"
+            className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-3d-silver leading-[1.12] mb-3 sm:mb-4"
             style={{
               fontFamily: 'var(--font-satoshi), Satoshi, sans-serif',
               transform: 'translateZ(32px)',
@@ -134,6 +134,8 @@ export default function HeroSection() {
                       'Full-Stack System Architect',
                     ]
               }
+              textClassName="text-slate-200 drop-shadow-[0_2px_10px_rgba(148,163,184,0.4)]"
+              cursorClassName="bg-sky-400"
               typingSpeed={65}
               deletingSpeed={28}
               pauseDuration={2400}
@@ -143,14 +145,14 @@ export default function HeroSection() {
 
         {/* Elevator Pitch: Crisp Legibility over 3D Monolith */}
         <div className="max-w-2xl sm:max-w-3xl mx-auto mb-9 sm:mb-11 text-center">
-          <p className="text-base sm:text-lg text-white font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] [text-shadow:0_1px_3px_rgba(0,0,0,1),0_2px_14px_rgba(0,0,0,0.9)]">
+          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] [text-shadow:0_1px_3px_rgba(0,0,0,1),0_2px_14px_rgba(0,0,0,0.9)]">
             {lang === 'en' ? (
               <>
-                I am a <strong className="text-amber-300 font-semibold [text-shadow:0_0_14px_rgba(251,191,36,0.55),0_1px_3px_rgba(0,0,0,1)]">Full-Stack Engineer</strong> dedicated to building resilient, high-performance web applications from interface to database. Leveraging <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">Next.js</strong>, <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">TypeScript</strong>, and <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">PostgreSQL</strong>, I solve system fragmentation, data transmission latency, and access vulnerability challenges—ensuring every application component operates seamlessly, securely, and ready to scale.
+                I am a <strong className="text-sky-300 font-semibold [text-shadow:0_0_14px_rgba(125,211,252,0.55),0_1px_3px_rgba(0,0,0,1)]">Full-Stack Engineer</strong> dedicated to building resilient, high-performance web applications from interface to database. Leveraging <strong className="text-blue-200 font-semibold [text-shadow:0_0_10px_rgba(191,219,254,0.45),0_1px_3px_rgba(0,0,0,1)]">Next.js</strong>, <strong className="text-blue-200 font-semibold [text-shadow:0_0_10px_rgba(191,219,254,0.45),0_1px_3px_rgba(0,0,0,1)]">TypeScript</strong>, and <strong className="text-blue-200 font-semibold [text-shadow:0_0_10px_rgba(191,219,254,0.45),0_1px_3px_rgba(0,0,0,1)]">PostgreSQL</strong>, I solve system fragmentation, data transmission latency, and access vulnerability challenges—ensuring every application component operates seamlessly, securely, and ready to scale.
               </>
             ) : (
               <>
-                Saya adalah seorang <strong className="text-amber-300 font-semibold [text-shadow:0_0_14px_rgba(251,191,36,0.55),0_1px_3px_rgba(0,0,0,1)]">Full-Stack Engineer</strong> yang berfokus membangun aplikasi web tangguh dan berkinerja tinggi dari antarmuka hingga basis data. Menggunakan <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">Next.js</strong>, <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">TypeScript</strong>, dan <strong className="text-yellow-300 font-semibold [text-shadow:0_0_10px_rgba(253,224,71,0.45),0_1px_3px_rgba(0,0,0,1)]">PostgreSQL</strong>, saya mengatasi tantangan fragmentasi sistem, latensi transmisi data, serta kerentanan akses—memastikan setiap komponen aplikasi beroperasi selaras, aman, dan siap diskalakan.
+                Saya adalah seorang <strong className="text-sky-300 font-semibold [text-shadow:0_0_14px_rgba(125,211,252,0.55),0_1px_3px_rgba(0,0,0,1)]">Full-Stack Engineer</strong> yang berfokus membangun aplikasi web tangguh dan berkinerja tinggi dari antarmuka hingga basis data. Menggunakan <strong className="text-blue-200 font-semibold [text-shadow:0_0_10px_rgba(191,219,254,0.45),0_1px_3px_rgba(0,0,0,1)]">Next.js</strong>, <strong className="text-blue-200 font-semibold [text-shadow:0_0_10px_rgba(191,219,254,0.45),0_1px_3px_rgba(0,0,0,1)]">TypeScript</strong>, dan <strong className="text-blue-200 font-semibold [text-shadow:0_0_10px_rgba(191,219,254,0.45),0_1px_3px_rgba(0,0,0,1)]">PostgreSQL</strong>, saya mengatasi tantangan fragmentasi sistem, latensi transmisi data, serta kerentanan akses—memastikan setiap komponen aplikasi beroperasi selaras, aman, dan siap diskalakan.
               </>
             )}
           </p>
@@ -182,13 +184,13 @@ export default function HeroSection() {
         <button
           type="button"
           onClick={() => scrollTo('about')}
-          className="flex flex-col items-center gap-1.5 text-zinc-200 hover:text-amber-300 transition-colors cursor-pointer group"
+          className="flex flex-col items-center gap-1.5 text-zinc-200 hover:text-sky-300 transition-colors cursor-pointer group"
           aria-label="Scroll to About Section"
         >
           <span className="font-mono text-[11px] tracking-widest uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             {lang === 'en' ? 'Scroll to explore' : 'Gulir untuk eksplorasi'}
           </span>
-          <ChevronDown className="w-4 h-4 text-amber-400 group-hover:translate-y-1 transition-transform animate-bounce drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" />
+          <ChevronDown className="w-4 h-4 text-sky-400 group-hover:translate-y-1 transition-transform animate-bounce drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]" />
         </button>
       </div>
     </section>

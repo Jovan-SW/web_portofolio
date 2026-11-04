@@ -22,6 +22,8 @@ export interface InteractiveTiltCardProps {
   className?: string;
   children?: React.ReactNode;
   holographicFoil?: boolean;
+  iceGlassEffect?: boolean;
+  iceFrame?: boolean | string;
   cornerAccents?: boolean;
 }
 
@@ -38,12 +40,14 @@ export function InteractiveTiltCard({
   shadowIntensity = 0.65,
   hoverScale = 1.025,
   glareEffect = true,
-  glareIntensity = 0.3,
-  glareSize = 65,
+  glareIntensity = 0.06,
+  glareSize = 50,
   className = '',
   children,
-  holographicFoil = true,
-  cornerAccents = true,
+  holographicFoil = false,
+  iceGlassEffect = true,
+  iceFrame = '/ice-frame.png',
+  cornerAccents = false,
 }: InteractiveTiltCardProps) {
   const cardRef = React.useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = React.useState(false);
@@ -130,15 +134,15 @@ export function InteractiveTiltCard({
             : `0 10px 30px -6px ${shadowColor}`,
         }}
       >
-        {/* Thin, Delicate Cursor-Following Border Spotlight (Pure white hairline glow, not thick) */}
+        {/* Thin, Delicate Cursor-Following Border Spotlight (Super thin, subtle hairline) */}
         <motion.div
           className="absolute inset-0 rounded-[inherit] pointer-events-none transition-opacity duration-500 z-10"
           style={{
-            opacity: isHovered ? 0.75 : 0,
+            opacity: isHovered ? 0.15 : 0,
             background: useTransform(
               [mousePixelX, mousePixelY],
               ([x, y]) =>
-                `radial-gradient(260px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.22) 30%, transparent 65%)`
+                `radial-gradient(220px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 30%, transparent 65%)`
             ),
           }}
         />
@@ -209,12 +213,96 @@ export function InteractiveTiltCard({
             )}
 
             {/* =========================================================================
-                LIQUID IRIDESCENCE: Apple-inspired Holographic Glass Color Blooms
-                - No stripes, no lines, no zebra patterns, no RGB gaming effects
-                - Smooth, diffuse, organic radial color pools that swell (memuai) and flow
-                - Continuously morphs through cyan, electric blue, violet, magenta, pink, and subtle gold
-                - Never covers face or impairs photo visibility
+                LIGHT SHATTERED / FRACTURED ICE GLASS EFFECT ON HOVER
+                - Subtle, delicate crystalline fracture veins with razor-sharp specular glint
+                - Heavy diffuse glow blobs removed; light is kept super-thin so the photo stays crisp
+                - Pure ice glass aesthetics: crisp white core and pale cyan hairline accents
                 ========================================================================= */}
+            {iceGlassEffect && (
+              <motion.div
+                className="absolute inset-0 pointer-events-none z-22 overflow-hidden select-none"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+              >
+                <svg
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  className="w-full h-full object-cover filter drop-shadow-[0_0_2px_rgba(56,189,248,0.4)]"
+                >
+                  <defs>
+                    <filter id="ice-fracture-glow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="0.4" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  {/* Faceted Glass Shards (Super-thin glass facet opacity variations) */}
+                  <g className="mix-blend-overlay">
+                    <polygon points="68,26 88,10 76,8 58,14" fill="rgba(255,255,255,0.06)" />
+                    <polygon points="68,26 95,38 88,10" fill="rgba(186,230,254,0.08)" />
+                    <polygon points="68,26 50,44 42,18" fill="rgba(255,255,255,0.04)" />
+                    <polygon points="50,44 76,58 68,26" fill="rgba(125,211,252,0.06)" />
+                    <polygon points="50,44 34,64 52,74 76,58" fill="rgba(255,255,255,0.05)" />
+                    <polygon points="42,18 20,14 12,28 28,34" fill="rgba(186,230,254,0.05)" />
+                    <polygon points="76,58 86,84 66,80 52,74" fill="rgba(56,189,248,0.05)" />
+                    <polygon points="34,64 18,78 30,94 52,74" fill="rgba(255,255,255,0.04)" />
+                  </g>
+
+                  {/* Primary Crystalline Fracture Veins (Delicate Pale Cyan Halo) */}
+                  <g filter="url(#ice-fracture-glow)" stroke="rgba(56, 189, 248, 0.45)" strokeWidth="0.65" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M 68 26 L 88 10 L 98 4" />
+                    <path d="M 68 26 L 95 38 L 100 44" />
+                    <path d="M 68 26 L 76 58 L 86 84 L 92 100" />
+                    <path d="M 68 26 L 50 44 L 34 64 L 20 78 L 12 100" />
+                    <path d="M 68 26 L 42 18 L 20 14 L 0 8" />
+                    <path d="M 68 26 L 58 14 L 54 0" />
+                    <path d="M 42 18 L 50 44" />
+                    <path d="M 50 44 L 76 58" />
+                    <path d="M 34 64 L 52 74 L 76 58" />
+                    <path d="M 34 64 L 0 68" />
+                    <path d="M 42 18 L 28 34 L 12 28" />
+                    <path d="M 76 58 L 100 66" />
+                    <path d="M 52 74 L 66 80 L 86 84" />
+                    <path d="M 52 74 L 44 100" />
+                    <path d="M 20 78 L 0 84" />
+                    <path d="M 88 10 L 100 16" />
+                  </g>
+
+                  {/* Razor-Sharp Specular Glass Edges (Super Thin Crisp White Core) */}
+                  <g stroke="rgba(255, 255, 255, 0.8)" strokeWidth="0.3" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M 68 26 L 88 10 L 98 4" />
+                    <path d="M 68 26 L 95 38 L 100 44" />
+                    <path d="M 68 26 L 76 58 L 86 84 L 92 100" />
+                    <path d="M 68 26 L 50 44 L 34 64 L 20 78 L 12 100" />
+                    <path d="M 68 26 L 42 18 L 20 14 L 0 8" />
+                    <path d="M 68 26 L 58 14 L 54 0" />
+                    <path d="M 42 18 L 50 44" />
+                    <path d="M 50 44 L 76 58" />
+                    <path d="M 34 64 L 52 74 L 76 58" />
+                    <path d="M 34 64 L 0 68" />
+                    <path d="M 42 18 L 28 34 L 12 28" />
+                    <path d="M 76 58 L 100 66" />
+                    <path d="M 52 74 L 66 80 L 86 84" />
+                    <path d="M 52 74 L 44 100" />
+                    <path d="M 20 78 L 0 84" />
+                    <path d="M 88 10 L 100 16" />
+                  </g>
+
+                  {/* Micro-Crack Stress Glints at Key Junctions */}
+                  <circle cx="68" cy="26" r="0.9" fill="rgba(255,255,255,0.9)" />
+                  <circle cx="50" cy="44" r="0.6" fill="rgba(186,230,254,0.85)" />
+                  <circle cx="76" cy="58" r="0.6" fill="rgba(186,230,254,0.85)" />
+                  <circle cx="34" cy="64" r="0.5" fill="rgba(255,255,255,0.8)" />
+                  <circle cx="42" cy="18" r="0.5" fill="rgba(255,255,255,0.8)" />
+                </svg>
+              </motion.div>
+            )}
+
+            {/* Optional Legacy Holographic Foil */}
             {holographicFoil && (
               <motion.div
                 className="absolute inset-0 pointer-events-none z-20 overflow-hidden"
@@ -236,112 +324,11 @@ export function InteractiveTiltCard({
                     filter: 'blur(48px)',
                   }}
                 >
-                  {/* Fluid Bloom 1: Cyan / Electric Blue (Expands & dilates slowly) */}
                   <motion.div
                     className="absolute inset-0 rounded-full"
                     style={{
                       background:
                         'radial-gradient(ellipse 65% 55% at 46% 44%, rgba(56, 189, 248, 0.38) 0%, rgba(6, 182, 212, 0.16) 45%, transparent 70%)',
-                    }}
-                    animate={
-                      isHovered
-                        ? {
-                            scale: [1, 1.16, 0.94, 1.08, 1],
-                            rotate: [0, 90, 180, 270, 360],
-                            x: ['0%', '4%', '-3%', '2%', '0%'],
-                            y: ['0%', '-4%', '3%', '-2%', '0%'],
-                          }
-                        : { scale: 1, rotate: 0 }
-                    }
-                    transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-                  />
-
-                  {/* Fluid Bloom 2: Violet / Deep Indigo */}
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background:
-                        'radial-gradient(ellipse 60% 60% at 54% 48%, rgba(168, 85, 247, 0.34) 0%, rgba(139, 92, 246, 0.16) 42%, transparent 70%)',
-                    }}
-                    animate={
-                      isHovered
-                        ? {
-                            scale: [1.06, 0.92, 1.18, 0.98, 1.06],
-                            rotate: [360, 270, 180, 90, 0],
-                            x: ['0%', '-4%', '3%', '-2%', '0%'],
-                            y: ['0%', '4%', '-3%', '2%', '0%'],
-                          }
-                        : { scale: 1, rotate: 0 }
-                    }
-                    transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-                  />
-
-                  {/* Fluid Bloom 3: Magenta / Soft Orchid Pink */}
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background:
-                        'radial-gradient(ellipse 55% 50% at 42% 58%, rgba(244, 114, 182, 0.3) 0%, rgba(236, 72, 153, 0.14) 40%, transparent 68%)',
-                    }}
-                    animate={
-                      isHovered
-                        ? {
-                            scale: [0.94, 1.14, 1.02, 1.18, 0.94],
-                            rotate: [0, 120, 240, 360],
-                            x: ['0%', '3%', '-4%', '0%'],
-                            y: ['0%', '-3%', '4%', '0%'],
-                          }
-                        : { scale: 1, rotate: 0 }
-                    }
-                    transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-                  />
-
-                  {/* Fluid Bloom 4: Subtle Golden Champagne Hue */}
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background:
-                        'radial-gradient(ellipse 48% 44% at 58% 36%, rgba(251, 191, 36, 0.22) 0%, rgba(245, 158, 11, 0.08) 35%, transparent 60%)',
-                    }}
-                    animate={
-                      isHovered
-                        ? {
-                            scale: [1.12, 0.94, 1.14, 1],
-                            rotate: [180, 270, 360, 180],
-                          }
-                        : { scale: 1, rotate: 180 }
-                    }
-                    transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-                  />
-                </motion.div>
-
-                {/* Subtle Ambient Caustic Wave (Adds continuous organic color shift) */}
-                <motion.div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    mixBlendMode: 'color-dodge',
-                    filter: 'blur(38px)',
-                    opacity: 0.28,
-                  }}
-                  animate={
-                    isHovered
-                      ? {
-                          filter: [
-                            'blur(38px) hue-rotate(0deg)',
-                            'blur(44px) hue-rotate(30deg)',
-                            'blur(36px) hue-rotate(-20deg)',
-                            'blur(38px) hue-rotate(0deg)',
-                          ],
-                        }
-                      : {}
-                  }
-                  transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        'radial-gradient(circle at 50% 50%, rgba(147, 197, 253, 0.2) 0%, rgba(192, 132, 252, 0.16) 35%, rgba(244, 114, 182, 0.12) 55%, transparent 75%)',
                     }}
                   />
                 </motion.div>
@@ -368,6 +355,28 @@ export function InteractiveTiltCard({
             <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[calc(0.75rem-1px)] sm:rounded-[calc(1rem-1px)] md:rounded-[calc(1.5rem-1px)] pointer-events-none z-25 group-hover:ring-white/20 transition-colors duration-300" />
           </div>
         </div>
+
+        {/* 3D Ice Crystal Picture Frame Overlay - Diperbesar membungkus di luar ukuran foto */}
+        {iceFrame && (
+          <div
+            className="absolute -inset-7 sm:-inset-9 md:-inset-12 pointer-events-none z-30 select-none flex items-center justify-center"
+            style={{
+              transform: 'translateZ(28px) scale(1.12)',
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={typeof iceFrame === 'string' ? iceFrame : '/ice-frame.png'}
+                alt="3D Ice Crystal Picture Frame"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 420px"
+                className="object-fill select-none pointer-events-none drop-shadow-[0_16px_36px_rgba(0,0,0,0.85)] filter brightness-110 contrast-105"
+                priority
+              />
+            </div>
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/Icons';
 import CaveFireflyCanvas from '@/components/ui/CaveFireflyCanvas';
+import IceMistCanvas from '@/components/ui/IceMistCanvas';
 
 type PortfolioCardItem = CardStackItem & {
   project: Project;
@@ -68,6 +69,8 @@ export default function ProjectSection() {
       aria-label="Project Section"
       className="py-14 sm:py-24 relative overflow-hidden"
     >
+      {/* 3D Glacial Ice Fog Mist Effect on Scroll */}
+      <IceMistCanvas />
       {/* Ambient Cave Fireflies Effect */}
       <CaveFireflyCanvas />
 
