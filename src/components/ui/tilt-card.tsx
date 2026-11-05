@@ -173,7 +173,7 @@ export function InteractiveTiltCard({
           )}
 
           {/* 3D Photo Canvas with Parallax & Pure Studio Contrast */}
-          <div className="relative w-full h-full min-h-[190px] sm:min-h-[280px] md:min-h-full flex-1 overflow-hidden">
+          <div className="relative w-full h-full min-h-0 sm:min-h-[280px] md:min-h-full flex-1 overflow-hidden">
             {children ? (
               children
             ) : (
@@ -201,7 +201,7 @@ export function InteractiveTiltCard({
                     alt={image.alt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 420px"
-                    className="object-cover object-top select-none pointer-events-none"
+                    className="object-cover object-top select-none pointer-events-none translate-y-3.5 sm:translate-y-0 scale-105 sm:scale-100"
                     priority
                   />
                 </div>

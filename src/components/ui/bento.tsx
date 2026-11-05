@@ -125,25 +125,25 @@ export function BentoCard({
         {/* Content Area */}
         <div
           className={clsx(
-            'relative p-3.5 sm:p-6 md:p-8 z-20 flex-1 flex flex-col',
+            'relative p-2.5 sm:p-6 md:p-8 z-20 flex-1 flex flex-col',
             graphic ? 'justify-end' : 'justify-start'
           )}
         >
           {/* Eyebrow Header */}
           {eyebrow && (
-            <span className="text-[9px] sm:text-[10px] md:text-[11px] font-mono tracking-widest text-sky-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] mb-0.5 sm:mb-1">
+            <span className="text-[8.5px] sm:text-[10px] md:text-[11px] font-mono tracking-widest text-sky-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] mb-0.5 sm:mb-1">
               {eyebrow}
             </span>
           )}
 
           {title && (
-            <h3 className="mt-0.5 sm:mt-1 text-[15px] sm:text-lg md:text-xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-cyan-100 transition-colors">
+            <h3 className="mt-0.5 sm:mt-1 text-[12px] sm:text-lg md:text-xl font-bold tracking-tight text-white leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-cyan-100 transition-colors">
               {title}
             </h3>
           )}
 
           {description && (
-            <p className="mt-2 sm:mt-3 md:mt-3.5 font-serif-contemporary text-[12.5px] sm:text-[14px] md:text-[16px] leading-[1.6] sm:leading-[1.75] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
+            <p className="mt-1.5 sm:mt-3 md:mt-3.5 font-serif-contemporary text-[10.5px] sm:text-[14px] md:text-[16px] leading-[1.45] sm:leading-[1.75] text-zinc-100 font-normal tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               {description}
             </p>
           )}

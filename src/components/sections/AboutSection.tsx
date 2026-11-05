@@ -24,27 +24,28 @@ export default function AboutSection() {
         <div className="flex flex-col gap-4 sm:gap-7 md:gap-10">
           {/* =========================================================================
               BAGIAN 1: Technical Journey & Portrait
-              Mobile: Tetap Berdampingan (Side-by-Side) Card 1 (7/12) & Card 2 (5/12)
+              Mobile: Berdampingan Card 1 (6/12) & Card 2 (6/12) - Ukuran Seimbang & Senada
+              Desktop: Berdampingan Card 1 (7/12) & Card 2 (5/12)
               Clean & Transparan 3D Glass Cards (Interactive Tilt & Glare Photo)
               ========================================================================= */}
-          <div className="grid grid-cols-12 gap-3 sm:gap-6 md:gap-8 items-stretch">
-            {/* Card 1: Technical Journey Text */}
+          <div className="grid grid-cols-12 gap-2.5 sm:gap-6 md:gap-8 items-stretch">
+            {/* Card 1: Technical Journey Text (Dibuat sedikit lebih ramping & kompak di mobile) */}
             <BentoCard
               eyebrow={lang === 'en' ? 'Evolution & Journey' : 'Evolusi & Perjalanan'}
               title="Technical Journey"
               description={t('about.description')}
               delay={0.04}
-              className="col-span-7 sm:col-span-7 md:col-span-7 lg:col-span-7 h-full min-h-[230px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px]"
+              className="col-span-6 sm:col-span-7 md:col-span-7 lg:col-span-7 h-full flex flex-col justify-between sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px]"
             />
 
-            {/* Card 2: Foto Jovan (Pop-In dari Dalam Goa 2) - Tetap Berada di Samping Tulisan Technical Journey */}
+            {/* Card 2: Foto Jovan - Berdampingan di mobile (col-span-6), sedikit dikecilkan agar proporsional */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.15, margin: '-20px 0px -20px 0px' }}
               variants={caveCardVariants}
               custom={0.16}
-              className="col-span-5 sm:col-span-5 md:col-span-5 lg:col-span-5 h-full min-h-[230px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px] flex flex-col"
+              className="col-span-6 sm:col-span-5 md:col-span-5 lg:col-span-5 h-full w-full flex flex-col justify-center sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px]"
             >
               <InteractiveTiltCard
                 image={{
@@ -60,17 +61,17 @@ export default function AboutSection() {
                 iceGlassEffect={true}
                 iceFrame="/ice-frame.png"
                 cornerAccents={false}
-                className="w-full h-full min-h-[230px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px] flex-1 flex flex-col"
+                className="w-full h-full flex-1 flex flex-col scale-[0.93] sm:scale-100 origin-center"
               />
             </motion.div>
           </div>
 
           {/* =========================================================================
               BAGIAN 2: Keamanan & Pilar Rekayasa (Format 2x2: 2 Kotak Atas & 2 Kotak Bawah)
-              Urutan Pop-In Murni dari Dalam Goa: Card 3 -> Card 4 -> Card 5 -> Card 6
-              Di mobile dibuat lebih kompak dan tidak memenuhi layar
+              Mobile & Desktop: 2 Card Berdampingan (grid-cols-2)
+              Ukuran proporsional dan compact di mobile
               ========================================================================= */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6 md:gap-8">
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-6 md:gap-8 items-stretch">
             {/* Card 3: Keamanan Berlapis pada Tingkat Basis Data */}
             <BentoCard
               eyebrow="Database Security"
@@ -81,6 +82,7 @@ export default function AboutSection() {
                   : 'Validasi data tidak boleh hanya bergantung pada logika antarmuka pengguna. Saya menerapkan isolasi data dan kebijakan kontrol akses berbasis baris (Row-Level Security) langsung pada lapisan basis data untuk memastikan setiap entitas data terlindungi secara absolut dari akses yang tidak terotorisasi.'
               }
               delay={0.28}
+              className="h-full flex flex-col justify-between"
             />
 
             {/* Card 4: Kepastian Tipe Data Menyeluruh */}
@@ -93,6 +95,7 @@ export default function AboutSection() {
                   : 'Saya mengeliminasi potensi kegagalan sistem saat aplikasi berjalan (runtime error) melalui sinkronisasi tipe data statis yang terhubung tanpa putus, mulai dari skema basis data, protokol transmisi data, hingga komponen visual. Konsistensi ini menjamin stabilitas kode dan kemudahan pemeliharaan jangka panjang.'
               }
               delay={0.40}
+              className="h-full flex flex-col justify-between"
             />
 
             {/* Card 5: Arsitektur Berorientasi Latensi Rendah */}
@@ -105,6 +108,7 @@ export default function AboutSection() {
                   : 'Efisiensi sistem dicapai melalui pemilahan beban komputasi yang terukur antara pemrosesan peladen (server-side) dan interaksi peramban (client-side). Fokus rekayasa saya diarahkan pada efisiensi kueri data, minimalisasi ukuran paket berkas, dan percepatan waktu muat halaman demi menjaga keandalan pengalaman pengguna.'
               }
               delay={0.52}
+              className="h-full flex flex-col justify-between"
             />
 
             {/* Card 6: Integritas Transaksi dan Ketahanan Sistem */}
@@ -117,6 +121,7 @@ export default function AboutSection() {
                   : 'Setiap alur pertukaran data kritis—terutama integrasi layanan pihak ketiga dan pencatatan transaksi—dirancang dengan antisipasi kegagalan jaringan serta penanganan kondisi batas (edge cases). Konsistensi status data dan pencegahan anomali duplikasi merupakan prioritas mutlak dalam perancangan logika bisnis.'
               }
               delay={0.64}
+              className="h-full flex flex-col justify-between"
             />
           </div>
 

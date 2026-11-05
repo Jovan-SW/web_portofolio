@@ -356,7 +356,7 @@ export default function ContactSection() {
             </motion.div>
 
             {/* Enlarged Professional Channels: LinkedIn & GitHub (Directly beneath Email) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
               {/* LinkedIn Enlarged Card */}
               <motion.a
                 initial="hidden"
@@ -367,30 +367,30 @@ export default function ContactSection() {
                 href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-5 sm:p-6 rounded-2xl bg-[#0b0f19] border border-white/10 hover:border-[#0A66C2]/60 hover:shadow-[0_0_25px_rgba(10,102,194,0.25)] transition-all duration-300 group/li flex flex-col justify-between shadow-[0_12px_36px_rgba(0,0,0,0.6)]"
+                className="p-3.5 sm:p-6 rounded-xl sm:rounded-2xl bg-[#0b0f19] border border-white/10 hover:border-[#0A66C2]/60 hover:shadow-[0_0_25px_rgba(10,102,194,0.25)] transition-all duration-300 group/li flex flex-col justify-between shadow-[0_12px_36px_rgba(0,0,0,0.6)]"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-[#0A66C2]/15 border border-[#0A66C2]/40 flex items-center justify-center text-[#0A66C2] group-hover/li:scale-105 transition-transform shadow-[0_0_15px_rgba(10,102,194,0.2)]">
-                      <LinkedinIcon className="w-6 h-6 fill-current" />
+                  <div className="flex items-center justify-between mb-2.5 sm:mb-3.5">
+                    <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-[#0A66C2]/15 border border-[#0A66C2]/40 flex items-center justify-center text-[#0A66C2] group-hover/li:scale-105 transition-transform shadow-[0_0_15px_rgba(10,102,194,0.2)]">
+                      <LinkedinIcon className="w-4 h-4 sm:w-6 sm:h-6 fill-current" />
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold text-sky-400 tracking-wider uppercase bg-sky-950/50 px-2.5 py-1 rounded-md border border-sky-400/30">
+                    <span className="inline-flex items-center gap-0.5 sm:gap-1 text-[8.5px] sm:text-[10px] font-mono font-bold text-sky-400 tracking-wider uppercase bg-sky-950/50 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-md border border-sky-400/30">
                       <span>CONNECT</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 group-hover/li:translate-x-0.5 group-hover/li:-translate-y-0.5 transition-transform" />
+                      <ArrowUpRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 group-hover/li:translate-x-0.5 group-hover/li:-translate-y-0.5 transition-transform" />
                     </span>
                   </div>
-                  <h4 className="text-base sm:text-lg font-bold text-white group-hover/li:text-sky-200 transition-colors">
+                  <h4 className="text-sm sm:text-lg font-bold text-white group-hover/li:text-sky-200 transition-colors">
                     {t('contact.linkedin')}
                   </h4>
-                  <p className="text-xs text-slate-300 mt-1 line-clamp-2 font-serif-contemporary">
+                  <p className="text-[11px] sm:text-xs text-slate-300 mt-1 line-clamp-2 font-serif-contemporary">
                     {t('contact.linkedinDesc')}
                   </p>
                 </div>
-                <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400 group-hover/li:text-slate-300 transition-colors truncate">
+                <div className="pt-2 sm:pt-3 mt-2 sm:mt-3 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 group-hover/li:text-slate-300 transition-colors truncate">
                     in/jovansebastian
                   </span>
-                  <span className="text-[10px] font-mono font-semibold text-[#0A66C2] uppercase bg-[#0A66C2]/10 px-2 py-0.5 rounded-md border border-[#0A66C2]/20">
+                  <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-[#0A66C2] uppercase bg-[#0A66C2]/10 px-1.5 sm:px-2 py-0.5 rounded-md border border-[#0A66C2]/20">
                     Network
                   </span>
                 </div>
@@ -406,30 +406,30 @@ export default function ContactSection() {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-5 sm:p-6 rounded-2xl bg-[#0b0f19] border border-white/10 hover:border-slate-300/60 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] transition-all duration-300 group/gh flex flex-col justify-between shadow-[0_12px_36px_rgba(0,0,0,0.6)]"
+                className="p-3.5 sm:p-6 rounded-xl sm:rounded-2xl bg-[#0b0f19] border border-white/10 hover:border-slate-300/60 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] transition-all duration-300 group/gh flex flex-col justify-between shadow-[0_12px_36px_rgba(0,0,0,0.6)]"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white group-hover/gh:scale-105 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                      <GithubIcon className="w-6 h-6 fill-current" />
+                  <div className="flex items-center justify-between mb-2.5 sm:mb-3.5">
+                    <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white group-hover/gh:scale-105 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                      <GithubIcon className="w-4 h-4 sm:w-6 sm:h-6 fill-current" />
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold text-slate-300 group-hover/gh:text-white tracking-wider uppercase bg-zinc-900 px-2.5 py-1 rounded-md border border-white/15">
+                    <span className="inline-flex items-center gap-0.5 sm:gap-1 text-[8.5px] sm:text-[10px] font-mono font-bold text-slate-300 group-hover/gh:text-white tracking-wider uppercase bg-zinc-900 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-md border border-white/15">
                       <span>CODEBASE</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 group-hover/gh:translate-x-0.5 group-hover/gh:-translate-y-0.5 transition-transform" />
+                      <ArrowUpRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 group-hover/gh:translate-x-0.5 group-hover/gh:-translate-y-0.5 transition-transform" />
                     </span>
                   </div>
-                  <h4 className="text-base sm:text-lg font-bold text-white group-hover/gh:text-sky-200 transition-colors">
+                  <h4 className="text-sm sm:text-lg font-bold text-white group-hover/gh:text-sky-200 transition-colors">
                     {t('contact.github')}
                   </h4>
-                  <p className="text-xs text-slate-300 mt-1 line-clamp-2 font-serif-contemporary">
+                  <p className="text-[11px] sm:text-xs text-slate-300 mt-1 line-clamp-2 font-serif-contemporary">
                     {t('contact.githubDesc')}
                   </p>
                 </div>
-                <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400 group-hover/gh:text-slate-300 transition-colors truncate">
+                <div className="pt-2 sm:pt-3 mt-2 sm:mt-3 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 group-hover/gh:text-slate-300 transition-colors truncate">
                     github.com/Jovan-SW
                   </span>
-                  <span className="text-[10px] font-mono font-semibold text-slate-300 uppercase bg-white/10 px-2 py-0.5 rounded-md border border-white/15">
+                  <span className="text-[9px] sm:text-[10px] font-mono font-semibold text-slate-300 uppercase bg-white/10 px-1.5 sm:px-2 py-0.5 rounded-md border border-white/15">
                     Repos
                   </span>
                 </div>
@@ -437,7 +437,7 @@ export default function ContactSection() {
             </div>
 
             {/* Availability & Timezone Grid (Below LinkedIn & GitHub) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
               {/* Availability */}
               <motion.div
                 initial="hidden"
@@ -445,20 +445,22 @@ export default function ContactSection() {
                 viewport={{ once: false, amount: 0.15 }}
                 variants={subPanelPopVariants}
                 custom={0.44}
-                className="p-5 rounded-2xl bg-[#0b0f19] border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.6)]"
+                className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#0b0f19] border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.6)] flex flex-col justify-between"
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <CalendarCheck className="w-4 h-4 text-emerald-400" />
-                  <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
-                    {t('contact.availability')}
-                  </span>
+                <div>
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                    <CalendarCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 shrink-0" />
+                    <span className="text-[9px] sm:text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider truncate">
+                      {t('contact.availability')}
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-sm font-bold text-white leading-snug">
+                    {t('contact.availStatus')}
+                  </p>
                 </div>
-                <p className="text-xs sm:text-sm font-bold text-white">
-                  {t('contact.availStatus')}
-                </p>
-                <p className="text-[11px] text-slate-400 mt-1.5 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-emerald-400/80" />
-                  {t('contact.availResponse')}
+                <p className="text-[10px] sm:text-[11px] text-slate-400 mt-1.5 flex items-center gap-1 sm:gap-1.5">
+                  <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400/80 shrink-0" />
+                  <span className="truncate">{t('contact.availResponse')}</span>
                 </p>
               </motion.div>
 
@@ -469,18 +471,20 @@ export default function ContactSection() {
                 viewport={{ once: false, amount: 0.15 }}
                 variants={subPanelPopVariants}
                 custom={0.5}
-                className="p-5 rounded-2xl bg-[#0b0f19] border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.6)]"
+                className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#0b0f19] border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.6)] flex flex-col justify-between"
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <Globe className="w-4 h-4 text-sky-400" />
-                  <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
-                    {t('contact.timezone')}
-                  </span>
+                <div>
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                    <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400 shrink-0" />
+                    <span className="text-[9px] sm:text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider truncate">
+                      {t('contact.timezone')}
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-sm font-bold text-white leading-snug">
+                    {t('contact.timezoneDetail')}
+                  </p>
                 </div>
-                <p className="text-xs sm:text-sm font-bold text-white">
-                  {t('contact.timezoneDetail')}
-                </p>
-                <p className="text-[11px] text-sky-300/90 font-mono mt-1.5">
+                <p className="text-[10px] sm:text-[11px] text-sky-300/90 font-mono mt-1.5 truncate">
                   {wibTime || 'UTC+7 WIB'}
                 </p>
               </motion.div>
