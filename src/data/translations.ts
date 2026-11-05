@@ -76,8 +76,8 @@ export const translations = {
     en: 'My software engineering journey began with foundational insights into network architecture and server communication, which evolved into a specialization in full-stack web engineering. From architecting data-driven interactive systems to building e-commerce platforms with integrated transaction workflows, my engineering focus centers on Next.js, TypeScript, and PostgreSQL. My methodology emphasizes modular architectural patterns, strict static type enforcement, and robust data security to deliver dependable, high-performance digital solutions.',
   },
   'about.photoAlt': {
-    id: 'Jovan - Technical Journey',
-    en: 'Jovan - Technical Journey',
+    id: 'Jovan Sebastian William - Full Stack Developer Indonesia',
+    en: 'Jovan Sebastian William - Full Stack Developer Indonesia',
   },
   'about.workflowEyebrow': {
     id: 'Alur Kerja & Kolaborasi',

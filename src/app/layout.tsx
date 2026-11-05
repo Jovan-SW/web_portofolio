@@ -1,6 +1,9 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono, Newsreader } from 'next/font/google';
 import './globals.css';
+import { LanguageProvider } from '@/context/LanguageContext';
+import JsonLd from '@/components/seo/JsonLd';
+import { SEO_CONFIG } from '@/data/seo-keywords';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -19,30 +22,70 @@ const newsreader = Newsreader({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: 'Jovan | Full-Stack Engineer & Product Builder',
-  description:
-    'Web portofolio Jovan — Full-Stack Engineer yang berfokus pada ekosistem Next.js, React, TypeScript, dan arsitektur aplikasi digital modern.',
-  keywords: [
-    'Jovan',
-    'Full-Stack Developer',
-    'Next.js Portfolio',
-    'Software Engineer Indonesia',
-    'Frontend Developer',
-    'React',
-    'TypeScript',
-  ],
-  authors: [{ name: 'Jovan' }],
-  openGraph: {
-    title: 'Jovan | Full-Stack Engineer & Product Builder',
-    description:
-      'Web portofolio Jovan — Full-Stack Engineer yang berfokus pada ekosistem Next.js, React, TypeScript, dan arsitektur aplikasi digital modern.',
-    type: 'website',
-    locale: 'id_ID',
-  },
+export const viewport: Viewport = {
+  themeColor: '#09090b',
+  width: 'device-width',
+  initialScale: 1,
 };
 
-import { LanguageProvider } from '@/context/LanguageContext';
+export const metadata: Metadata = {
+  metadataBase: new URL(SEO_CONFIG.siteUrl),
+  title: {
+    default: SEO_CONFIG.defaultTitle,
+    template: SEO_CONFIG.titleTemplate,
+  },
+  description: SEO_CONFIG.defaultDescription,
+  applicationName: `Portofolio ${SEO_CONFIG.name}`,
+  authors: [{ name: SEO_CONFIG.name, url: SEO_CONFIG.siteUrl }],
+  creator: SEO_CONFIG.name,
+  publisher: SEO_CONFIG.name,
+  keywords: SEO_CONFIG.keywords,
+  category: 'technology',
+  classification: 'Portfolio, Software Engineering, Full Stack Web Development',
+  alternates: {
+    canonical: '/',
+    languages: {
+      'id-ID': '/',
+      'en-US': '/',
+    },
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    title: SEO_CONFIG.defaultTitle,
+    description: SEO_CONFIG.defaultDescription,
+    url: SEO_CONFIG.siteUrl,
+    siteName: `Portofolio ${SEO_CONFIG.name}`,
+    locale: 'id_ID',
+    alternateLocale: ['en_US'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SEO_CONFIG.name} | ${SEO_CONFIG.role} Indonesia`,
+    description: SEO_CONFIG.defaultDescription,
+  },
+  other: {
+    'geo.region': 'ID',
+    'geo.placename': 'Indonesia',
+    'target': 'all',
+    'rating': 'general',
+  },
+};
 
 export default function RootLayout({
   children,
@@ -65,6 +108,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
+        <JsonLd />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
