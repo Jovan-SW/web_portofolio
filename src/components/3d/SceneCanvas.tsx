@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { TOTAL_FRAMES, useFramePreloader, getFrameUrl } from './useFramePreloader';
 
 export interface SceneCanvasProps {
@@ -218,6 +218,7 @@ export const SceneCanvas: React.FC<SceneCanvasProps> = ({
 
       {/* Non-JS / initial static fallback frame for instant rendering and SEO */}
       <noscript>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={getFrameUrl(0)}
           alt="Monolith Server Core Infrastructure 3D Scene"

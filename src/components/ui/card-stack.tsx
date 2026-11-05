@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import { motion, AnimatePresence, useReducedMotion, type PanInfo } from "framer-motion";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 
@@ -123,12 +124,14 @@ export function CardStack<T extends CardStackItem>({
   const [active, setActive] = React.useState(() =>
     wrapIndex(initialIndex, len),
   );
+  const [prevLen, setPrevLen] = React.useState(len);
   const [hovering, setHovering] = React.useState(false);
 
   // keep active in bounds if items change
-  React.useEffect(() => {
+  if (prevLen !== len) {
+    setPrevLen(len);
     setActive((a) => wrapIndex(a, len));
-  }, [len]);
+  }
 
   React.useEffect(() => {
     if (!len) return;
@@ -254,8 +257,8 @@ export function CardStack<T extends CardStackItem>({
                     dragConstraints: { left: 0, right: 0 },
                     dragElastic: 0.22,
                     onDragEnd: (
-                      _e: any,
-                      info: { offset: { x: number }; velocity: { x: number } },
+                      _e: MouseEvent | TouchEvent | PointerEvent,
+                      info: PanInfo,
                     ) => {
                       if (reduceMotion) return;
                       const travel = info.offset.x;
@@ -377,12 +380,14 @@ function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
       {/* image */}
       <div className="absolute inset-0">
         {item.imageSrc ? (
-          <img
+          <Image
             src={item.imageSrc}
             alt={item.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 500px"
             className="h-full w-full object-cover"
             draggable={false}
-            loading="eager"
+            priority
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-zinc-900 text-sm text-zinc-400">

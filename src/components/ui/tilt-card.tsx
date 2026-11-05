@@ -75,6 +75,22 @@ export function InteractiveTiltCard({
   const glarePercentX = useSpring(useTransform(mouseX, [-0.5, 0.5], [20, 80]), springConfig);
   const glarePercentY = useSpring(useTransform(mouseY, [-0.5, 0.5], [20, 80]), springConfig);
 
+  // Subtle optical specular light across fractured ice surface (pure frosted white, no neon blue)
+  const iceSpecularGlint = useTransform(
+    [glarePercentX, glarePercentY],
+    ([gx, gy]) =>
+      `radial-gradient(circle 220px at ${gx}% ${gy}%, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 35%, transparent 70%)`
+  );
+
+  const holographicLeft = useTransform(glarePercentX, (x) => `${x}%`);
+  const holographicTop = useTransform(glarePercentY, (y) => `${y}%`);
+
+  const glareBackground = useTransform(
+    [glarePercentX, glarePercentY],
+    ([gx, gy]) =>
+      `radial-gradient(circle at ${gx}% ${gy}%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.12) 22%, rgba(255, 255, 255, 0.02) 45%, transparent ${glareSize}%)`
+  );
+
   const handleMouseMove = React.useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!cardRef.current) return;
@@ -201,7 +217,7 @@ export function InteractiveTiltCard({
                     alt={image.alt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 420px"
-                    className="object-cover object-top select-none pointer-events-none translate-y-3.5 sm:translate-y-0 scale-105 sm:scale-100"
+                    className="object-cover object-top select-none pointer-events-none"
                     priority
                   />
                 </div>
@@ -213,92 +229,196 @@ export function InteractiveTiltCard({
             )}
 
             {/* =========================================================================
-                LIGHT SHATTERED / FRACTURED ICE GLASS EFFECT ON HOVER
-                - Subtle, delicate crystalline fracture veins with razor-sharp specular glint
-                - Heavy diffuse glow blobs removed; light is kept super-thin so the photo stays crisp
-                - Pure ice glass aesthetics: crisp white core and pale cyan hairline accents
+                SUBTLE & MINIMALIST FROSTED ICE GLASS FRACTURE ON HOVER
+                - Few, delicate hairline fractures (clean & natural)
+                - Translucent frosted white tones (no intense glowing cyan/blue)
+                - Subtle specular sheen following cursor movement
                 ========================================================================= */}
             {iceGlassEffect && (
               <motion.div
                 className="absolute inset-0 pointer-events-none z-22 overflow-hidden select-none"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isHovered ? 1 : 0 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
               >
                 <svg
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
-                  className="w-full h-full object-cover filter drop-shadow-[0_0_2px_rgba(56,189,248,0.4)]"
+                  className="w-full h-full object-cover"
                 >
-                  <defs>
-                    <filter id="ice-fracture-glow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feGaussianBlur stdDeviation="0.4" result="blur" />
-                      <feMerge>
-                        <feMergeNode in="blur" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                  </defs>
-
-                  {/* Faceted Glass Shards (Super-thin glass facet opacity variations) */}
+                  {/* 1. Subtle Translucent Glass Facet Sheen */}
                   <g className="mix-blend-overlay">
-                    <polygon points="68,26 88,10 76,8 58,14" fill="rgba(255,255,255,0.06)" />
-                    <polygon points="68,26 95,38 88,10" fill="rgba(186,230,254,0.08)" />
-                    <polygon points="68,26 50,44 42,18" fill="rgba(255,255,255,0.04)" />
-                    <polygon points="50,44 76,58 68,26" fill="rgba(125,211,252,0.06)" />
-                    <polygon points="50,44 34,64 52,74 76,58" fill="rgba(255,255,255,0.05)" />
-                    <polygon points="42,18 20,14 12,28 28,34" fill="rgba(186,230,254,0.05)" />
-                    <polygon points="76,58 86,84 66,80 52,74" fill="rgba(56,189,248,0.05)" />
-                    <polygon points="34,64 18,78 30,94 52,74" fill="rgba(255,255,255,0.04)" />
+                    {/* Top Facets */}
+                    <polygon points="74,20 64,15 68,30" fill="rgba(255, 255, 255, 0.04)" />
+                    <polygon points="64,15 50,13 58,40 68,30" fill="rgba(255, 255, 255, 0.025)" />
+                    <polygon points="74,20 82,17 78,26" fill="rgba(255, 255, 255, 0.03)" />
+                    <polygon points="74,20 82,17 90,38 82,28" fill="rgba(255, 255, 255, 0.03)" />
+                    <polygon points="74,20 72,12 64,15" fill="rgba(255, 255, 255, 0.025)" />
+                    <polygon points="50,13 44,19 34,22 38,9" fill="rgba(255, 255, 255, 0.02)" />
+                    <polygon points="58,40 50,50 42,46" fill="rgba(255, 255, 255, 0.025)" />
+
+                    {/* Bottom Facets */}
+                    <polygon points="28,82 38,74 46,68 36,88" fill="rgba(255, 255, 255, 0.035)" />
+                    <polygon points="28,82 22,72 14,66 20,88" fill="rgba(255, 255, 255, 0.025)" />
+                    <polygon points="28,82 36,88 48,92 28,96" fill="rgba(255, 255, 255, 0.03)" />
+                    <polygon points="22,72 14,66 6,70 12,78" fill="rgba(255, 255, 255, 0.02)" />
+
+                    {/* Corner Accent Facets */}
+                    <polygon points="12,12 6,6 8,20" fill="rgba(255, 255, 255, 0.025)" />
+                    <polygon points="88,86 82,80 92,78" fill="rgba(255, 255, 255, 0.025)" />
                   </g>
 
-                  {/* Primary Crystalline Fracture Veins (Delicate Pale Cyan Halo) */}
-                  <g filter="url(#ice-fracture-glow)" stroke="rgba(56, 189, 248, 0.45)" strokeWidth="0.65" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M 68 26 L 88 10 L 98 4" />
-                    <path d="M 68 26 L 95 38 L 100 44" />
-                    <path d="M 68 26 L 76 58 L 86 84 L 92 100" />
-                    <path d="M 68 26 L 50 44 L 34 64 L 20 78 L 12 100" />
-                    <path d="M 68 26 L 42 18 L 20 14 L 0 8" />
-                    <path d="M 68 26 L 58 14 L 54 0" />
-                    <path d="M 42 18 L 50 44" />
-                    <path d="M 50 44 L 76 58" />
-                    <path d="M 34 64 L 52 74 L 76 58" />
-                    <path d="M 34 64 L 0 68" />
-                    <path d="M 42 18 L 28 34 L 12 28" />
-                    <path d="M 76 58 L 100 66" />
-                    <path d="M 52 74 L 66 80 L 86 84" />
-                    <path d="M 52 74 L 44 100" />
-                    <path d="M 20 78 L 0 84" />
-                    <path d="M 88 10 L 100 16" />
+                  {/* 2. Fine Connecting Stress Arcs */}
+                  <g stroke="rgba(255, 255, 255, 0.25)" strokeWidth="0.3" fill="none" strokeDasharray="1 2">
+                    {/* Top Arcs */}
+                    <path d="M 64 15 Q 68 21 68 30" />
+                    <path d="M 50 13 Q 56 25 58 40" />
+                    <path d="M 82 17 Q 80 24 82 28" />
+                    <path d="M 92 13 Q 92 26 90 38" />
+
+                    {/* Bottom Arcs */}
+                    <path d="M 38 74 Q 30 78 22 72" />
+                    <path d="M 46 68 Q 32 74 14 66" />
+                    <path d="M 20 88 Q 28 92 36 88" />
+
+                    {/* Corner Accent Arcs */}
+                    <path d="M 6 6 Q 10 14 8 20" />
+                    <path d="M 92 78 Q 86 82 82 80" />
                   </g>
 
-                  {/* Razor-Sharp Specular Glass Edges (Super Thin Crisp White Core) */}
-                  <g stroke="rgba(255, 255, 255, 0.8)" strokeWidth="0.3" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M 68 26 L 88 10 L 98 4" />
-                    <path d="M 68 26 L 95 38 L 100 44" />
-                    <path d="M 68 26 L 76 58 L 86 84 L 92 100" />
-                    <path d="M 68 26 L 50 44 L 34 64 L 20 78 L 12 100" />
-                    <path d="M 68 26 L 42 18 L 20 14 L 0 8" />
-                    <path d="M 68 26 L 58 14 L 54 0" />
-                    <path d="M 42 18 L 50 44" />
-                    <path d="M 50 44 L 76 58" />
-                    <path d="M 34 64 L 52 74 L 76 58" />
-                    <path d="M 34 64 L 0 68" />
-                    <path d="M 42 18 L 28 34 L 12 28" />
-                    <path d="M 76 58 L 100 66" />
-                    <path d="M 52 74 L 66 80 L 86 84" />
-                    <path d="M 52 74 L 44 100" />
-                    <path d="M 20 78 L 0 84" />
-                    <path d="M 88 10 L 100 16" />
+                  {/* 3. Soft Frosted Outer Glow Lines */}
+                  <g
+                    stroke="rgba(255, 255, 255, 0.22)"
+                    strokeWidth="0.75"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {/* Top Fissures */}
+                    <path d="M 74 20 L 64 15 L 50 13 L 38 9 L 24 6 L 10 0" />
+                    <path d="M 50 13 L 44 19 L 34 22" />
+                    <path d="M 38 9 L 32 16 L 24 18" />
+
+                    <path d="M 74 20 L 68 30 L 58 40 L 50 50 L 40 62 L 32 72" />
+                    <path d="M 58 40 L 62 48 L 60 56" />
+                    <path d="M 50 50 L 42 46 L 30 48" />
+
+                    <path d="M 74 20 L 82 17 L 92 13 L 100 10" />
+
+                    <path d="M 74 20 L 82 28 L 90 38 L 96 48 L 100 52" />
+                    <path d="M 90 38 L 86 46 L 82 54" />
+
+                    <path d="M 74 20 L 72 12 L 70 0" />
+                    <path d="M 72 12 L 66 8 L 58 4" />
+
+                    {/* Bottom Fissures */}
+                    <path d="M 28 82 L 38 74 L 46 68 L 56 62" />
+                    <path d="M 46 68 L 52 74 L 58 78" />
+                    <path d="M 38 74 L 44 80" />
+
+                    <path d="M 28 82 L 20 88 L 12 94 L 0 100" />
+                    <path d="M 20 88 L 16 96 L 14 100" />
+
+                    <path d="M 28 82 L 22 72 L 14 66 L 4 60" />
+                    <path d="M 22 72 L 14 74 L 6 78" />
+
+                    <path d="M 28 82 L 36 88 L 48 92 L 60 96" />
+                    <path d="M 48 92 L 54 88 L 62 86" />
+
+                    {/* Corner Accent Fissures (Top-Left & Bottom-Right) */}
+                    <path d="M 12 12 L 6 6 L 0 2" />
+                    <path d="M 12 12 L 18 16 L 24 18" />
+                    <path d="M 12 12 L 8 20 L 6 28" />
+
+                    <path d="M 88 86 L 94 92 L 100 98" />
+                    <path d="M 88 86 L 82 80 L 76 76" />
+                    <path d="M 88 86 L 92 78 L 96 72" />
                   </g>
 
-                  {/* Micro-Crack Stress Glints at Key Junctions */}
-                  <circle cx="68" cy="26" r="0.9" fill="rgba(255,255,255,0.9)" />
-                  <circle cx="50" cy="44" r="0.6" fill="rgba(186,230,254,0.85)" />
-                  <circle cx="76" cy="58" r="0.6" fill="rgba(186,230,254,0.85)" />
-                  <circle cx="34" cy="64" r="0.5" fill="rgba(255,255,255,0.8)" />
-                  <circle cx="42" cy="18" r="0.5" fill="rgba(255,255,255,0.8)" />
+                  {/* 4. Crisp Hairline Crack Core (Thin, Semi-Translucent White) */}
+                  <g
+                    stroke="rgba(255, 255, 255, 0.65)"
+                    strokeWidth="0.32"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {/* Top Fissures */}
+                    <path d="M 74 20 L 64 15 L 50 13 L 38 9 L 24 6 L 10 0" />
+                    <path d="M 50 13 L 44 19 L 34 22" />
+                    <path d="M 38 9 L 32 16 L 24 18" />
+
+                    <path d="M 74 20 L 68 30 L 58 40 L 50 50 L 40 62 L 32 72" />
+                    <path d="M 58 40 L 62 48 L 60 56" />
+                    <path d="M 50 50 L 42 46 L 30 48" />
+
+                    <path d="M 74 20 L 82 17 L 92 13 L 100 10" />
+
+                    <path d="M 74 20 L 82 28 L 90 38 L 96 48 L 100 52" />
+                    <path d="M 90 38 L 86 46 L 82 54" />
+
+                    <path d="M 74 20 L 72 12 L 70 0" />
+                    <path d="M 72 12 L 66 8 L 58 4" />
+
+                    {/* Bottom Fissures */}
+                    <path d="M 28 82 L 38 74 L 46 68 L 56 62" />
+                    <path d="M 46 68 L 52 74 L 58 78" />
+                    <path d="M 38 74 L 44 80" />
+
+                    <path d="M 28 82 L 20 88 L 12 94 L 0 100" />
+                    <path d="M 20 88 L 16 96 L 14 100" />
+
+                    <path d="M 28 82 L 22 72 L 14 66 L 4 60" />
+                    <path d="M 22 72 L 14 74 L 6 78" />
+
+                    <path d="M 28 82 L 36 88 L 48 92 L 60 96" />
+                    <path d="M 48 92 L 54 88 L 62 86" />
+
+                    {/* Corner Accent Fissures (Top-Left & Bottom-Right) */}
+                    <path d="M 12 12 L 6 6 L 0 2" />
+                    <path d="M 12 12 L 18 16 L 24 18" />
+                    <path d="M 12 12 L 8 20 L 6 28" />
+
+                    <path d="M 88 86 L 94 92 L 100 98" />
+                    <path d="M 88 86 L 82 80 L 76 76" />
+                    <path d="M 88 86 L 92 78 L 96 72" />
+                  </g>
+
+                  {/* 5. Minimal Stress Junction Dots (Subtle Frosted Micro-Nodes) */}
+                  <g className="mix-blend-screen">
+                    {/* Top Nodes */}
+                    <circle cx="74" cy="20" r="0.8" fill="rgba(255, 255, 255, 0.75)" />
+                    <circle cx="64" cy="15" r="0.45" fill="rgba(255, 255, 255, 0.55)" />
+                    <circle cx="68" cy="30" r="0.45" fill="rgba(255, 255, 255, 0.55)" />
+                    <circle cx="82" cy="28" r="0.4" fill="rgba(255, 255, 255, 0.5)" />
+                    <circle cx="90" cy="38" r="0.4" fill="rgba(255, 255, 255, 0.45)" />
+                    <circle cx="50" cy="13" r="0.35" fill="rgba(255, 255, 255, 0.45)" />
+                    <circle cx="58" cy="40" r="0.35" fill="rgba(255, 255, 255, 0.45)" />
+                    <circle cx="40" cy="62" r="0.3" fill="rgba(255, 255, 255, 0.4)" />
+                    <circle cx="72" cy="12" r="0.35" fill="rgba(255, 255, 255, 0.45)" />
+
+                    {/* Bottom Nodes */}
+                    <circle cx="28" cy="82" r="0.75" fill="rgba(255, 255, 255, 0.75)" />
+                    <circle cx="38" cy="74" r="0.45" fill="rgba(255, 255, 255, 0.55)" />
+                    <circle cx="22" cy="72" r="0.4" fill="rgba(255, 255, 255, 0.5)" />
+                    <circle cx="46" cy="68" r="0.35" fill="rgba(255, 255, 255, 0.45)" />
+                    <circle cx="20" cy="88" r="0.35" fill="rgba(255, 255, 255, 0.45)" />
+                    <circle cx="36" cy="88" r="0.35" fill="rgba(255, 255, 255, 0.45)" />
+
+                    {/* Corner Accent Nodes */}
+                    <circle cx="12" cy="12" r="0.55" fill="rgba(255, 255, 255, 0.65)" />
+                    <circle cx="88" cy="86" r="0.55" fill="rgba(255, 255, 255, 0.65)" />
+                  </g>
                 </svg>
+
+                {/* 6. Subtle White Specular Sheen on Hover */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none mix-blend-screen transition-opacity duration-300"
+                  style={{
+                    opacity: isHovered ? 0.6 : 0,
+                    background: iceSpecularGlint,
+                  }}
+                />
               </motion.div>
             )}
 
@@ -314,8 +434,8 @@ export function InteractiveTiltCard({
                 <motion.div
                   className="absolute pointer-events-none"
                   style={{
-                    left: useTransform(glarePercentX, (x) => `${x}%`),
-                    top: useTransform(glarePercentY, (y) => `${y}%`),
+                    left: holographicLeft,
+                    top: holographicTop,
                     x: '-50%',
                     y: '-50%',
                     width: '160%',
@@ -342,11 +462,7 @@ export function InteractiveTiltCard({
                 style={{
                   opacity: isHovered ? glareIntensity : 0,
                   mixBlendMode: 'screen',
-                  background: useTransform(
-                    [glarePercentX, glarePercentY],
-                    ([gx, gy]) =>
-                      `radial-gradient(circle at ${gx}% ${gy}%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.12) 22%, rgba(255, 255, 255, 0.02) 45%, transparent ${glareSize}%)`
-                  ),
+                  background: glareBackground,
                 }}
               />
             )}
@@ -356,12 +472,12 @@ export function InteractiveTiltCard({
           </div>
         </div>
 
-        {/* 3D Ice Crystal Picture Frame Overlay - Diperbesar membungkus di luar ukuran foto */}
+        {/* 3D Ice Crystal Picture Frame Overlay - Pas berukuran sama persis dengan batas foto */}
         {iceFrame && (
           <div
-            className="absolute -inset-7 sm:-inset-9 md:-inset-12 pointer-events-none z-30 select-none flex items-center justify-center"
+            className="absolute inset-0 pointer-events-none z-30 select-none flex items-center justify-center overflow-hidden rounded-[inherit]"
             style={{
-              transform: 'translateZ(28px) scale(1.12)',
+              transform: 'translateZ(16px)',
               transformStyle: 'preserve-3d',
             }}
           >
@@ -371,7 +487,7 @@ export function InteractiveTiltCard({
                 alt="3D Ice Crystal Picture Frame"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 420px"
-                className="object-fill select-none pointer-events-none drop-shadow-[0_16px_36px_rgba(0,0,0,0.85)] filter brightness-110 contrast-105"
+                className="object-fill select-none pointer-events-none drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] filter brightness-110 contrast-105"
                 priority
               />
             </div>

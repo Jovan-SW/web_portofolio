@@ -8,7 +8,7 @@ import CaveDebrisCanvas from '@/components/ui/CaveDebrisCanvas';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function HeroSection() {
-  const { lang, t } = useLanguage();
+  const { lang } = useLanguage();
   // 3D Mouse Parallax values for organic interactive tilt
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);

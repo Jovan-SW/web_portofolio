@@ -1,10 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { TranslationKey } from '@/data/translations';
+
+const emptySubscribe = () => () => {};
 
 interface NavItem {
   id: string;
@@ -20,16 +23,15 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
   const { lang, setLang, t } = useLanguage();
   const [activeSection, setActiveSection] = useState('home');
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   useEffect(() => {
-    setMounted(true);
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -87,7 +89,8 @@ export default function Navbar() {
       setActiveSection(targetId);
       setMobileOpen(false);
     } else {
-      window.location.href = `/${href}`;
+      router.push(`/${href}`);
+      setMobileOpen(false);
     }
   };
 
@@ -139,7 +142,7 @@ export default function Navbar() {
                   }`}
                 >
                   {/* Floating Soft Aura Indicator on Hover */}
-                  {hoveredTab === item.id && mounted && (
+                  {hoveredTab === item.id && isMounted && (
                     <motion.span
                       layoutId="navbar-hover-glow"
                       className="absolute inset-0 rounded-lg bg-zinc-800/80 backdrop-blur-sm"
@@ -148,7 +151,7 @@ export default function Navbar() {
                   )}
 
                   {/* Subtle Clean Active Indicator */}
-                  {isActive && !hoveredTab && mounted && (
+                  {isActive && !hoveredTab && isMounted && (
                     <motion.span
                       layoutId="navbar-active-box"
                       className="absolute inset-0 rounded-lg bg-zinc-800/60"

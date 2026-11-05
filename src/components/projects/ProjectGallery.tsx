@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { GalleryItem } from '@/types';
 import {
@@ -21,13 +21,13 @@ export default function ProjectGallery({ gallery, title }: ProjectGalleryProps) 
 
   const activeItem = gallery[selectedIndex] || gallery[0];
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setSelectedIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1));
-  };
+  }, [gallery.length]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setSelectedIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1));
-  };
+  }, [gallery.length]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function ProjectGallery({ gallery, title }: ProjectGalleryProps) 
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [gallery.length]);
+  }, [handleNext, handlePrev]);
 
   if (!gallery || gallery.length === 0) {
     return null;

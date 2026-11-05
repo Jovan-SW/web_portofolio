@@ -60,22 +60,36 @@ export default function Typewriter({
           : typingSpeed + (Math.sin(displayText.length * 1.5) * 12);
 
         timer = setTimeout(() => {
-          setDisplayText(currentWord.slice(0, displayText.length + 1));
+          const nextText = currentWord.slice(0, displayText.length + 1);
+          setDisplayText(nextText);
+          if (nextText.length === currentWord.length) {
+            setIsPaused(true);
+          }
         }, Math.max(30, cadenceDelay));
-      } else {
-        setIsPaused(true);
+      } else if (!isPaused) {
+        timer = setTimeout(() => {
+          setIsPaused(true);
+        }, 0);
       }
     } else {
       if (displayText.length > 0) {
         // Fast, fluid, and linear backspacing
         timer = setTimeout(() => {
-          setDisplayText(currentWord.slice(0, displayText.length - 1));
+          const nextText = currentWord.slice(0, displayText.length - 1);
+          setDisplayText(nextText);
+          if (nextText.length === 0) {
+            setIsDeleting(false);
+            setWordIndex((prev) => (prev + 1) % words.length);
+            setIsBreathing(true);
+          }
         }, deletingSpeed);
       } else {
         // Word cleared: take a calm breath, advance index
-        setIsDeleting(false);
-        setWordIndex((prev) => (prev + 1) % words.length);
-        setIsBreathing(true);
+        timer = setTimeout(() => {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+          setIsBreathing(true);
+        }, 0);
       }
     }
 

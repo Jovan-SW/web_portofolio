@@ -5,17 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getLocalizedProjects } from '@/data/projects';
 import { useLanguage } from '@/context/LanguageContext';
-import { Project } from '@/types';
+import { Project, ProjectRepository } from '@/types';
 import { CardStack, CardStackItem } from '@/components/ui/card-stack';
 import {
   ExternalLink,
-  Sparkles,
   ArrowRight,
   Clock,
   Code2,
-  CheckCircle2,
-  SlidersHorizontal,
-  ChevronRight,
 } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/Icons';
 import CaveFireflyCanvas from '@/components/ui/CaveFireflyCanvas';
@@ -26,7 +22,7 @@ type PortfolioCardItem = CardStackItem & {
 };
 
 // Helper to safely get repository URL
-const getRepoUrl = (repo: any): string | null => {
+const getRepoUrl = (repo: ProjectRepository | string | null | undefined): string | null => {
   if (!repo) return null;
   if (typeof repo === 'string') return repo;
   if (typeof repo === 'object' && repo.url) return repo.url;

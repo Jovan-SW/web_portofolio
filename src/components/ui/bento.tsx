@@ -129,11 +129,19 @@ export function BentoCard({
             graphic ? 'justify-end' : 'justify-start'
           )}
         >
-          {/* Eyebrow Header */}
-          {eyebrow && (
-            <span className="text-[8.5px] sm:text-[10px] md:text-[11px] font-mono tracking-widest text-sky-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] mb-0.5 sm:mb-1">
-              {eyebrow}
-            </span>
+          {/* Eyebrow Header, Icon & Badge */}
+          {(eyebrow || icon || badge) && (
+            <div className="flex items-center justify-between gap-2 mb-0.5 sm:mb-1">
+              <div className="flex items-center gap-1.5">
+                {icon && <span className="text-sky-400">{icon}</span>}
+                {eyebrow && (
+                  <span className="text-[8.5px] sm:text-[10px] md:text-[11px] font-mono tracking-widest text-sky-400 font-bold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+                    {eyebrow}
+                  </span>
+                )}
+              </div>
+              {badge && <div>{badge}</div>}
+            </div>
           )}
 
           {title && (

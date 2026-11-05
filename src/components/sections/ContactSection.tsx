@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { caveCardVariants, subPanelPopVariants } from '@/components/ui/bento';
@@ -41,7 +41,7 @@ export default function ContactSection() {
     hp_website: '',
     company_fax: '',
   });
-  const [formTimestamp, setFormTimestamp] = useState<number>(0);
+  const formTimestampRef = useRef<number>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success: boolean;
@@ -56,7 +56,7 @@ export default function ContactSection() {
 
   // Inisialisasi timestamp saat komponen dimuat di browser
   useEffect(() => {
-    setFormTimestamp(Date.now());
+    formTimestampRef.current = Date.now();
   }, []);
 
   // Live real-time WIB (UTC+7) clock
@@ -200,7 +200,7 @@ export default function ContactSection() {
       payload.append('message', formData.message);
       payload.append('hp_website', formData.hp_website);
       payload.append('company_fax', formData.company_fax);
-      payload.append('client_timestamp', formTimestamp.toString());
+      payload.append('client_timestamp', formTimestampRef.current.toString());
       payload.append('lang', lang);
 
       const res = await sendContactEmail(payload);
@@ -235,7 +235,7 @@ export default function ContactSection() {
   const resetFormState = () => {
     setSubmitStatus(null);
     setFieldErrors({});
-    setFormTimestamp(Date.now());
+    formTimestampRef.current = Date.now();
   };
 
   return (

@@ -73,6 +73,8 @@ export function useFramePreloader({
     });
   }, []);
 
+  const processQueueRef = useRef<() => void>(() => {});
+
   // Process queue with concurrency limit
   const processQueue = useCallback(() => {
     while (activeDownloadsRef.current < maxConcurrency && queueRef.current.length > 0) {
@@ -85,10 +87,14 @@ export function useFramePreloader({
       activeDownloadsRef.current += 1;
       loadSingleFrame(index).finally(() => {
         activeDownloadsRef.current -= 1;
-        processQueue();
+        processQueueRef.current();
       });
     }
   }, [loadSingleFrame, maxConcurrency]);
+
+  useEffect(() => {
+    processQueueRef.current = processQueue;
+  }, [processQueue]);
 
   // Request high priority load for frames around a target index
   const prioritizeAround = useCallback((targetIndex: number, windowRadius = 15) => {
@@ -172,6 +178,5 @@ export function useFramePreloader({
     loadProgress,
     getNearestFrame,
     prioritizeAround,
-    images: imagesRef.current,
   };
 }

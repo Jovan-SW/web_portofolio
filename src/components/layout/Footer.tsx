@@ -1,8 +1,10 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Footer() {
+  const router = useRouter();
   const { t } = useLanguage();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -12,7 +14,7 @@ export default function Footer() {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     } else {
-      window.location.href = `/${href}`;
+      router.push(`/${href}`);
     }
   };
 

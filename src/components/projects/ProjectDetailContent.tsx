@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { getLocalizedProjectBySlug, getLocalizedProjects } from '@/data/projects';
-import { Project } from '@/types';
+import { Project, ProjectRepository } from '@/types';
 import ProjectGallery from '@/components/projects/ProjectGallery';
 import { GithubIcon } from '@/components/ui/Icons';
 import {
@@ -28,7 +28,6 @@ import {
   Check,
   AlertCircle,
   Lightbulb,
-  Globe,
 } from 'lucide-react';
 import Footer from '@/components/layout/Footer';
 
@@ -38,7 +37,7 @@ interface Props {
 }
 
 // Helper to safely get repository URL
-const getRepoUrl = (repo: any): string | null => {
+const getRepoUrl = (repo: ProjectRepository | string | null | undefined): string | null => {
   if (!repo) return null;
   if (typeof repo === 'string') return repo;
   if (typeof repo === 'object' && repo.url) return repo.url;

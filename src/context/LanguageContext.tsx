@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useCallback, useSyncExternalStore } from 'react';
 import { translations, TranslationKey, Language } from '@/data/translations';
 
 interface LanguageContextType {
@@ -12,27 +12,47 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLangState] = useState<Language>('id');
-  const [mounted, setMounted] = useState(false);
+let memoryLang: Language = 'id';
+const listeners = new Set<() => void>();
 
-  useEffect(() => {
-    setMounted(true);
+function subscribe(callback: () => void) {
+  listeners.add(callback);
+  const handleStorage = (e: StorageEvent) => {
+    if (e.key === 'portfolio_lang' && (e.newValue === 'en' || e.newValue === 'id')) {
+      memoryLang = e.newValue;
+      callback();
+    }
+  };
+  window.addEventListener('storage', handleStorage);
+  return () => {
+    listeners.delete(callback);
+    window.removeEventListener('storage', handleStorage);
+  };
+}
+
+function getSnapshot(): Language {
+  if (typeof window !== 'undefined') {
     try {
-      const saved = localStorage.getItem('portfolio_lang') as Language | null;
+      const saved = localStorage.getItem('portfolio_lang');
       if (saved === 'en' || saved === 'id') {
-        setLangState(saved);
-        if (typeof document !== 'undefined') {
-          document.documentElement.lang = saved;
-        }
+        memoryLang = saved;
       }
     } catch {
       // LocalStorage might be restricted
     }
-  }, []);
+  }
+  return memoryLang;
+}
 
-  const setLang = (newLang: Language) => {
-    setLangState(newLang);
+function getServerSnapshot(): Language {
+  return 'id';
+}
+
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const lang = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  const setLang = useCallback((newLang: Language) => {
+    memoryLang = newLang;
     try {
       localStorage.setItem('portfolio_lang', newLang);
       if (typeof document !== 'undefined') {
@@ -41,17 +61,21 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     } catch {
       // LocalStorage might be restricted
     }
-  };
+    listeners.forEach((listener) => listener());
+  }, []);
 
-  const toggleLang = () => {
+  const toggleLang = useCallback(() => {
     setLang(lang === 'id' ? 'en' : 'id');
-  };
+  }, [lang, setLang]);
 
-  const t = (key: TranslationKey): string => {
-    const record = translations[key];
-    if (!record) return key;
-    return record[lang] || record.id || key;
-  };
+  const t = useCallback(
+    (key: TranslationKey): string => {
+      const record = translations[key];
+      if (!record) return key;
+      return record[lang] || record.id || key;
+    },
+    [lang]
+  );
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, toggleLang, t }}>

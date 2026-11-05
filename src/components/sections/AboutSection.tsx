@@ -61,7 +61,7 @@ export default function AboutSection() {
                 iceGlassEffect={true}
                 iceFrame="/ice-frame.png"
                 cornerAccents={false}
-                className="w-full h-full flex-1 flex flex-col scale-[0.93] sm:scale-100 origin-center"
+                className="w-full h-full flex-1 flex flex-col"
               />
             </motion.div>
           </div>
