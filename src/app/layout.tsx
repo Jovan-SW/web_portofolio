@@ -79,6 +79,9 @@ export const metadata: Metadata = {
     title: `${SEO_CONFIG.name} | ${SEO_CONFIG.role} Indonesia`,
     description: SEO_CONFIG.defaultDescription,
   },
+  verification: {
+    google: 'KeVtt_czP_Gp-4InBVlZF_krqOSX-psBjft9DBY3E28',
+  },
   other: {
     'geo.region': 'ID',
     'geo.placename': 'Indonesia',
